@@ -43,6 +43,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+        
+        {/* Explicit Open Graph & WhatsApp tags */}
+        <meta property="og:title" content="KAKOS MENSWEAR | Streetwear Urbain Cameroun" />
+        <meta property="og:description" content="Streetwear premium et minimaliste pour l'homme contemporain au Cameroun. Livraison express à Douala & Yaoundé. Paiement à la livraison." />
+        <meta property="og:image" content="https://kakos-store.vercel.app/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://kakos-store.vercel.app/og-image.jpg" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://kakos-store.vercel.app/og-image.jpg" />
       </head>
       <body className="bg-surface text-on-surface font-sans antialiased min-h-screen flex flex-col selection:bg-[#00F0FF] selection:text-primary">
         <StorefrontLayoutWrapper>
