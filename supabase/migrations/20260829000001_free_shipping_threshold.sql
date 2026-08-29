@@ -113,7 +113,7 @@ BEGIN
     LOOP
         v_tracking_number := 'KK-' || to_char(NOW(), 'YYYYMMDD') || '-' || lpad(floor(random() * 10000)::text, 4, '0');
         SELECT EXISTS (
-            SELECT 1 FROM public.orders WHERE tracking_number = v_tracking_number
+            SELECT 1 FROM public.orders WHERE public.orders.tracking_number = v_tracking_number
         ) INTO v_exists;
         EXIT WHEN NOT v_exists;
     END LOOP;

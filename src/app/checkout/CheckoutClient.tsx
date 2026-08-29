@@ -217,47 +217,6 @@ export default function CheckoutClient({ zones }: CheckoutClientProps) {
           </div>
         </section>
 
-        {/* Shipping Method Section */}
-        <section className="flex flex-col gap-2">
-          <h2 className="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant border-b border-outline-variant pb-1">
-            Méthode de Livraison
-          </h2>
-          <div className="border border-primary p-3.5 sm:p-4 flex items-center justify-between bg-surface-container-low rounded-lg">
-            <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-primary fill text-xl" data-icon="local_shipping">
-                local_shipping
-              </span>
-              <span className="font-body-md text-xs sm:text-sm text-primary font-bold">Livraison Standard</span>
-            </div>
-            <span className="font-label-sm text-xs text-secondary uppercase font-bold">
-              {isFreeShipping ? (
-                <span className="text-emerald-600 dark:text-emerald-400 font-black">OFFERTE (Dès 20 000 FCFA)</span>
-              ) : selectedZone ? (
-                `${Number(selectedZone.price).toLocaleString('fr-FR')} FCFA`
-              ) : (
-                'Sélectionnez une zone'
-              )}
-            </span>
-          </div>
-        </section>
-
-        {/* Payment Method Section (Fixed COD) */}
-        <section className="flex flex-col gap-2">
-          <h2 className="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant border-b border-outline-variant pb-1">
-            Paiement
-          </h2>
-          <div className="border-2 border-primary p-3.5 sm:p-4 flex items-center justify-between bg-surface-container-low rounded-lg">
-            <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-primary fill text-xl" data-icon="payments">
-                payments
-              </span>
-              <span className="font-body-md text-xs sm:text-sm text-primary font-bold">Paiement à la Livraison (COD)</span>
-            </div>
-            <span className="material-symbols-outlined text-primary text-xl" data-icon="check_circle">
-              check_circle
-            </span>
-          </div>
-        </section>
 
         {/* Order Summary Section */}
         <section className="flex flex-col gap-3 bg-surface-container-low p-4 sm:p-5 border border-outline-variant rounded-lg">
