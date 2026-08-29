@@ -3,8 +3,31 @@ import type { Metadata } from 'next';
 import StorefrontLayoutWrapper from '@/components/ui/StorefrontLayoutWrapper';
 
 export const metadata: Metadata = {
-  title: 'KAKOS MENSWEAR | Urban Monolith',
-  description: 'Streetwear premium et minimaliste pour l\'homme contemporain au Cameroun. Ventes exclusives, pulls, sweats, t-shirts, et ensembles.',
+  title: 'KAKOS MENSWEAR | Streetwear Urbain Cameroun',
+  description: 'Streetwear premium et minimaliste pour l\'homme contemporain au Cameroun. Livraison express à Douala & Yaoundé. Paiement à la livraison.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kakos-store.vercel.app'),
+  openGraph: {
+    title: 'KAKOS MENSWEAR | Streetwear Urbain Cameroun',
+    description: 'Streetwear premium et minimaliste pour l\'homme contemporain au Cameroun. Livraison express à Douala & Yaoundé. Paiement à la livraison.',
+    url: 'https://kakos-store.vercel.app',
+    siteName: 'KAKOS MENSWEAR',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 675,
+        alt: 'KAKOS MENSWEAR Urban Monolith Streetwear',
+      },
+    ],
+    locale: 'fr_FR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'KAKOS MENSWEAR | Streetwear Urbain Cameroun',
+    description: 'Streetwear premium pour l\'homme urbain contemporain au Cameroun.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 export default function RootLayout({
