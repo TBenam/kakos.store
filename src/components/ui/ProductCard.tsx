@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface ProductCardProps {
   id: string;
@@ -42,9 +43,11 @@ export default function ProductCard({
     >
       {/* Image container */}
       <div className="w-full aspect-[3/4] bg-surface-container-low relative overflow-hidden rounded-t-lg">
-        <img
+        <Image
           src={displayImage}
           alt={title}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 300px"
           loading="lazy"
           className="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105 grayscale-[20%] group-hover:grayscale-0 duration-300"
         />

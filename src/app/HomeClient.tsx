@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, Variants } from 'framer-motion';
 import ProductCard from '@/components/ui/ProductCard';
 import SizeRecommenderModal from '@/components/ui/SizeRecommenderModal';
@@ -61,9 +62,12 @@ export default function HomeClient({ products }: { products: DbProduct[] }) {
           animate={{ scale: 1, filter: 'grayscale(0%) blur(0px)' }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         >
-          <img
-            src="/hero.jpg"
+          <Image
+            src="/hero.webp"
             alt="KAKOS Streetwear Drop"
+            fill
+            priority
+            sizes="100vw"
             className="w-full h-full object-cover object-top opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000"
           />
         </motion.div>
@@ -128,14 +132,14 @@ export default function HomeClient({ products }: { products: DbProduct[] }) {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {[
-            { name: 'T-shirts', slug: 't-shirts', img: '/cat_tshirts_real.jpg' },
-            { name: 'Hoodies', slug: 'sweats-hoodies', img: '/cat_hoodies.jpg' },
-            { name: 'Jeans', slug: 'jeans', img: '/cat_jeans.jpg' },
-            { name: 'Ensembles', slug: 'ensembles', img: '/cat_ensembles.jpg' },
-            { name: 'Shorts', slug: 'culottes-shorts', img: '/cat_shorts.jpg' },
-            { name: 'Vestes', slug: 'vestes-doudounes', img: '/cat_vestes.jpg' },
-            { name: 'Pantalons', slug: 'pantalons', img: '/cat_pantalons.jpg' },
-            { name: 'Salopettes', slug: 'salopettes', img: '/cat_salopettes.jpg' },
+            { name: 'T-shirts', slug: 't-shirts', img: '/cat_tshirts_real.webp' },
+            { name: 'Hoodies', slug: 'sweats-hoodies', img: '/cat_hoodies.webp' },
+            { name: 'Jeans', slug: 'jeans', img: '/cat_jeans.webp' },
+            { name: 'Ensembles', slug: 'ensembles', img: '/cat_ensembles.webp' },
+            { name: 'Shorts', slug: 'culottes-shorts', img: '/cat_shorts.webp' },
+            { name: 'Vestes', slug: 'vestes-doudounes', img: '/cat_vestes.webp' },
+            { name: 'Pantalons', slug: 'pantalons', img: '/cat_pantalons.webp' },
+            { name: 'Salopettes', slug: 'salopettes', img: '/cat_salopettes.webp' },
           ].map((cat, i) => (
             <motion.div 
               key={cat.slug}
@@ -148,9 +152,12 @@ export default function HomeClient({ products }: { products: DbProduct[] }) {
                 href={`/collections/${cat.slug}`}
                 className="group relative block aspect-square bg-[#0A0A0A] border border-outline-variant rounded-lg overflow-hidden hover:border-accent hover:shadow-brutalist transition-all duration-300"
               >
-                <img
+                <Image
                   src={cat.img}
                   alt={cat.name}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 280px"
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black/80 transition-colors duration-300" />
@@ -296,9 +303,12 @@ export default function HomeClient({ products }: { products: DbProduct[] }) {
           className="grid grid-cols-1 md:grid-cols-2 border border-outline-variant bg-[#0A0A0A] overflow-hidden rounded-lg shadow-brutalist"
         >
           <div className="aspect-[4/3] md:aspect-auto min-h-[420px] relative">
-            <img
-              src="/lookbook_campaign.jpg"
+            <Image
+              src="/lookbook_campaign.webp"
               alt="KAKOS Streetwear Douala Squad"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-all duration-700"
             />
           </div>
@@ -330,9 +340,12 @@ export default function HomeClient({ products }: { products: DbProduct[] }) {
           viewport={{ once: true }}
           className="relative w-full h-[420px] sm:h-[520px] rounded-lg overflow-hidden border-2 border-outline-variant hover:border-accent transition-colors group shadow-brutalist"
         >
-          <img
-            src="/editorial_heavy.jpg"
+          <Image
+            src="/editorial_heavy.webp"
             alt="DOUALA NIGHTS // LOOKBOOK VOL. 1"
+            fill
+            sizes="100vw"
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />

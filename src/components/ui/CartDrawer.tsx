@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
@@ -162,13 +163,12 @@ export default function CartDrawer({ isOpen: propsIsOpen, onClose: propsOnClose 
                   <div key={item.id} className="py-4 first:pt-0 last:pb-0 flex gap-3.5">
                     {/* Thumbnail */}
                     <div className="w-20 h-24 sm:w-24 sm:h-28 bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden flex-shrink-0 relative">
-                      <img
-                        src={item.imageUrl || '/fallback_product.jpg'}
+                      <Image
+                        src={item.imageUrl || '/fallback_product.webp'}
                         alt={item.title}
+                        fill
+                        sizes="96px"
                         className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/fallback_product.jpg';
-                        }}
                       />
                     </div>
 

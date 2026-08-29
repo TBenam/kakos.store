@@ -14,6 +14,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import { useSizing } from '@/context/SizingContext';
 import { getRecommendedSize } from '@/lib/sizing/sizing-engine';
@@ -167,13 +168,16 @@ export default function ProductDetailClient({
       <div className="flex flex-col gap-sm">
         {/* Main image */}
         <div className="w-full aspect-[3/4] bg-surface-container-low border border-outline-variant relative overflow-hidden rounded-lg shadow-sm">
-          <img
-            src={currentImages[activeImageIndex]?.url || currentImages[0]?.url}
+          <Image
+            src={currentImages[activeImageIndex]?.url || currentImages[0]?.url || '/fallback_product.webp'}
             alt={product.title}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover w-full h-full absolute inset-0 transition-opacity duration-300"
           />
           {/* Badge Bestseller/Trend on image */}
-          <div className="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm">
+          <div className="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm z-10">
             {product.category_name}
           </div>
         </div>
@@ -185,13 +189,20 @@ export default function ProductDetailClient({
               <button
                 key={img.id}
                 onClick={() => setActiveImageIndex(idx)}
-                className={`w-20 aspect-[3/4] bg-surface-container-low border-2 overflow-hidden rounded-lg flex-shrink-0 transition-all cursor-pointer ${
+                className={`relative w-20 aspect-[3/4] bg-surface-container-low border-2 overflow-hidden rounded-lg flex-shrink-0 transition-all cursor-pointer ${
                   activeImageIndex === idx
                     ? 'border-primary ring-2 ring-primary/20 scale-95'
                     : 'border-outline-variant opacity-75 hover:opacity-100'
                 }`}
               >
-                <img src={img.url} alt="" className="object-cover w-full h-full" />
+                <Image
+                  src={img.url}
+                  alt=""
+                  fill
+                  sizes="80px"
+                  loading="lazy"
+                  className="object-cover w-full h-full"
+                />
               </button>
             ))}
           </div>

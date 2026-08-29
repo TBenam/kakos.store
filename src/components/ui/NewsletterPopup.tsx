@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function NewsletterPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,9 +53,11 @@ export default function NewsletterPopup() {
 
         {/* Left: Editorial Image representing Cameroonian urban model */}
         <div className="w-full md:w-1/2 min-h-[220px] md:min-h-full relative bg-surface-container-low">
-          <img
-            src="/vip_club.jpg"
+          <Image
+            src="/vip_club.webp"
             alt="Club KAKOS Drops"
+            fill
+            sizes="(max-width: 768px) 100vw, 400px"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>

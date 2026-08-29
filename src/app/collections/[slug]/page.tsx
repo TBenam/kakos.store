@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
 import ProductCard from '@/components/ui/ProductCard';
 
@@ -27,14 +28,14 @@ interface PageProps {
 export const revalidate = 60; // Revalidate dynamic routes every 60 seconds
 
 const CATEGORY_IMAGES: Record<string, string> = {
-  't-shirts': '/cat_tshirts_real.jpg',
-  'sweats-hoodies': '/cat_hoodies.jpg',
-  'jeans': '/cat_jeans.jpg',
-  'ensembles': '/cat_ensembles.jpg',
-  'culottes-shorts': '/cat_shorts.jpg',
-  'vestes-doudounes': '/cat_vestes.jpg',
-  'pantalons': '/cat_pantalons.jpg',
-  'salopettes': '/cat_salopettes.jpg',
+  't-shirts': '/cat_tshirts_real.webp',
+  'sweats-hoodies': '/cat_hoodies.webp',
+  'jeans': '/cat_jeans.webp',
+  'ensembles': '/cat_ensembles.webp',
+  'culottes-shorts': '/cat_shorts.webp',
+  'vestes-doudounes': '/cat_vestes.webp',
+  'pantalons': '/cat_pantalons.webp',
+  'salopettes': '/cat_salopettes.webp',
 };
 
 export default async function CategoryPage(props: PageProps) {
@@ -122,10 +123,13 @@ export default async function CategoryPage(props: PageProps) {
     <div className="flex-grow w-full max-w-6xl mx-auto px-container-margin py-lg flex flex-col gap-lg">
       {/* Category Hero Banner */}
       <div className="relative rounded-lg overflow-hidden border-2 border-outline-variant bg-[#0A0A0A] p-6 sm:p-10 flex flex-col justify-between min-h-[200px] sm:min-h-[240px] shadow-brutalist">
-        <img
+        <Image
           src={catImage}
           alt={category.name}
-          className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale filter blur-[1px]"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30 grayscale filter blur-[1px]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
 
