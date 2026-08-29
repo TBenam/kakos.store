@@ -2,7 +2,7 @@ import React from 'react';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
 import ProductsClient, { CatalogProduct } from './ProductsClient';
 
-export const revalidate = 60; // Revalidate every 60s
+export const dynamic = 'force-dynamic';
 
 export default async function ProductsPage() {
   let products: CatalogProduct[] = [];

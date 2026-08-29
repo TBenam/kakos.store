@@ -11,7 +11,7 @@ interface HomeProduct {
   imageUrl?: string;
 }
 
-export const revalidate = 60; // Revalidate page every 60 seconds
+export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   let products: HomeProduct[] = [];
