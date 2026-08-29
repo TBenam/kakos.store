@@ -1,0 +1,48 @@
+{
+  "name": "Sweat à Capuche Zip Navy",
+  "description": "<p><strong>Sweat à Capuche Zip Navy KAKOS</strong> — Sweat-shirt à capuche zippé classique, doté de poches kangourou et d'un cordon de serrage assorti. Confectionné dans un molleton de coton lourd et ultra-doux.</p>",
+  "category": "Sweats / Hoodies",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "sweats-hoodies"
+  ],
+  "supplierPrice": 7000,
+  "salePrice": 7000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Bleu Marine"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Bleu Marine",
+      "stock": 10
+    },
+    {
+      "size": "L",
+      "color": "Bleu Marine",
+      "stock": 15
+    },
+    {
+      "size": "XL",
+      "color": "Bleu Marine",
+      "stock": 10
+    }
+  ],
+  "stock": 35,
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

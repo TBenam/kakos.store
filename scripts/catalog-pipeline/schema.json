@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KakosProduct",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name or title of the product"
+    },
+    "description": {
+      "type": "string",
+      "description": "HTML or plain text description of the product"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "T-shirts",
+        "Sweats / Hoodies",
+        "Jeans",
+        "Ensembles",
+        "Culottes / Shorts",
+        "Vestes / Doudounes",
+        "Pantalons",
+        "Salopettes"
+      ],
+      "description": "Product category matching the predefined store categories"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the product"
+    },
+    "supplierPrice": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price paid to supplier in FCFA"
+    },
+    "salePrice": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price sold to customer in FCFA"
+    },
+    "salePriceApprovedByHuman": {
+      "type": "boolean",
+      "description": "Must be true if a human validated the salePrice"
+    },
+    "sizes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available sizes without extrapolation"
+    },
+    "colors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available colors without extrapolation"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "size": { "type": "string" },
+          "color": { "type": "string" },
+          "stock": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": ["size", "color", "stock"]
+      },
+      "description": "Concrete variants combinations and their stock levels"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Sum of all variants stocks"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Local filenames of product images present in the directory"
+    },
+    "needs_review": {
+      "type": "boolean",
+      "description": "True if there are uncertainties or if salePrice is unapproved"
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of missing data, potential errors, or pending human actions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["DRAFT", "REVIEW_REQUIRED", "APPROVED"],
+      "description": "Lifecycle state of the product entry"
+    },
+    "supplierReference": {
+      "type": "string",
+      "description": "Optional supplier reference code"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "category",
+    "tags",
+    "supplierPrice",
+    "salePrice",
+    "salePriceApprovedByHuman",
+    "sizes",
+    "colors",
+    "variants",
+    "stock",
+    "images",
+    "needs_review",
+    "uncertainties",
+    "status"
+  ],
+  "additionalProperties": false
+}

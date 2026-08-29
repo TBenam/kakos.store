@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS - NOUVEAUTÉS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#454747",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#474646",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-bright": "#fbf9f9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fbf9f9",
+                        "outline": "#747878",
+                        "surface-variant": "#e3e2e2",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-primary-container": "#858383",
+                        "outline-variant": "#c4c7c7",
+                        "tertiary-container": "#1d1b1a",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#c9c6c5",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "on-secondary-container": "#616363",
+                        "inverse-surface": "#303031",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "surface-dim": "#dbdad9",
+                        "on-surface": "#1b1c1c",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#e5e2e1",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "on-tertiary-container": "#868381",
+                        "on-primary-fixed": "#1c1b1b",
+                        "tertiary": "#000000",
+                        "primary": "#000000",
+                        "surface-container-highest": "#e3e2e2",
+                        "on-surface-variant": "#444748",
+                        "surface-container-high": "#e9e8e7",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "tertiary-fixed": "#e6e1df",
+                        "on-error": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "surface-container": "#efeded",
+                        "background": "#fbf9f9",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "surface-tint": "#5f5e5e",
+                        "secondary-container": "#dfe0e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "16px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Oswald"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Oswald"],
+                        "headline-lg": ["Oswald"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Oswald"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-accent { background-color: #00F0FF; color: #0A0A0A; }
+        .custom-accent-text { color: #00F0FF; }
+        .block-shadow { box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 font-body-md text-body-md md:hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full z-50 bg-surface border-b border-outline-variant docked full-width top-0 sticky">
+<button class="p-2 -ml-2 text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-75">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-lg text-headline-lg-mobile font-bold tracking-tighter text-primary">KAKOS</h1>
+<button class="p-2 -mr-2 text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-75 relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 w-2 h-2 custom-accent rounded-full"></span>
+</button>
+</header>
+<!-- Breadcrumb & Title -->
+<div class="px-container-margin pt-lg pb-md">
+<nav class="flex text-on-surface-variant text-label-sm font-label-sm mb-sm uppercase tracking-widest gap-2">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span>/</span>
+<span class="text-primary font-bold">New In</span>
+</nav>
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase tracking-tighter text-primary">NOUVEAUTÉS</h2>
+<span class="text-secondary text-label-sm font-label-sm uppercase">(142)</span>
+</div>
+</div>
+<!-- Filter/Sort Sticky Bar -->
+<div class="sticky top-16 z-40 bg-surface/95 backdrop-blur-sm border-y border-outline-variant py-sm px-container-margin flex gap-sm">
+<button class="flex-1 flex items-center justify-center gap-2 border border-primary bg-transparent text-primary py-3 rounded uppercase font-label-sm text-label-sm tracking-widest hover:bg-surface-container-high transition-colors active:scale-95 duration-75" onclick="document.getElementById('filter-sheet').classList.remove('translate-y-full')">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+            FILTRER
+        </button>
+<button class="flex-1 flex items-center justify-center gap-2 border border-primary bg-transparent text-primary py-3 rounded uppercase font-label-sm text-label-sm tracking-widest hover:bg-surface-container-high transition-colors active:scale-95 duration-75">
+<span class="material-symbols-outlined text-[18px]">swap_vert</span>
+            TRIER
+        </button>
+</div>
+<!-- Product Grid -->
+<main class="px-container-margin py-md">
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group relative flex flex-col border border-outline-variant bg-surface-container-lowest">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" data-alt="A male model wearing a high-contrast, structured black tactical vest over a crisp white oversized t-shirt. The setting is a brutalist concrete underpass in Douala. Sharp shadows, high energy urban aesthetic, crisp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-gwGgW1BiJLiJTi32NDFCp1LgI1zYaniWe5xBg7x8RAi1SB2H83yW9hhYInvrUQ8LFgMrgTnJFexwdFYDproGI6idKtwlR_4oh25NqIF-l4X-iBrzS0OKgysfFl-knm_Tb_3fhotwcddoPrmsabCGPo7PJYHr1oFhny6jQOiHPXDQNupbbCocyHPlPINfoInyYPXAU4plueiWE58vxVx6Bv5voMnj75Wn6gNQ1OsXRWQQQoW8Yq2V"/>
+<div class="absolute top-2 left-2 bg-primary text-on-primary px-2 py-1 text-label-sm font-label-sm uppercase tracking-widest rounded-DEFAULT">NEW</div>
+<button class="absolute bottom-2 right-2 p-2 bg-surface-container-lowest/80 backdrop-blur rounded-full text-primary hover:text-error transition-colors z-10 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-2 flex flex-col gap-1 flex-1">
+<h3 class="font-body-md text-body-md text-primary font-bold truncate">GILET TACTIQUE YDE</h3>
+<p class="font-headline-md text-headline-md text-primary mt-auto">45 000 FCFA</p>
+</div>
+</div>
+<!-- Product Card 2 (Sale) -->
+<div class="group relative flex flex-col border border-outline-variant bg-surface-container-lowest">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" data-alt="A male model in motion wearing an oversized, heavy-weight black hoodie and distressed dark denim. The background is a blurred transit hub in Yaoundé. High contrast lighting, streetwear vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYMic2IZhzssA5x2-NtJ0BPsY8Eu_RmKIIy1S4yJ0JnguoLbGgF_6QA-VCrjiYhAGYWwoi-l7V4FVer8yuCfsQLyS1Og7eKUQqSRFhwdDlWl_35bdj6dlYdc8aTCt8fEJM8TL6stXtH1_e5PA5Uz5_ZIie5Cym7jkOe0rEKdtqT-OCuX8EECGmq5DvLZ_xze_RiWM5ShqBIjcGiVhuRIVsskt23v5BootVO_WGXL2lf-wwchZP_LYu"/>
+<div class="absolute top-2 left-2 custom-accent px-2 py-1 text-label-sm font-label-sm uppercase tracking-widest rounded-DEFAULT">-30%</div>
+<button class="absolute bottom-2 right-2 p-2 bg-surface-container-lowest/80 backdrop-blur rounded-full text-primary hover:text-error transition-colors z-10 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-2 flex flex-col gap-1 flex-1">
+<h3 class="font-body-md text-body-md text-primary font-bold truncate">HOODIE OVERSIZE</h3>
+<div class="flex items-center gap-2 mt-auto">
+<p class="font-headline-md text-headline-md text-primary">31 500 FCFA</p>
+<p class="text-label-sm font-label-sm text-secondary line-through">45 000 FCFA</p>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative flex flex-col border border-outline-variant bg-surface-container-lowest">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" data-alt="Close up of a premium black denim jacket with raw edges, worn by a black male model. Harsh sunlight creating deep shadows against a textured concrete wall. Minimalist, premium fast-fashion aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSpdlr7WfBAs8kZPZVbaByV-JhCHmMxjfVmJZ26JBBmUhwA1iqFkMrxSSwwGZh5LV3mhl1VrsW9uGBmxsbHNkP81R68tN9e5dFMFI-mJWieVz9BxjY2FRVzMK3FhEKfe_-AZ8nRmYVqmk01nOzBd6PLMSDlYuNMp4jQHW-7E9z1TpCE0ersQY_d-8UFAu8SNFoDujrrv3TXLVYaZobU7_ISY-qNGvnZLN3jSSrdLy_rmsJbqqmVjq-"/>
+<button class="absolute bottom-2 right-2 p-2 bg-surface-container-lowest/80 backdrop-blur rounded-full text-primary hover:text-error transition-colors z-10 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-2 flex flex-col gap-1 flex-1">
+<h3 class="font-body-md text-body-md text-primary font-bold line-clamp-2">VESTE DENIM BRUT</h3>
+<p class="font-headline-md text-headline-md text-primary mt-auto">60 000 FCFA</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative flex flex-col border border-outline-variant bg-surface-container-lowest">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" data-alt="A male model standing tall in a sleek, monochromatic black tech-wear ensemble, featuring cargo pants and a fitted long-sleeve tee. Shot from a low angle against a modern glass building facade. Striking, masculine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQuWUWPu7TvYhhnntIsutGZxwOVl0t4jzkZMGYECmfGR3TRTHLasZakx-TI1pNkcr0a86A3nePm2MUh0JZ5hKc-QtfzCWSa-4fhnuG63j0XwMVnrZuewcMGZlDOFMKNmZDo0ik4Z-ga_ad2DiC_se8OdfPTJC7SrozvSd-qjBBg1HEFxPDFLQ4SxHTw3bmj4UgGicUsoujvkI08g7B1dEqKiZsN72rG8VcoUgBPzwAJSixiE46sHb-"/>
+<button class="absolute bottom-2 right-2 p-2 bg-surface-container-lowest/80 backdrop-blur rounded-full text-primary hover:text-error transition-colors z-10 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-2 flex flex-col gap-1 flex-1">
+<h3 class="font-body-md text-body-md text-primary font-bold truncate">CARGO TECH-WEAR</h3>
+<p class="font-headline-md text-headline-md text-primary mt-auto">55 000 FCFA</p>
+</div>
+</div>
+<!-- Skeleton Loader Examples -->
+<div class="flex flex-col border border-outline-variant bg-surface-container-lowest animate-pulse">
+<div class="w-full aspect-[3/4] bg-surface-variant"></div>
+<div class="p-2 flex flex-col gap-2">
+<div class="h-4 bg-surface-variant rounded w-3/4"></div>
+<div class="h-5 bg-surface-variant rounded w-1/2 mt-auto"></div>
+</div>
+</div>
+<div class="flex flex-col border border-outline-variant bg-surface-container-lowest animate-pulse">
+<div class="w-full aspect-[3/4] bg-surface-variant"></div>
+<div class="p-2 flex flex-col gap-2">
+<div class="h-4 bg-surface-variant rounded w-5/6"></div>
+<div class="h-5 bg-surface-variant rounded w-2/3 mt-auto"></div>
+</div>
+</div>
+</div>
+<!-- Load More Button -->
+<div class="mt-xl text-center">
+<button class="w-full bg-primary text-on-primary py-4 rounded-DEFAULT font-label-sm text-label-sm uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+                CHARGER PLUS
+            </button>
+<p class="mt-4 text-secondary font-label-sm text-label-sm uppercase tracking-widest">Affichage de 6 sur 142 produits</p>
+</div>
+</main>
+<!-- Filter Bottom Sheet Overlay -->
+<div class="fixed inset-0 z-[100] flex flex-col justify-end pointer-events-none translate-y-full transition-transform duration-300 ease-in-out" id="filter-sheet">
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-sm pointer-events-auto" onclick="document.getElementById('filter-sheet').classList.add('translate-y-full')"></div>
+<div class="relative w-full h-[751px] bg-surface rounded-t-xl flex flex-col pointer-events-auto border-t border-outline block-shadow">
+<!-- Sheet Header -->
+<div class="flex justify-between items-center p-md border-b border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-primary uppercase">FILTRES</h3>
+<button class="p-2 -mr-2 text-primary hover:bg-surface-container-high rounded-full transition-colors" onclick="document.getElementById('filter-sheet').classList.add('translate-y-full')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Sheet Content -->
+<div class="flex-1 overflow-y-auto p-container-margin flex flex-col gap-lg hide-scrollbar">
+<!-- Taille -->
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-sm font-bold">TAILLE</h4>
+<div class="grid grid-cols-4 gap-2">
+<button class="border border-outline-variant py-2 text-center text-primary font-body-md hover:border-primary focus:border-primary focus:bg-primary focus:text-on-primary transition-colors">S</button>
+<button class="border border-primary bg-primary text-on-primary py-2 text-center font-body-md transition-colors">M</button>
+<button class="border border-outline-variant py-2 text-center text-primary font-body-md hover:border-primary focus:border-primary focus:bg-primary focus:text-on-primary transition-colors">L</button>
+<button class="border border-outline-variant py-2 text-center text-primary font-body-md hover:border-primary focus:border-primary focus:bg-primary focus:text-on-primary transition-colors opacity-50 cursor-not-allowed">XL</button>
+</div>
+</div>
+<!-- Couleur -->
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-sm font-bold">COULEUR</h4>
+<div class="flex gap-4">
+<button class="w-8 h-8 rounded-full bg-[#0A0A0A] border-2 border-primary ring-2 ring-primary ring-offset-2 ring-offset-surface"></button>
+<button class="w-8 h-8 rounded-full bg-[#F5F5F5] border border-outline-variant"></button>
+<button class="w-8 h-8 rounded-full bg-[#5D5F5F] border border-outline-variant"></button>
+<button class="w-8 h-8 rounded-full bg-[#00F0FF] border border-outline-variant"></button>
+</div>
+</div>
+<!-- Prix -->
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-sm font-bold">PRIX</h4>
+<div class="flex gap-4 items-center">
+<div class="flex-1 relative">
+<label class="absolute -top-2 left-2 bg-surface px-1 text-[10px] uppercase font-bold text-secondary">Min</label>
+<input class="w-full bg-transparent border border-outline-variant p-2 text-body-md text-primary focus:border-primary focus:ring-0 rounded-DEFAULT" placeholder="0" type="number"/>
+</div>
+<span class="text-secondary">-</span>
+<div class="flex-1 relative">
+<label class="absolute -top-2 left-2 bg-surface px-1 text-[10px] uppercase font-bold text-secondary">Max</label>
+<input class="w-full bg-transparent border border-outline-variant p-2 text-body-md text-primary focus:border-primary focus:ring-0 rounded-DEFAULT" placeholder="100000" type="number"/>
+</div>
+</div>
+</div>
+<!-- Disponibilité -->
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-sm font-bold">DISPONIBILITÉ</h4>
+<label class="flex items-center gap-3 p-3 border border-outline-variant rounded-DEFAULT cursor-pointer hover:bg-surface-container-low transition-colors">
+<input checked="" class="w-5 h-5 border-2 border-primary text-primary focus:ring-primary rounded-sm bg-transparent" type="checkbox"/>
+<span class="font-body-md text-primary">En stock uniquement</span>
+</label>
+</div>
+</div>
+<!-- Sheet Footer -->
+<div class="p-container-margin border-t border-outline-variant bg-surface grid grid-cols-2 gap-sm">
+<button class="py-4 border border-primary text-primary font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-container-high transition-colors">EFFACER</button>
+<button class="py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest hover:opacity-90 transition-colors">APPLIQUER (45)</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface px-container-margin pb-safe border-t border-outline-variant z-50">
+<button class="flex flex-col items-center justify-center text-secondary opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary scale-110 tap-highlight-none active:scale-90">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">flare</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Drops</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90">
+<span class="material-symbols-outlined mb-1">shopping_cart</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Cart</span>
+</button>
+</nav>
+</body></html>

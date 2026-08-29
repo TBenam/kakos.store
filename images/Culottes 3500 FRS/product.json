@@ -1,0 +1,48 @@
+{
+  "name": "Culottes",
+  "description": "<p><strong>Culottes KAKOS</strong> — Une pièce maîtresse de notre vestiaire urbain.</p>",
+  "category": "Culottes / Shorts",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "culottes-shorts"
+  ],
+  "supplierPrice": 3500,
+  "salePrice": 3500,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Noir"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Noir",
+      "stock": 10
+    },
+    {
+      "size": "L",
+      "color": "Noir",
+      "stock": 10
+    },
+    {
+      "size": "XL",
+      "color": "Noir",
+      "stock": 10
+    }
+  ],
+  "stock": 30,
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

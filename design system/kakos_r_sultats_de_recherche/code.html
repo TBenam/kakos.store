@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS MENSWEAR - Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c9c6c5",
+                    "on-tertiary-fixed": "#1d1b1a",
+                    "tertiary": "#000000",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "outline-variant": "#c4c7c7",
+                    "surface-tint": "#5f5e5e",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "surface-bright": "#fbf9f9",
+                    "background": "#fbf9f9",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#efeded",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#1d1b1a",
+                    "on-surface-variant": "#444748",
+                    "inverse-on-surface": "#f2f0f0",
+                    "surface": "#fbf9f9",
+                    "surface-container-highest": "#e3e2e2",
+                    "primary-container": "#1c1b1b",
+                    "on-secondary-container": "#616363",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-tertiary-container": "#868381",
+                    "outline": "#747878",
+                    "on-primary-fixed-variant": "#474646",
+                    "on-primary-container": "#858383",
+                    "primary-fixed": "#e5e2e1",
+                    "surface-variant": "#e3e2e2",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#dfe0e0",
+                    "inverse-surface": "#303031",
+                    "on-surface": "#1b1c1c",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "secondary": "#5d5f5f",
+                    "surface-dim": "#dbdad9",
+                    "primary": "#000000",
+                    "tertiary-fixed-dim": "#cac6c3",
+                    "surface-container-high": "#e9e8e7",
+                    "on-primary-fixed": "#1c1b1b",
+                    "tertiary-fixed": "#e6e1df",
+                    "on-background": "#1b1c1c",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-container-low": "#f5f3f3",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "12px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "xl": "40px",
+                    "base": "4px",
+                    "container-margin": "16px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Oswald"
+                    ],
+                    "headline-lg": [
+                            "Oswald"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "display-lg": [
+                            "Oswald"
+                    ],
+                    "headline-lg-mobile": [
+                            "Oswald"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "72px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar (Hidden on desktop to simulate focused search mode or replaced by custom header) -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full z-50 bg-surface dark:bg-primary border-b border-outline-variant dark:border-on-primary-fixed-variant flat no shadows docked full-width top-0 sticky">
+<div class="flex items-center gap-md w-full">
+<button class="hover:bg-surface-container-high dark:hover:bg-primary-container transition-colors p-sm rounded-full Active: scale-95 duration-75">
+<span class="material-symbols-outlined text-primary dark:text-on-primary">arrow_back</span>
+</button>
+<div class="flex-grow relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container pl-xl pr-md py-sm border border-outline-variant focus:border-primary focus:ring-0 rounded-DEFAULT font-body-md text-body-md text-primary" placeholder="Rechercher..." type="text" value="Jean Noir"/>
+<button class="absolute right-sm top-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<button class="hover:bg-surface-container-high dark:hover:bg-primary-container transition-colors p-sm rounded-full Active: scale-95 duration-75 hidden md:block">
+<span class="material-symbols-outlined text-primary dark:text-on-primary">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="w-full max-w-7xl mx-auto px-md md:px-lg py-lg">
+<!-- Typo Banner -->
+<div class="bg-surface-container-low p-md mb-lg border border-outline-variant flex items-center gap-sm rounded-DEFAULT">
+<span class="material-symbols-outlined text-secondary">info</span>
+<p class="font-body-md text-body-md text-secondary">Vouliez-vous dire : <a class="font-bold text-primary underline" href="#">Jean Noir</a> ?</p>
+</div>
+<!-- Results Header -->
+<div class="flex justify-between items-end mb-lg border-b border-outline-variant pb-sm">
+<h1 class="font-headline-md text-headline-md uppercase tracking-tighter text-primary">12 RÉSULTATS POUR 'JEAN NOIR'</h1>
+<div class="flex gap-md hidden md:flex">
+<button class="font-label-sm text-label-sm uppercase flex items-center gap-xs text-primary border border-outline-variant px-sm py-xs rounded-DEFAULT hover:bg-surface-container-high">
+                    Filtrer <span class="material-symbols-outlined text-[16px]">tune</span>
+</button>
+<button class="font-label-sm text-label-sm uppercase flex items-center gap-xs text-primary border border-outline-variant px-sm py-xs rounded-DEFAULT hover:bg-surface-container-high">
+                    Trier <span class="material-symbols-outlined text-[16px]">sort</span>
+</button>
+</div>
+</div>
+<!-- Mobile Filter/Sort Controls -->
+<div class="flex gap-sm mb-md md:hidden">
+<button class="flex-1 font-label-sm text-label-sm uppercase flex items-center justify-center gap-xs text-primary border border-outline-variant px-sm py-xs rounded-DEFAULT bg-surface">
+                Filtrer <span class="material-symbols-outlined text-[16px]">tune</span>
+</button>
+<button class="flex-1 font-label-sm text-label-sm uppercase flex items-center justify-center gap-xs text-primary border border-outline-variant px-sm py-xs rounded-DEFAULT bg-surface">
+                Trier <span class="material-symbols-outlined text-[16px]">sort</span>
+</button>
+</div>
+<!-- Dense Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-xs gap-y-lg md:gap-gutter">
+<!-- Product Card 1 -->
+<div class="flex flex-col group cursor-pointer border border-outline-variant bg-surface">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A male fashion model standing on a brutalist concrete staircase in Douala, wearing slim-fit black denim jeans and a structured black t-shirt. High-contrast, sharp directional lighting emphasizing the texture of the denim. Urban streetwear aesthetic with a monochrome color palette consisting of deep blacks and crisp whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7sk80_kAIkyf4k1mmQCw5mzO4b6oMx4A9g8GNemTrCrksjh7BSEuz9ZxSpahFRoqv4GROxlJqZercyj8n3koegPI9BhqupArtF04OZZ-_98oGbN3NvRLijV6tuYqPMRwsZ7WrRXeQqyqh5-AMDbSTjjvlAyChdSOTh2jLArw6cJA22M9cQdwq5l2d1_B32neoBZmL9yGy_hhMs_-SKQDDRz_XqFZ_0nS8309d3SPYwJ1XK-DvLX1P"/>
+<div class="absolute top-sm left-sm bg-primary text-on-primary font-label-sm text-label-sm px-xs py-[2px] uppercase">New Drop</div>
+</div>
+<div class="p-sm flex flex-col gap-xs flex-grow justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase line-clamp-1">Jean Slim Noir Essentiel</h3>
+<p class="font-body-md text-body-md text-secondary text-[14px]">Denim 12oz</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary mt-sm">45,000 FCFA</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="flex flex-col group cursor-pointer border border-outline-variant bg-surface">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up shot of distressed black denim jeans worn by a model in an urban setting. The texture of the ripped knee is highly visible under harsh, high-key white lighting. The background features blurred modern architecture in Yaoundé. The overall look is edgy, premium, and strictly monochrome." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5a4YUDnBqj8O6sowNXXtiP48q_azPTmAz71iY63wmVIuCNw7y2Oqu0qwBCx29JhDPb3qoYtvRa6X0xEWBhUJ7eBB26rDmmVD2uAeEBMNGG2uAI83dybdztZ1vRMGv1iQRSe-deUdebuGSVVkcrX8UBfWA-cdKM1VlhicZKKLYGhhilviDtMz0-ozu7ps_Pz4Z71Xq8i5eCjs9_QSMHHoy7Xi0OGLttPJO7-Q-O-M70VHHgpcp7yrO"/>
+<div class="absolute top-sm right-sm bg-surface rounded-full p-[4px] shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">favorite_border</span>
+</div>
+</div>
+<div class="p-sm flex flex-col gap-xs flex-grow justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase line-clamp-1">Jean Noir Distressed</h3>
+<p class="font-body-md text-body-md text-secondary text-[14px]">Coupe Droite</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary mt-sm">52,000 FCFA</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="flex flex-col group cursor-pointer border border-outline-variant bg-surface">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A model walking purposefully across a stark white crosswalk in a metropolitan area, wearing oversized baggy black jeans and a technical black jacket. Shot from a low angle with stark shadows. The lighting is bright and modern, creating a high-fashion, high-energy streetwear vibe in black and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Lq8uN2P1kmcgs7vTkHSK-5QbPdTM5O0dW4VgRkjGIKMca1ht2IwV9QBbeM4VBOLyNf_OChpZLEBlkDiO-6DU3jX_snlO4F9cAK86J0H7xWe8KRKx674LI1vP5KKrOxSfz07oy5-2q3lxVJrpi1GRBoHRBRKmAyRwabNXisL5zd7AL5nD7LtUZ4LqSawLt8h3TnMsxsMETkfq5frIEHeusfyP__Spih6DOWLpCHYIogH_Cbhqm8nZ"/>
+</div>
+<div class="p-sm flex flex-col gap-xs flex-grow justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase line-clamp-1">Baggy Noir Parachute</h3>
+<p class="font-body-md text-body-md text-secondary text-[14px]">Streetwear Fit</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary mt-sm">60,000 FCFA</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="flex flex-col group cursor-pointer border border-outline-variant bg-surface opacity-60">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Studio shot of folded black jeans resting on a concrete plinth. The lighting is dramatic overhead spotlighting, casting deep shadows around the edges. The fabric details are sharp. The scene is minimalist, focusing purely on the garment against a stark, light gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASAmenlQW7PAVmBCmaRFPCpC83yRBL2t32yFQvajbBV7ErO6lGJ2zOwLFYv-MWnoHHaYpxzajyrzkSqu9N3Zyof8tZHR8gs8eZLxpb3A0ksthwpBOqqXc-HurhbWnf8aLYn0JwPAz3DmiGlT2iGG_rwazEDu9BP4mBv3FQccZopPArwXT7b8OHR3fRN5uGX52jzEXSD6gJokGExoAi1Ofjd112tcEjXSqRGwiESNDnSACDpK2soxrS"/>
+<div class="absolute top-sm left-sm bg-primary text-on-primary font-label-sm text-label-sm px-xs py-[2px] uppercase">Sold Out</div>
+</div>
+<div class="p-sm flex flex-col gap-xs flex-grow justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase line-clamp-1">Jean Noir Délavé</h3>
+<p class="font-body-md text-body-md text-secondary text-[14px]">Vintage Wash</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary mt-sm line-through">48,000 FCFA</p>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="flex flex-col group cursor-pointer border border-outline-variant bg-surface">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A male fashion model sitting on a metallic bench in a modern transit hub, wearing cropped black jeans exposing heavy combat boots. High-contrast, sharp directional lighting emphasizing the silhouette. Urban streetwear aesthetic with a monochrome color palette consisting of deep blacks and crisp whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLnP2GtSYV5828busMTjvVYN9LBtUq_4zgCBQX98AllVTUnf8ixEjt9c2RfbKirrRsWKGYuKLubtGm_Nx0FAfwAgRQSQ8zDQ0DB3Xg9_LL4k79odbApzuHZHBu-DW-PF0LVZbVQVzNwG4YLgfYOLVxj6E2m1NNTbnWQLc9Rdmlze9Nvt6YZmCUlWn8fJQyGCA4uMPQGK1Q4GWLU_Z45rxgmDtnDE31G4gS-uXbEmg9aPbC7O2yuplh"/>
+</div>
+<div class="p-sm flex flex-col gap-xs flex-grow justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase line-clamp-1">Cropped Jean Noir</h3>
+<p class="font-body-md text-body-md text-secondary text-[14px]">Coupe Courte</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary mt-sm">42,000 FCFA</p>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="flex flex-col group cursor-pointer border border-outline-variant bg-surface">
+<div class="relative w-full aspect-[3/4] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Detail shot of the back pocket of a pair of black jeans, showing thick white stitching details. The pocket is slightly distressed. Shot under bright studio lighting that highlights the weave of the denim. The aesthetic is clean, industrial, and highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-y391izTp5e8MYQP7qMo5e614M9B-OhZM9ksTLTM68GfT5zTaISl8zcTAtN80_1Qn6_P2j6dHHdrbCTiKAYY-OR-qpMplPztByK1kkHOui9RVYjAs_jSa-ue_AxZcA5g3vwtnPyjSj606scoOnhKgJn4JDS-AedGBe3YOMGCGfn26wWH86A4zcDoufyR6zKfDqI7zrTOU9IS9ru9w9_t_GegwxSnmK3oZufDrYU9coX4-eyhfycIA"/>
+<div class="absolute top-sm left-sm bg-[#00F0FF] text-primary font-label-sm text-label-sm px-xs py-[2px] uppercase">-20%</div>
+</div>
+<div class="p-sm flex flex-col gap-xs flex-grow justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase line-clamp-1">Jean Cargo Noir</h3>
+<p class="font-body-md text-body-md text-secondary text-[14px]">Poches Latérales</p>
+</div>
+<div class="flex gap-sm items-end mt-sm">
+<p class="font-headline-md text-headline-md text-primary">55,200 FCFA</p>
+<p class="font-body-md text-body-md text-secondary line-through text-[14px] pb-[2px]">69,000 FCFA</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface dark:bg-primary px-container-margin pb-safe border-t border-outline dark:border-on-primary-fixed-variant flat no shadows md:hidden z-50">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-full h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-on-primary scale-110 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-full h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs text-[10px]">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-full h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">flare</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs text-[10px]">Drops</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-full h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_cart</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs text-[10px]">Cart</span>
+</a>
+</nav>
+</body></html>

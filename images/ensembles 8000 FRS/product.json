@@ -1,0 +1,48 @@
+{
+  "name": "Survêtement Paris Jet'aime",
+  "description": "<p><strong>Survêtement Paris KAKOS</strong> — Un ensemble de survêtement ultra confortable comprenant un sweat à capuche et un pantalon de jogging assorti. Arborant le logo graphique Paris Jet'aime brodé et des détails de bandes blanches sur les bords-côtes.</p>",
+  "category": "Ensembles",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "ensembles"
+  ],
+  "supplierPrice": 8000,
+  "salePrice": 8000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Gris"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Gris",
+      "stock": 5
+    },
+    {
+      "size": "L",
+      "color": "Gris",
+      "stock": 5
+    },
+    {
+      "size": "XL",
+      "color": "Gris",
+      "stock": 5
+    }
+  ],
+  "stock": 15,
+  "images": [
+    "editorial.jpg",
+    "product_grey.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

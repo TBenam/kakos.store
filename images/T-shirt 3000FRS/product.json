@@ -1,0 +1,36 @@
+{
+  "name": "T Shirt",
+  "description": "<p>tshirt 3000 francs la pièce</p>",
+  "category": "T-shirts",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "t-shirts"
+  ],
+  "supplierPrice": 3000,
+  "salePrice": 3000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "Unique"
+  ],
+  "colors": [
+    "Unique"
+  ],
+  "variants": [
+    {
+      "size": "Unique",
+      "color": "Unique",
+      "stock": 10
+    }
+  ],
+  "stock": 10,
+  "images": [
+    "744955116_1012109801439305_1160830985264342257_n.jpg",
+    "745174847_1012109808105971_3215918285509992747_n.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

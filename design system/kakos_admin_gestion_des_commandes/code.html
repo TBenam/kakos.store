@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS Admin - Orders</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fbf9f9",
+                      "tertiary-fixed": "#e6e1df",
+                      "on-tertiary-container": "#868381",
+                      "primary-fixed": "#e5e2e1",
+                      "inverse-on-surface": "#f2f0f0",
+                      "secondary": "#5d5f5f",
+                      "surface-container-highest": "#e3e2e2",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "inverse-primary": "#c9c6c5",
+                      "inverse-surface": "#303031",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#e2e2e2",
+                      "outline-variant": "#c4c7c7",
+                      "on-tertiary-fixed": "#1d1b1a",
+                      "on-primary-fixed": "#1c1b1b",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#1d1b1a",
+                      "surface-container": "#efeded",
+                      "on-primary-container": "#858383",
+                      "on-surface-variant": "#444748",
+                      "primary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "tertiary": "#000000",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#cac6c3",
+                      "on-tertiary-fixed-variant": "#484645",
+                      "secondary-container": "#dfe0e0",
+                      "surface-variant": "#e3e2e2",
+                      "on-secondary-container": "#616363",
+                      "surface-container-low": "#f5f3f3",
+                      "on-background": "#1b1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1b1c1c",
+                      "surface-container-high": "#e9e8e7",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf9f9",
+                      "surface": "#fbf9f9",
+                      "surface-dim": "#dbdad9",
+                      "surface-tint": "#5f5e5e",
+                      "error": "#ba1a1a",
+                      "outline": "#747878",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "brand-accent": "#00F0FF"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "container-margin": "16px",
+                      "base": "4px",
+                      "xl": "40px",
+                      "sm": "8px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Oswald"
+                      ],
+                      "display-lg": [
+                              "Oswald"
+                      ],
+                      "headline-lg-mobile": [
+                              "Oswald"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Oswald"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "72px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar (from JSON) -->
+<nav class="h-screen w-64 fixed left-0 top-0 hidden md:flex flex-col py-lg bg-surface-container-lowest border-r border-outline-variant z-40">
+<div class="px-md mb-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary mb-xs">KAKOS</h1>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Admin Console</p>
+</div>
+<ul class="flex-1 flex flex-col gap-xs px-sm">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm rounded-none transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md bg-primary text-on-primary rounded-none border-l-4 border-on-secondary-container px-md py-sm transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm rounded-none transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Products</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm rounded-none transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="warehouse">warehouse</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Inventory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm rounded-none transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Delivery</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm rounded-none transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Campaigns</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm rounded-none transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Settings</span>
+</a>
+</li>
+</ul>
+<div class="px-sm mt-auto">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm rounded-none transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar (Mobile mainly, but visible on desktop per standard admin layouts if needed, adapting JSON) -->
+<header class="w-full h-16 flex justify-between items-center px-lg bg-surface border-b border-outline-variant shrink-0 z-30">
+<div class="flex items-center gap-md md:hidden">
+<span class="material-symbols-outlined cursor-pointer" data-icon="menu">menu</span>
+<span class="font-headline-md text-headline-md tracking-tighter font-black text-primary">KAKOS</span>
+</div>
+<div class="hidden md:flex items-center border border-outline-variant px-sm py-xs bg-surface-container-low focus-within:border-primary transition-colors flex-1 max-w-md mx-md">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant p-0 focus:ring-0" placeholder="Search orders..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:text-primary transition-colors" data-icon="apps">apps</span>
+<div class="w-8 h-8 bg-surface-container-high border border-outline-variant overflow-hidden shrink-0">
+<img alt="Admin profile" class="w-full h-full object-cover" data-alt="A small square profile picture of a professional Black man wearing modern stylish glasses and a dark turtleneck, set against a solid stark white background in a well-lit studio. High contrast, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHy2JZLd8nob8VAVushMLbDuEz6px9BXvjRCj4uti5mMHDU2ubBlhzAFsjvqH7h8_lQgyLLS1zwCTeo743va8_JOXE9DjmlqV-sr02uxFOBdoDVReFBtoF-cXsCuE96N31dblLFbUmHpccmEQgbPi4YCXCt1hXEUpVtrXJJgjNvuUq5HqCNW6ks22IdTh3PWWAR8A9GB4nuFLN7lJDHvckqqqWxDxTqKpWSeDjbFPa3Iige7tXQGJ2"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-md md:p-lg bg-surface-container-low">
+<div class="max-w-7xl mx-auto flex flex-col gap-lg h-full">
+<!-- Page Header & Filters -->
+<div class="flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tighter">ORDERS MANAGEMENT</h2>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm uppercase px-md py-sm flex items-center gap-xs hover:bg-brand-accent hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                            Export
+                        </button>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface p-md border border-outline-variant flex flex-wrap gap-md items-center shadow-[4px_4px_0px_#000000]">
+<div class="flex flex-col gap-xs flex-1 min-w-[150px]">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Status</label>
+<select class="w-full border-outline-variant border bg-transparent font-body-md text-body-md p-sm focus:border-primary focus:ring-0">
+<option>All Statuses</option>
+<option>Pending</option>
+<option>Processing</option>
+<option>Shipped</option>
+<option>Delivered</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[150px]">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">City</label>
+<select class="w-full border-outline-variant border bg-brand-accent/10 border-brand-accent text-primary font-body-md text-body-md p-sm focus:border-primary focus:ring-0">
+<option>All Cities</option>
+<option selected="">Douala</option>
+<option>Yaoundé</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Date Range</label>
+<div class="flex items-center border border-outline-variant bg-transparent px-sm focus-within:border-primary transition-colors h-[42px]">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] mr-xs" data-icon="calendar_today">calendar_today</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface p-0 focus:ring-0" placeholder="Oct 01 - Oct 31" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Search # / Tel</label>
+<div class="flex items-center border border-outline-variant bg-transparent px-sm focus-within:border-primary transition-colors h-[42px]">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] mr-xs" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface p-0 focus:ring-0" placeholder="Order ID or Phone" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface border border-outline-variant flex-1 flex flex-col overflow-hidden">
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse min-w-[900px]">
+<thead class="bg-surface-container-highest border-b-2 border-primary">
+<tr>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Order ID</th>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Client Name</th>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Telephone</th>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Location</th>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Amount (FCFA)</th>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Status</th>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Date</th>
+<th class="p-sm font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant text-right whitespace-nowrap">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-sm font-headline-md text-body-md md:text-headline-md text-primary font-bold">#ORD-9081</td>
+<td class="p-sm">Jean-Pierre Nguema</td>
+<td class="p-sm text-on-surface-variant">+237 671 23 45 67</td>
+<td class="p-sm">
+<div class="flex flex-col">
+<span class="font-bold">Douala</span>
+<span class="text-on-surface-variant text-sm">Akwa</span>
+</div>
+</td>
+<td class="p-sm font-headline-md text-body-md md:text-headline-md">45,000</td>
+<td class="p-sm">
+<span class="bg-brand-accent text-primary font-label-sm text-label-sm uppercase px-2 py-1 inline-block font-bold">Processing</span>
+</td>
+<td class="p-sm text-on-surface-variant">24 Oct, 14:30</td>
+<td class="p-sm text-right">
+<button class="border border-primary bg-transparent text-primary font-label-sm text-label-sm uppercase px-sm py-xs hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap">
+                                            Voir détails
+                                        </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-sm font-headline-md text-body-md md:text-headline-md text-primary font-bold">#ORD-9080</td>
+<td class="p-sm">Marie Etoa</td>
+<td class="p-sm text-on-surface-variant">+237 690 11 22 33</td>
+<td class="p-sm">
+<div class="flex flex-col">
+<span class="font-bold">Yaoundé</span>
+<span class="text-on-surface-variant text-sm">Bastos</span>
+</div>
+</td>
+<td class="p-sm font-headline-md text-body-md md:text-headline-md">120,500</td>
+<td class="p-sm">
+<span class="bg-primary text-on-primary font-label-sm text-label-sm uppercase px-2 py-1 inline-block">Delivered</span>
+</td>
+<td class="p-sm text-on-surface-variant">24 Oct, 11:15</td>
+<td class="p-sm text-right">
+<button class="border border-primary bg-transparent text-primary font-label-sm text-label-sm uppercase px-sm py-xs hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap">
+                                            Voir détails
+                                        </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-sm font-headline-md text-body-md md:text-headline-md text-primary font-bold">#ORD-9079</td>
+<td class="p-sm">Cedric Kameni</td>
+<td class="p-sm text-on-surface-variant">+237 677 88 99 00</td>
+<td class="p-sm">
+<div class="flex flex-col">
+<span class="font-bold">Douala</span>
+<span class="text-on-surface-variant text-sm">Bonapriso</span>
+</div>
+</td>
+<td class="p-sm font-headline-md text-body-md md:text-headline-md">85,000</td>
+<td class="p-sm">
+<span class="bg-surface-container-highest text-on-surface-variant border border-outline-variant font-label-sm text-label-sm uppercase px-2 py-1 inline-block">Pending</span>
+</td>
+<td class="p-sm text-on-surface-variant">23 Oct, 18:45</td>
+<td class="p-sm text-right">
+<button class="border border-primary bg-transparent text-primary font-label-sm text-label-sm uppercase px-sm py-xs hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap">
+                                            Voir détails
+                                        </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-sm font-headline-md text-body-md md:text-headline-md text-primary font-bold">#ORD-9078</td>
+<td class="p-sm">Alain Talla</td>
+<td class="p-sm text-on-surface-variant">+237 699 44 55 66</td>
+<td class="p-sm">
+<div class="flex flex-col">
+<span class="font-bold">Douala</span>
+<span class="text-on-surface-variant text-sm">Deido</span>
+</div>
+</td>
+<td class="p-sm font-headline-md text-body-md md:text-headline-md">15,000</td>
+<td class="p-sm">
+<span class="bg-primary text-on-primary font-label-sm text-label-sm uppercase px-2 py-1 inline-block">Delivered</span>
+</td>
+<td class="p-sm text-on-surface-variant">23 Oct, 09:20</td>
+<td class="p-sm text-right">
+<button class="border border-primary bg-transparent text-primary font-label-sm text-label-sm uppercase px-sm py-xs hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap">
+                                            Voir détails
+                                        </button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-sm font-headline-md text-body-md md:text-headline-md text-primary font-bold">#ORD-9077</td>
+<td class="p-sm">Sarah Mbengue</td>
+<td class="p-sm text-on-surface-variant">+237 655 22 11 00</td>
+<td class="p-sm">
+<div class="flex flex-col">
+<span class="font-bold">Yaoundé</span>
+<span class="text-on-surface-variant text-sm">Tsinga</span>
+</div>
+</td>
+<td class="p-sm font-headline-md text-body-md md:text-headline-md">230,000</td>
+<td class="p-sm">
+<span class="bg-error text-on-error font-label-sm text-label-sm uppercase px-2 py-1 inline-block">Cancelled</span>
+</td>
+<td class="p-sm text-on-surface-variant">22 Oct, 16:00</td>
+<td class="p-sm text-right">
+<button class="border border-primary bg-transparent text-primary font-label-sm text-label-sm uppercase px-sm py-xs hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap">
+                                            Voir détails
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="border-t border-outline-variant p-md bg-surface flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Showing 1 to 10 of 156 orders</span>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-label-sm text-label-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant text-on-surface hover:border-primary transition-colors font-label-sm text-label-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant text-on-surface hover:border-primary transition-colors font-label-sm text-label-sm">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

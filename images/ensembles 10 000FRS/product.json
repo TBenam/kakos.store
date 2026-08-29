@@ -1,0 +1,82 @@
+{
+  "name": "Ensemble Côtelé Col Officier",
+  "description": "<p><strong>Ensemble Côtelé KAKOS</strong> — Une silhouette streetwear épurée comprenant une chemise à manches longues avec col officier et un pantalon fluide assorti. Conçu dans une matière côtelée ultra confortable pour une allure moderne et décontractée.</p>",
+  "category": "Ensembles",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "ensembles"
+  ],
+  "supplierPrice": 10000,
+  "salePrice": 10000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Beige",
+    "Noir",
+    "Bleu"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Beige",
+      "stock": 5
+    },
+    {
+      "size": "L",
+      "color": "Beige",
+      "stock": 5
+    },
+    {
+      "size": "XL",
+      "color": "Beige",
+      "stock": 5
+    },
+    {
+      "size": "M",
+      "color": "Noir",
+      "stock": 5
+    },
+    {
+      "size": "L",
+      "color": "Noir",
+      "stock": 5
+    },
+    {
+      "size": "XL",
+      "color": "Noir",
+      "stock": 5
+    },
+    {
+      "size": "M",
+      "color": "Bleu",
+      "stock": 5
+    },
+    {
+      "size": "L",
+      "color": "Bleu",
+      "stock": 5
+    },
+    {
+      "size": "XL",
+      "color": "Bleu",
+      "stock": 5
+    }
+  ],
+  "stock": 45,
+  "images": [
+    "editorial.jpg",
+    "product_beige.jpg",
+    "product_noir.jpg",
+    "product_bleu.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

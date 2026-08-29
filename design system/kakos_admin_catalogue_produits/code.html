@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS Admin - Products</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fbf9f9",
+                      "tertiary-fixed": "#e6e1df",
+                      "on-tertiary-container": "#868381",
+                      "primary-fixed": "#e5e2e1",
+                      "inverse-on-surface": "#f2f0f0",
+                      "secondary": "#5d5f5f",
+                      "surface-container-highest": "#e3e2e2",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "inverse-primary": "#c9c6c5",
+                      "inverse-surface": "#303031",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#e2e2e2",
+                      "outline-variant": "#c4c7c7",
+                      "on-tertiary-fixed": "#1d1b1a",
+                      "on-primary-fixed": "#1c1b1b",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#1d1b1a",
+                      "surface-container": "#efeded",
+                      "on-primary-container": "#858383",
+                      "on-surface-variant": "#444748",
+                      "primary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "tertiary": "#000000",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#cac6c3",
+                      "on-tertiary-fixed-variant": "#484645",
+                      "secondary-container": "#dfe0e0",
+                      "surface-variant": "#e3e2e2",
+                      "on-secondary-container": "#616363",
+                      "surface-container-low": "#f5f3f3",
+                      "on-background": "#1b1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1b1c1c",
+                      "surface-container-high": "#e9e8e7",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf9f9",
+                      "surface": "#fbf9f9",
+                      "surface-dim": "#dbdad9",
+                      "surface-tint": "#5f5e5e",
+                      "error": "#ba1a1a",
+                      "outline": "#747878",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "brand-accent": "#00F0FF"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "container-margin": "16px",
+                      "base": "4px",
+                      "xl": "40px",
+                      "sm": "8px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Oswald"
+                      ],
+                      "display-lg": [
+                              "Oswald"
+                      ],
+                      "headline-lg-mobile": [
+                              "Oswald"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Oswald"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "72px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbf9f9;
+        }
+        h1, h2, h3, h4, h5, h6, .oswald {
+            font-family: 'Oswald', sans-serif;
+        }
+        /* Custom scrollbar for table */
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbf9f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c7c7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #747878;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-background text-on-background">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 py-lg bg-surface-container-lowest border-r border-outline-variant z-20">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">KAKOS</h1>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mt-xs">Admin Console</p>
+</div>
+<div class="flex-1 overflow-y-auto flex flex-col gap-xs px-sm">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                Orders
+            </a>
+<a class="flex items-center gap-md bg-primary text-on-primary rounded-none border-l-4 border-brand-accent transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest px-md py-sm" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                Products
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="warehouse">warehouse</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+                Delivery
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+                Campaigns
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<div class="px-sm mt-auto pt-sm border-t border-outline-variant">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 w-full bg-background relative h-screen">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center px-md h-16 w-full bg-surface border-b border-outline-variant z-20">
+<h1 class="font-headline-md text-headline-md tracking-tighter font-black text-primary">KAKOS</h1>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant"><span class="material-symbols-outlined" data-icon="menu">menu</span></button>
+</div>
+</header>
+<!-- Product Listing Header Area -->
+<div class="px-md md:px-lg py-lg flex flex-col md:flex-row md:items-center justify-between gap-md border-b border-outline-variant bg-surface-container-lowest z-10 sticky top-0 md:top-0">
+<div class="flex flex-col">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase tracking-tight">Products</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your catalog, inventory, and pricing.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-sm md:gap-md w-full md:w-auto">
+<!-- Search -->
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full h-10 pl-10 pr-3 bg-surface-container-lowest border border-outline-variant text-primary font-label-sm text-label-sm uppercase focus:border-primary focus:ring-0 transition-colors placeholder:text-outline" placeholder="SEARCH PRODUCTS..." type="text"/>
+</div>
+<!-- Action Button -->
+<button class="flex items-center justify-center gap-sm h-10 px-md bg-brand-accent text-primary font-label-sm text-label-sm uppercase font-bold hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Ajouter Produit
+                </button>
+</div>
+</div>
+<!-- Filters (Simplified) -->
+<div class="px-md md:px-lg py-sm flex gap-sm overflow-x-auto border-b border-outline-variant bg-surface-container-lowest">
+<button class="px-md py-sm bg-primary text-on-primary font-label-sm text-label-sm uppercase rounded-none whitespace-nowrap border border-primary">All (142)</button>
+<button class="px-md py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase rounded-none whitespace-nowrap border border-outline-variant hover:border-primary transition-colors">Active (120)</button>
+<button class="px-md py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase rounded-none whitespace-nowrap border border-outline-variant hover:border-primary transition-colors">Drafts (15)</button>
+<button class="px-md py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase rounded-none whitespace-nowrap border border-outline-variant hover:border-primary transition-colors">Archived (7)</button>
+<div class="w-px bg-outline-variant mx-sm hidden md:block"></div>
+<button class="px-md py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase rounded-none whitespace-nowrap border border-outline-variant hover:border-primary transition-colors flex items-center gap-xs ml-auto md:ml-0">
+                Filter <span class="material-symbols-outlined text-[16px]">filter_list</span>
+</button>
+</div>
+<!-- Product Grid/Table Area -->
+<div class="flex-1 overflow-y-auto p-md md:p-lg bg-surface-container-low">
+<!-- Bento-style Grid for Products (Desktop focused, responsive) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter md:gap-md">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant flex flex-col group relative overflow-hidden transition-all hover:border-primary hover:shadow-[4px_4px_0px_0px_#000000]">
+<!-- Image Area -->
+<div class="relative w-full aspect-[4/5] bg-surface-container border-b border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" data-alt="High contrast fashion photography of a Black male model in an urban setting wearing a sleek, structural black tech-wear jacket. Bright lighting, architectural background. High-fashion streetwear aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBas_vc1ikmwIfBulDmQdK5yXfV7vtIwvWD80MF2tIKH3X9cKDfleK_TWk6fVweYcSYbbPj3sAL1PANo4JNUOvSyWxPC6-YrCKjm2LdZXAc8-P7Pet8YNyOa-p7uvi3tobE2ZHl9asQinV8LY7RyuBS7ncwOGiWVaRWwHeSVpElFyKpdy4wf0ENQAQLHxk8DPLaYffAR_QIGsViJt-fBEW88XI9g2TV6M-UaflCk_4kj0192l6Ifmup"/>
+<!-- Badges -->
+<div class="absolute top-sm left-sm flex flex-col gap-xs">
+<span class="bg-primary text-on-primary font-label-sm text-[10px] px-2 py-1 uppercase tracking-widest border border-primary">Bestseller</span>
+<span class="bg-brand-accent text-primary font-label-sm text-[10px] px-2 py-1 uppercase tracking-widest border border-primary font-bold">New</span>
+</div>
+<!-- Status -->
+<div class="absolute top-sm right-sm">
+<div class="w-3 h-3 rounded-full bg-[#00FF00] border border-primary"></div>
+</div>
+<!-- Hover Actions Overlay -->
+<div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-sm backdrop-blur-sm">
+<button class="w-3/4 py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase hover:bg-brand-accent transition-colors flex justify-center items-center gap-xs border border-primary">
+<span class="material-symbols-outlined text-[16px]">edit</span> Modifier
+                            </button>
+<button class="w-3/4 py-sm bg-transparent text-on-primary font-label-sm text-label-sm uppercase border border-on-primary hover:bg-on-primary hover:text-primary transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">content_copy</span> Dupliquer
+                            </button>
+<button class="w-3/4 py-sm bg-transparent text-on-primary font-label-sm text-label-sm uppercase border border-on-primary hover:bg-error hover:border-error transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">archive</span> Archiver
+                            </button>
+</div>
+</div>
+<!-- Info Area -->
+<div class="p-sm flex flex-col gap-xs bg-surface-container-lowest z-10">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-body-md font-bold text-primary truncate uppercase">Obsidian Tech Jacket</h3>
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase border border-outline-variant px-1">Outerwear</span>
+</div>
+<div class="flex justify-between items-end mt-sm">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary oswald">85,000 XAF</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Stock</span>
+<span class="font-body-md text-body-md font-bold text-primary">42</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 2 (Low Stock) -->
+<div class="bg-surface-container-lowest border border-outline-variant flex flex-col group relative overflow-hidden transition-all hover:border-primary hover:shadow-[4px_4px_0px_0px_#000000]">
+<div class="relative w-full aspect-[4/5] bg-surface-container border-b border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" data-alt="High contrast fashion photography of a Black male model walking through a Douala transit hub, wearing an oversized white t-shirt and structural cargo pants. Harsh directional lighting, urban gritty background. Premium fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0viWo4kdfXkzzLr6bRjBBsqQce4PeDdQ-jwuEbDslqnrxD75mMH0FEwY1H14tNCE-c75XFL6Ao9gNnfSUoDfn69VEMrymRhF6GViheJ4BLGkikh__r2Akrm0aRuszsBOMuNMR9EGJtjYx_wrKFgHA0FY-7lDQ0unv6yi0Yd6bclSaPGYaO_duvb527zh-gMsv84PUC4Ndu3Y3CBnAgr-Xmw9RDDKF2flkJ95jvFyP9LKSBXo5_a1G"/>
+<div class="absolute top-sm right-sm">
+<div class="w-3 h-3 rounded-full bg-[#00FF00] border border-primary"></div>
+</div>
+<div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-sm backdrop-blur-sm">
+<button class="w-3/4 py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase hover:bg-brand-accent transition-colors flex justify-center items-center gap-xs border border-primary">
+<span class="material-symbols-outlined text-[16px]">edit</span> Modifier
+                            </button>
+<button class="w-3/4 py-sm bg-transparent text-on-primary font-label-sm text-label-sm uppercase border border-on-primary hover:bg-on-primary hover:text-primary transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">content_copy</span> Dupliquer
+                            </button>
+<button class="w-3/4 py-sm bg-transparent text-on-primary font-label-sm text-label-sm uppercase border border-on-primary hover:bg-error hover:border-error transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">archive</span> Archiver
+                            </button>
+</div>
+</div>
+<div class="p-sm flex flex-col gap-xs bg-surface-container-lowest">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-body-md font-bold text-primary truncate uppercase">Heavyweight Cargo</h3>
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase border border-outline-variant px-1">Bottoms</span>
+</div>
+<div class="flex justify-between items-end mt-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-on-surface-variant line-through">45,000 XAF</span>
+<span class="font-headline-md text-headline-md font-bold text-error oswald">35,000 XAF</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-error uppercase font-bold animate-pulse">Low Stock</span>
+<span class="font-body-md text-body-md font-bold text-error">3</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 3 (Inactive) -->
+<div class="bg-surface-container-lowest border border-outline-variant flex flex-col group relative overflow-hidden transition-all hover:border-primary hover:shadow-[4px_4px_0px_0px_#000000] opacity-75">
+<div class="relative w-full aspect-[4/5] bg-surface-container border-b border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover grayscale transition-all duration-500" data-alt="Flat lay photography of a high-end black and white graphic t-shirt on a concrete floor. Sharp lighting, deep shadows, brutalist industrial aesthetic. Minimalist product shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALic_nKFeOmaA9dBpSF4OHgzrTKTiM2DMum3wTmWHJttydD9mVG6z30kG585uvST158Sbp8JvWrtg1vSa3Y5KI8PvB2k6ioplUUBba_8p-wVDyW-TFKLrjfYnpRO_ix0Era4e2PC2Ee8Nt4S1m-oz1keaLyIT0S_SuC6-uZctHMx9Iv6FmMWIjgN5E2hfptmtrOmcOgp0OGshwGrRsbb_FTdUDwhhoYmCVy3cXsdIuhPlb1XOxmG-I"/>
+<div class="absolute inset-0 bg-surface-container/40 flex items-center justify-center">
+<span class="bg-primary text-on-primary font-headline-md text-headline-md uppercase px-4 py-2 border border-primary oswald rotate-[-15deg]">Inactif</span>
+</div>
+<div class="absolute top-sm right-sm">
+<div class="w-3 h-3 rounded-full bg-outline border border-primary"></div>
+</div>
+<div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-sm backdrop-blur-sm z-10">
+<button class="w-3/4 py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase hover:bg-brand-accent transition-colors flex justify-center items-center gap-xs border border-primary">
+<span class="material-symbols-outlined text-[16px]">edit</span> Modifier
+                            </button>
+<button class="w-3/4 py-sm bg-transparent text-on-primary font-label-sm text-label-sm uppercase border border-on-primary hover:bg-on-primary hover:text-primary transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">content_copy</span> Dupliquer
+                            </button>
+</div>
+</div>
+<div class="p-sm flex flex-col gap-xs bg-surface-container-lowest">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-body-md font-bold text-on-surface-variant truncate uppercase">Monolith Graphic Tee</h3>
+<span class="font-label-sm text-[10px] text-outline uppercase border border-outline-variant px-1">Tops</span>
+</div>
+<div class="flex justify-between items-end mt-sm">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface-variant oswald">15,000 XAF</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline uppercase">Stock</span>
+<span class="font-body-md text-body-md font-bold text-on-surface-variant">0</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant flex flex-col group relative overflow-hidden transition-all hover:border-primary hover:shadow-[4px_4px_0px_0px_#000000]">
+<div class="relative w-full aspect-[4/5] bg-surface-container border-b border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" data-alt="Close up photography of premium black leather combat boots worn by a model standing on wet asphalt. Cinematic urban lighting, stark contrast, conveying rugged menswear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbaSc9lmF8XH6IXkTGhpOEUB7DUXPKFJoM7beGIJwRQOHFXDlywu0FEQlApDnSj4r_CQ-BwXh00-pWsbDvIlzeaxH4NmIpO_xtFAaPI7SfAroq073tpv3R3YCy0Dq-mqZCwA882MKeNDesOpGfxDRMNhKForyKm2hQecSpXDgaySTQQQjd9ioEYnGmTbxO54JEJi71QdZK6WZnuWm8fmH-vA6sjddwIqwnaUxp1lH1YG1wyXilxAuI"/>
+<div class="absolute top-sm right-sm">
+<div class="w-3 h-3 rounded-full bg-[#00FF00] border border-primary"></div>
+</div>
+<div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-sm backdrop-blur-sm">
+<button class="w-3/4 py-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase hover:bg-brand-accent transition-colors flex justify-center items-center gap-xs border border-primary">
+<span class="material-symbols-outlined text-[16px]">edit</span> Modifier
+                            </button>
+<button class="w-3/4 py-sm bg-transparent text-on-primary font-label-sm text-label-sm uppercase border border-on-primary hover:bg-on-primary hover:text-primary transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">content_copy</span> Dupliquer
+                            </button>
+<button class="w-3/4 py-sm bg-transparent text-on-primary font-label-sm text-label-sm uppercase border border-on-primary hover:bg-error hover:border-error transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">archive</span> Archiver
+                            </button>
+</div>
+</div>
+<div class="p-sm flex flex-col gap-xs bg-surface-container-lowest">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-body-md font-bold text-primary truncate uppercase">Vanguard Boots</h3>
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase border border-outline-variant px-1">Footwear</span>
+</div>
+<div class="flex justify-between items-end mt-sm">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary oswald">65,000 XAF</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Stock</span>
+<span class="font-body-md text-body-md font-bold text-primary">12</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More (Stylized) -->
+<div class="mt-xl flex justify-center pb-xl">
+<button class="px-xl py-md bg-transparent border-2 border-primary text-primary font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                    Load More
+                </button>
+</div>
+</div>
+</main>
+</body></html>

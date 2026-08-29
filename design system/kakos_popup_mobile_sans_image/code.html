@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS - Promo Flash Popup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "inverse-primary": "#c9c6c5",
+                        "on-tertiary-container": "#868381",
+                        "outline": "#747878",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#454747",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f5f3f3",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e3e2e2",
+                        "secondary-container": "#dfe0e0",
+                        "surface": "#fbf9f9",
+                        "surface-dim": "#dbdad9",
+                        "inverse-surface": "#303031",
+                        "surface-container-high": "#e9e8e7",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-container": "#616363",
+                        "primary": "#000000",
+                        "surface-tint": "#5f5e5e",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#e6e1df",
+                        "primary-fixed": "#e5e2e1",
+                        "outline-variant": "#c4c7c7",
+                        "on-primary-container": "#858383",
+                        "on-primary-fixed-variant": "#474646",
+                        "secondary-fixed": "#e2e2e2",
+                        "secondary": "#5d5f5f",
+                        "surface-bright": "#fbf9f9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#efeded",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-surface": "#1b1c1c",
+                        "surface-container-highest": "#e3e2e2",
+                        "tertiary": "#000000",
+                        "background": "#fbf9f9",
+                        "tertiary-container": "#1d1b1a",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "on-background": "#1b1c1c",
+                        "on-surface-variant": "#444748",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "sm": "8px",
+                        "gutter": "12px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "container-margin": "16px",
+                        "base": "4px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Oswald"],
+                        "display-lg": ["Oswald"],
+                        "headline-md": ["Oswald"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Oswald"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Simulating Electric Cyan using arbitrary value since it's missing from the generated palette but requested in prompt, falling back to a close approximation if strictly adhering to config */
+        /* Will use primary colors but add a custom utility class just for this specific button as requested "Electric Cyan" */
+        .btn-cyan {
+            background-color: #00F0FF;
+            color: #0A0A0A;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased h-screen w-full flex flex-col relative overflow-hidden">
+<!-- Mock Background Content (Dimmed) -->
+<div class="absolute inset-0 z-0 bg-surface-container opacity-40 filter blur-sm flex flex-col pt-16 px-container-margin">
+<div class="grid grid-cols-2 gap-gutter mt-lg">
+<div class="h-64 bg-surface-variant rounded border border-outline-variant"></div>
+<div class="h-64 bg-surface-variant rounded border border-outline-variant"></div>
+<div class="h-64 bg-surface-variant rounded border border-outline-variant"></div>
+<div class="h-64 bg-surface-variant rounded border border-outline-variant"></div>
+</div>
+</div>
+<!-- Overlay / Backdrop -->
+<div class="absolute inset-0 z-40 bg-primary/80 backdrop-blur-md flex items-center justify-center p-container-margin">
+<!-- Modal Container -->
+<div class="bg-surface border border-outline rounded w-full max-w-sm flex flex-col items-center text-center p-xl shadow-[4px_4px_0_0_#1b1c1c] relative animate-[pop_0.3s_ease-out_forwards]">
+<!-- Close Button (Absolute) -->
+<button aria-label="Close modal" class="absolute top-md right-md text-secondary hover:text-primary transition-colors focus:outline-none">
+<span class="material-symbols-outlined">close</span>
+</button>
+<!-- Brand / Indicator -->
+<div class="mb-lg">
+<span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<!-- Content -->
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary uppercase mb-sm tracking-tight">PROMO FLASH</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-xl max-w-[280px]">
+                Profitez de -20% sur votre première commande via WhatsApp.
+            </p>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-md">
+<button class="w-full btn-cyan font-label-sm text-label-sm uppercase py-md px-lg rounded font-bold hover:bg-[#00d6e6] transition-colors active:scale-95 flex items-center justify-center gap-sm">
+                    ACTIVER LA PROMO
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<button class="font-label-sm text-label-sm uppercase text-secondary hover:text-primary transition-colors py-sm underline underline-offset-4">
+                    Non merci
+                </button>
+</div>
+</div>
+</div>
+<style>
+        @keyframes pop {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</body></html>

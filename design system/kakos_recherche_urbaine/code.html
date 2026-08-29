@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS - Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#c9c6c5",
+                      "on-tertiary-fixed": "#1d1b1a",
+                      "tertiary": "#000000",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "outline-variant": "#c4c7c7",
+                      "surface-tint": "#5f5e5e",
+                      "on-tertiary-fixed-variant": "#484645",
+                      "surface-bright": "#fbf9f9",
+                      "background": "#fbf9f9",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#efeded",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#1d1b1a",
+                      "on-surface-variant": "#444748",
+                      "inverse-on-surface": "#f2f0f0",
+                      "surface": "#fbf9f9",
+                      "surface-container-highest": "#e3e2e2",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary-container": "#616363",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-tertiary-container": "#868381",
+                      "outline": "#747878",
+                      "on-primary-fixed-variant": "#474646",
+                      "on-primary-container": "#858383",
+                      "primary-fixed": "#e5e2e1",
+                      "surface-variant": "#e3e2e2",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#dfe0e0",
+                      "inverse-surface": "#303031",
+                      "on-surface": "#1b1c1c",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "secondary": "#5d5f5f",
+                      "surface-dim": "#dbdad9",
+                      "primary": "#000000",
+                      "tertiary-fixed-dim": "#cac6c3",
+                      "surface-container-high": "#e9e8e7",
+                      "on-primary-fixed": "#1c1b1b",
+                      "tertiary-fixed": "#e6e1df",
+                      "on-background": "#1b1c1c",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "surface-container-low": "#f5f3f3",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "brand-accent": "#00F0FF"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "xl": "40px",
+                      "base": "4px",
+                      "container-margin": "16px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Oswald"],
+                      "headline-lg": ["Oswald"],
+                      "body-md": ["Inter"],
+                      "display-lg": ["Oswald"],
+                      "headline-lg-mobile": ["Oswald"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .block-shadow {
+            box-shadow: 4px 4px 0px 0px #0A0A0A;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-brand-accent selection:text-tertiary">
+<!-- Search Header -->
+<header class="sticky top-0 z-50 bg-surface border-b border-outline-variant px-container-margin py-md flex items-center gap-md">
+<button aria-label="Go back" class="p-xs text-primary hover:text-brand-accent transition-colors">
+<span class="material-symbols-outlined text-[28px]">arrow_back</span>
+</button>
+<div class="flex-1 relative">
+<input autofocus="" class="w-full bg-surface-container border-x-0 border-t-0 border-b-2 border-outline-variant text-primary font-headline-md text-headline-md focus:border-primary focus:ring-0 px-0 py-sm placeholder:text-outline bg-transparent transition-colors" placeholder="Rechercher un article..." type="text"/>
+<button aria-label="Clear search" class="absolute right-0 top-1/2 -translate-y-1/2 text-primary">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-32">
+<!-- Recent Searches -->
+<section class="px-container-margin py-lg border-b border-outline-variant">
+<h2 class="font-label-sm text-label-sm uppercase text-secondary mb-md">RECHERCHES RÉCENTES</h2>
+<ul class="flex flex-col gap-sm">
+<li>
+<a class="flex items-center gap-sm text-primary font-body-md hover:text-brand-accent transition-colors py-xs" href="#">
+<span class="material-symbols-outlined text-outline text-[20px]">history</span>
+                        Jean Noir
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-sm text-primary font-body-md hover:text-brand-accent transition-colors py-xs" href="#">
+<span class="material-symbols-outlined text-outline text-[20px]">history</span>
+                        Ensemble
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-sm text-primary font-body-md hover:text-brand-accent transition-colors py-xs" href="#">
+<span class="material-symbols-outlined text-outline text-[20px]">history</span>
+                        Veste Cargo
+                    </a>
+</li>
+</ul>
+</section>
+<!-- Suggested Categories -->
+<section class="px-container-margin py-lg border-b border-outline-variant">
+<h2 class="font-label-sm text-label-sm uppercase text-secondary mb-md">CATÉGORIES SUGGÉRÉES</h2>
+<div class="flex flex-wrap gap-sm">
+<a class="inline-block px-md py-sm border-2 border-primary text-primary font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors" href="#">Streetwear</a>
+<a class="inline-block px-md py-sm border-2 border-primary text-primary font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors" href="#">Formal</a>
+<a class="inline-block px-md py-sm border-2 border-primary text-primary font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors" href="#">Basics</a>
+<a class="inline-block px-md py-sm border-2 border-primary text-primary font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors" href="#">Drops</a>
+</div>
+</section>
+<!-- Trending -->
+<section class="py-lg">
+<div class="px-container-margin mb-md flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md uppercase text-primary">TENDANCES</h2>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-gutter px-container-margin snap-x pb-md">
+<!-- Trending Card 1 -->
+<a class="min-w-[240px] flex flex-col snap-start group" href="#">
+<div class="relative w-full aspect-[3/4] border border-outline-variant mb-xs overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A striking urban fashion shot of a Black male model in modern architectural settings in Douala. He is wearing a highly textured, oversized black utility jacket over stark white basics. The lighting is high-contrast, directional white light emphasizing the garment's silhouette against a brutalist concrete background. The aesthetic is premium fast-fashion, modern monolith style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDC16N8_7me7A6F5BnNaZ5y7_R7HowZfycm0oer3TbG-91csUdOqPDJ0VhdlWcllqXkIlNAqZqPcROY572lxqUAX5KQae5JpICt5w40NIEPQ3sE2ZjglveJ-nxcy0R-Iw0Tr6H-2ZZ6Vx-JEM0NCqOq8qD7BMtMuxb8SDelTbTTF2jZtntBLQGVF2RZiTfv4kt3Vv61m4Pcd4MA_HUOSZl6u2nPKgx4vMUieT-a3ql7y6Q_t6NBABv"/>
+<div class="absolute top-sm left-sm bg-brand-accent text-tertiary px-sm py-xs font-label-sm text-label-sm">HOT</div>
+</div>
+<div class="font-label-sm text-label-sm text-primary uppercase">Oversized Utility</div>
+</a>
+<!-- Trending Card 2 -->
+<a class="min-w-[240px] flex flex-col snap-start group" href="#">
+<div class="relative w-full aspect-[3/4] border border-outline-variant mb-xs overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A striking urban fashion shot of a Black male model in a minimal transit hub in Yaoundé. He is wearing a sharply tailored, high-contrast monochrome formal suit with aggressive streetwear undertones. High-contrast, directional lighting casts sharp shadows, emphasizing the sleek, structural nature of the menswear. The mood is confident, urgent, and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSR5ZNnXxuYj-hXkXtd1mzyqSKcUAAL_czY01h4ndblvTwAwzCo6TsyHyGU020SVRPccO9eccrnB7c6ay0bJtw_cDH5uA15Wcf5ZpTyzTWs3roykKKvWahrK4fid3S115giI7e55PFLd3I7yjok4yG46BrVQ0iO5eb0LyOHuKqzXsfAL-ZN-AVLb6ssduNHHgh1G5s5Z9CO9QnK_n3AxU5TPHzqwfVh2KK140Aaf7A_iQYnxuaiw0k"/>
+</div>
+<div class="font-label-sm text-label-sm text-primary uppercase">Monochrome Tailoring</div>
+</a>
+<!-- Trending Card 3 -->
+<a class="min-w-[240px] flex flex-col snap-start group" href="#">
+<div class="relative w-full aspect-[3/4] border border-outline-variant mb-xs overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A dynamic, high-energy fashion editorial shot of a Black male model running through an empty, modern concrete environment. He is wearing a striking layered streetwear ensemble featuring deep blacks and pristine whites. The high-key lighting creates a stark, modern light-mode aesthetic, focusing entirely on the kinetic silhouette of the clothing. Premium, raw, architectural." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj73OhbWRHVw1zpGnJrR-3OcO4JnlU3dg1puOE6WqIVvRr5X7TApzvDk-loPDqlGJ5bMArdZYFqVHz2WTaXhlt7BI3FC2imcF16JdcsVTH0qA1yn2Mz4ZfcUEQpv5OIBESf_tzjEag0djU5uhwbj-jslrLoVGKoPiFFjVWKIgZv79pb3FlGbXael4WmE0iIRcgxz88DDj8607znGkxq2YawpLL_Q6UVMfU1YLy7KFvdhO10IH87CGd"/>
+</div>
+<div class="font-label-sm text-label-sm text-primary uppercase">Layered Essentials</div>
+</a>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface px-container-margin pb-safe border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-secondary opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">flare</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs">Drops</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 relative" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_cart</span>
+<span class="font-label-sm text-label-sm uppercase font-bold mt-xs">Cart</span>
+</a>
+</nav>
+<script>
+        // Simple script to handle input focus state styling if needed beyond CSS
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.querySelector('input[type="text"]');
+            const clearBtn = searchInput.nextElementSibling;
+
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchInput.focus();
+            });
+            
+            // Focus styling handled by Tailwind focus: classes, but we can add logic for 'typing' state if needed
+            searchInput.addEventListener('input', () => {
+                if(searchInput.value.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+            });
+            
+            // Initial check
+            if(searchInput.value.length === 0) {
+                clearBtn.classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,48 @@
+{
+  "name": "Ensemble Culotte Rayé",
+  "description": "<p><strong>Ensemble Culotte Rayé KAKOS</strong> — Un ensemble en maille tricotée composé d'une chemise à manches courtes et d'un short assorti. Une pièce streetwear incontournable.</p>",
+  "category": "Ensembles",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "ensembles"
+  ],
+  "supplierPrice": 8000,
+  "salePrice": 8000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Rouge/Blanc"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Rouge/Blanc",
+      "stock": 5
+    },
+    {
+      "size": "L",
+      "color": "Rouge/Blanc",
+      "stock": 5
+    },
+    {
+      "size": "XL",
+      "color": "Rouge/Blanc",
+      "stock": 5
+    }
+  ],
+  "stock": 15,
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

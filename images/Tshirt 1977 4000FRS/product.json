@@ -1,0 +1,42 @@
+{
+  "title": "T-shirt Graphic 1977 Black",
+  "handle": "t-shirt-graphic-1977-black",
+  "supplierPrice": 4000,
+  "salePrice": 4000,
+  "salePriceApprovedByHuman": true,
+  "category": "T-shirts",
+  "description": "<p><strong>Tshirt KAKOS</strong> — Une pièce maîtresse indispensable du vestiaire masculin contemporain. Alliant confort absolu et design urbain, cette pièce a été conçue pour s'adapter à toutes vos tenues quotidiennes.</p>\n<ul>\n  <li><strong>Coupe :</strong> Ajustée moderne (Regular Fit) ou Oversize décontracté selon votre style</li>\n  <li><strong>Matière :</strong> Coton lourd de qualité supérieure (lourd 240 GSM) ou fibres respirantes de lin</li>\n  <li><strong>Finitions :</strong> Coutures doublées renforcées et détails subtilement travaillés</li>\n</ul>\n<p><em>Conseil de style : Mariez-le avec nos jeans Cargo ou nos salopettes de la collection KAKOS pour parfaire votre style fast-fashion de luxe.</em></p>",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Noir"
+  ],
+  "tags": [
+    "t-shirts",
+    "premium",
+    "kakos",
+    "streetwear"
+  ],
+  "images": [
+    "721951123_979803844669901_4368727241174756228_n.jpg",
+    "721995691_979803981336554_813692057039275413_n.jpg",
+    "722182811_979804304669855_6682850261796365654_n.jpg"
+  ],
+  "needs_review": false,
+  "review_notes": "",
+  "status": "APPROVED",
+  "variants": [
+    {
+      "size": "Unique",
+      "color": "Unique",
+      "stock": 10
+    }
+  ],
+  "stock": 10,
+  "uncertainties": [],
+  "name": "T-shirt Graphic 1977 Black"
+}

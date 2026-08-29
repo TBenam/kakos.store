@@ -1,0 +1,36 @@
+{
+  "name": "Input Raw",
+  "description": "<p>T-shirt de marque KAKOS avec logo brodé<br/>Prix spécial : 4000 FRS par t-shirt<br/>Taille disponible : M, L, XL<br/>Couleurs disponibles : Noir, Blanc<br/>Stock initial : 15 pièces par variante<br/>📍 Référence fournisseur : K-TSH-2026<br/>Description : Coupe boxy moderne pour un look streetwear affirmé. Matière 100% coton lourd.</p>",
+  "category": "T-shirts",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "t-shirts"
+  ],
+  "supplierPrice": 4000,
+  "salePrice": 12900,
+  "salePriceApprovedByHuman": false,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Noir",
+    "Blanc"
+  ],
+  "variants": [],
+  "stock": 0,
+  "images": [
+    "img1.jpg",
+    "img2.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [
+    "Sale price has not been approved by a human",
+    "Variants array is empty"
+  ],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

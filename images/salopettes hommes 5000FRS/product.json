@@ -1,0 +1,39 @@
+{
+  "name": "Salopettes Hommes",
+  "description": "<p><strong>Salopettes Hommes KAKOS</strong> — Une pièce maîtresse de notre vestiaire urbain.</p>",
+  "category": "Salopettes",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "salopettes"
+  ],
+  "supplierPrice": 5000,
+  "salePrice": 5000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "Unique"
+  ],
+  "colors": [
+    "Unique"
+  ],
+  "variants": [
+    {
+      "size": "Unique",
+      "color": "Unique",
+      "stock": 10
+    }
+  ],
+  "stock": 10,
+  "images": [
+    "696879092_954934300490189_891046049913424076_n.jpg",
+    "696896481_954935790490040_6094036338433893280_n.jpg",
+    "696970808_954934437156842_2155720237066883717_n.jpg",
+    "699515847_954935737156712_897532124733554539_n.jpg",
+    "700015019_954935920490027_5369651616817499704_n.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS Admin - Order Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fbf9f9",
+                      "tertiary-fixed": "#e6e1df",
+                      "on-tertiary-container": "#868381",
+                      "primary-fixed": "#e5e2e1",
+                      "inverse-on-surface": "#f2f0f0",
+                      "secondary": "#5d5f5f",
+                      "surface-container-highest": "#e3e2e2",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "inverse-primary": "#c9c6c5",
+                      "inverse-surface": "#303031",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#e2e2e2",
+                      "outline-variant": "#c4c7c7",
+                      "on-tertiary-fixed": "#1d1b1a",
+                      "on-primary-fixed": "#1c1b1b",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#1d1b1a",
+                      "surface-container": "#efeded",
+                      "on-primary-container": "#858383",
+                      "on-surface-variant": "#444748",
+                      "primary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "tertiary": "#000000",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#cac6c3",
+                      "on-tertiary-fixed-variant": "#484645",
+                      "secondary-container": "#dfe0e0",
+                      "surface-variant": "#e3e2e2",
+                      "on-secondary-container": "#616363",
+                      "surface-container-low": "#f5f3f3",
+                      "on-background": "#1b1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1b1c1c",
+                      "surface-container-high": "#e9e8e7",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf9f9",
+                      "surface": "#fbf9f9",
+                      "surface-dim": "#dbdad9",
+                      "surface-tint": "#5f5e5e",
+                      "error": "#ba1a1a",
+                      "outline": "#747878",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "accent-cyan": "#00F0FF"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "container-margin": "16px",
+                      "base": "4px",
+                      "xl": "40px",
+                      "sm": "8px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Oswald"
+                      ],
+                      "display-lg": [
+                              "Oswald"
+                      ],
+                      "headline-lg-mobile": [
+                              "Oswald"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Oswald"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "72px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f9;
+            color: #1b1c1c;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+             font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Brutalist Button Styles */
+        .btn-primary {
+            @apply bg-primary text-on-primary rounded font-label-sm text-label-sm uppercase px-md py-sm border-none cursor-pointer transition-colors duration-200 hover:bg-accent-cyan hover:text-primary;
+        }
+        .btn-secondary {
+            @apply bg-transparent text-primary rounded font-label-sm text-label-sm uppercase px-md py-sm border-2 border-primary cursor-pointer hover:bg-surface-container-high transition-colors;
+        }
+        .btn-accent {
+            @apply bg-accent-cyan text-primary rounded font-label-sm text-label-sm uppercase px-md py-sm border-none cursor-pointer font-bold hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-sm;
+        }
+        
+        /* Brutalist Card/Container Styles */
+        .brutalist-border {
+            @apply border border-[#E5E5E5];
+        }
+        .brutalist-shadow {
+            box-shadow: 4px 4px 0px 0px #0A0A0A;
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased overflow-x-hidden min-h-screen flex flex-col md:flex-row">
+<!-- Mobile Top App Bar (Hidden on Desktop) -->
+<header class="flex justify-between items-center px-lg w-full h-16 bg-surface border-b border-outline-variant md:hidden sticky top-0 z-50">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined cursor-pointer text-primary" data-icon="menu">menu</span>
+<span class="font-headline-md text-headline-md tracking-tighter font-black text-primary">KAKOS</span>
+</div>
+<div class="flex gap-md">
+<span class="material-symbols-outlined cursor-pointer text-primary" data-icon="notifications">notifications</span>
+</div>
+</header>
+<!-- SideNavBar (Hidden on Mobile, Visible on Desktop) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 py-lg bg-surface-container-lowest border-r border-outline-variant z-40">
+<div class="px-md mb-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">KAKOS</h1>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mt-xs">Admin Console</p>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<ul class="flex flex-col gap-xs">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md bg-primary text-on-primary rounded-none border-l-4 border-on-secondary-container px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="shopping_cart">shopping_cart</span>
+<span>Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Products</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="warehouse">warehouse</span>
+<span>Inventory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Delivery</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span>Campaigns</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="mt-auto px-md">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest px-md py-sm transition-all duration-150 ease-in-out font-label-sm text-label-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-container-margin md:p-lg flex flex-col gap-lg bg-[#F5F5F5] min-h-screen">
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md bg-surface-container-lowest p-md brutalist-border brutalist-shadow">
+<div class="flex items-center gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center border border-outline-variant rounded p-xs" href="#">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</a>
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase tracking-tighter">ORD-#8942A</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Placée le 14 Oct 2023, 14:32</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="bg-primary text-on-primary font-label-sm text-label-sm uppercase px-sm py-xs rounded">EN PRÉPARATION</span>
+</div>
+</div>
+<!-- Action Bar (Top for Desktop visibility) -->
+<div class="bg-surface-container-lowest p-md brutalist-border flex flex-wrap gap-sm justify-between items-center">
+<div class="flex flex-wrap gap-sm">
+<button class="btn-secondary">Confirmer</button>
+<button class="btn-primary">Préparer</button>
+<button class="btn-secondary">En Livraison</button>
+<button class="btn-secondary">Livré</button>
+</div>
+<div class="flex gap-sm mt-sm md:mt-0">
+<button class="btn-secondary border-error text-error hover:bg-error-container hover:text-error">Annuler</button>
+<button class="btn-secondary border-outline text-outline">Client Injoignable</button>
+</div>
+</div>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-lg">
+<!-- Left Column: Order Items (70%) -->
+<div class="lg:col-span-8 flex flex-col gap-md">
+<div class="bg-surface-container-lowest brutalist-border overflow-hidden">
+<div class="p-md border-b border-[#E5E5E5] bg-surface">
+<h3 class="font-headline-md text-headline-md text-primary uppercase">Articles Commandés (3)</h3>
+</div>
+<!-- Table Header (Desktop) -->
+<div class="hidden md:grid grid-cols-12 gap-sm p-sm border-b border-[#E5E5E5] font-label-sm text-label-sm uppercase text-on-surface-variant bg-surface-container-low">
+<div class="col-span-6">Produit</div>
+<div class="col-span-2 text-center">Prix Unitaire</div>
+<div class="col-span-2 text-center">Qté</div>
+<div class="col-span-2 text-right">Total</div>
+</div>
+<!-- Order Item 1 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md p-md border-b border-[#E5E5E5] items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-1 md:col-span-6 flex gap-md items-start">
+<div class="w-20 h-24 bg-surface-container-highest brutalist-border shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-fashion urban photography shot of a young Black male model wearing a stark white oversized graphic t-shirt against a concrete backdrop. High contrast lighting, brutalist aesthetic. The image is cropped to focus on the garment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCshD6FbcZFsWUYBjewXIewFhzf7JXPZnGB-60Y6W5cHmSr-yf53iqj9-gZ-djkBBfkbxKoh4yo0h0F3xqdlkVd-vhWyY8QuPxqqLjgqQmqvBQDVlkaREEvoRf_3ceQLhaMuzubSepwrDRcu-um-rJIq0zAca9M1z_Hoyjgfc2nYi6d4QGFshwA0N6X214_y6Hmok_W64__lgnKAGoVGUXR6TJhQLq-t3fB1Yiqc8fWA5ntNqAtQXQ-"/>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-body-md text-body-md font-bold text-primary">T-Shirt Oversize 'Yaoundé'</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-sm py-xs inline-block w-max rounded">Taille: L | Couleur: Blanc</span>
+<span class="font-label-sm text-label-sm text-outline-variant mt-sm">SKU: TSH-YND-WHT-L</span>
+</div>
+</div>
+<div class="hidden md:block col-span-2 text-center font-headline-md text-headline-md text-primary">
+                            15,000 F
+                        </div>
+<div class="hidden md:block col-span-2 text-center font-body-md text-body-md font-bold text-primary">
+                            2
+                        </div>
+<div class="col-span-1 md:col-span-2 text-right flex justify-between md:block items-center">
+<span class="md:hidden font-label-sm text-label-sm text-on-surface-variant">2x 15,000 F</span>
+<span class="font-headline-md text-headline-md text-primary">30,000 F</span>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md p-md border-b border-[#E5E5E5] items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-1 md:col-span-6 flex gap-md items-start">
+<div class="w-20 h-24 bg-surface-container-highest brutalist-border shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of heavy black denim cargo pants with utilitarian pockets. Worn by a Black male model in an urban setting. High contrast, sharp details on the fabric texture, brutalist fashion aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkRPoz4GJ9mwxS3_UAYFCUY7DznfFJavoXgIqE5cNQohZbs6QbTuA2P3xQia0XiNtpCOrtY5JKqHiHNc0Hl2chclCkgoL63BZIv6AxwLMVT3gXY80mqO_TfM_IjxBD3D4B0V8aiz64oaes7Hd7rqa90ckHpTx2fLoXHNiVZzSorCewMnzzY6MlMjrRfT8t0j0O2oIa8biJjyNd5DaTnjlidA8KUjf9qKnFFzon0bcAmU6RW-uEhwgl"/>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-body-md text-body-md font-bold text-primary">Pantalon Cargo 'Douala'</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-sm py-xs inline-block w-max rounded">Taille: 42 | Couleur: Noir</span>
+<span class="font-label-sm text-label-sm text-outline-variant mt-sm">SKU: CRG-DLA-BLK-42</span>
+</div>
+</div>
+<div class="hidden md:block col-span-2 text-center font-headline-md text-headline-md text-primary">
+                            25,000 F
+                        </div>
+<div class="hidden md:block col-span-2 text-center font-body-md text-body-md font-bold text-primary">
+                            1
+                        </div>
+<div class="col-span-1 md:col-span-2 text-right flex justify-between md:block items-center">
+<span class="md:hidden font-label-sm text-label-sm text-on-surface-variant">1x 25,000 F</span>
+<span class="font-headline-md text-headline-md text-primary">25,000 F</span>
+</div>
+</div>
+</div>
+<!-- Totals Block -->
+<div class="bg-primary text-on-primary p-md brutalist-shadow flex flex-col gap-sm">
+<div class="flex justify-between items-center border-b border-secondary pb-sm">
+<span class="font-body-md text-body-md text-surface-variant">Sous-total</span>
+<span class="font-headline-md text-headline-md">55,000 F</span>
+</div>
+<div class="flex justify-between items-center border-b border-secondary pb-sm">
+<span class="font-body-md text-body-md text-surface-variant">Livraison (Express)</span>
+<span class="font-headline-md text-headline-md">2,000 F</span>
+</div>
+<div class="flex justify-between items-center pt-sm">
+<span class="font-body-md text-body-md font-bold uppercase tracking-widest text-accent-cyan">Total FCFA</span>
+<span class="font-display-lg text-display-lg text-accent-cyan tracking-tighter">57,000 F</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Customer & Shipping (30%) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Customer Info -->
+<div class="bg-surface-container-lowest brutalist-border p-md relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-surface-container-high transform rotate-45 translate-x-8 -translate-y-8 z-0"></div>
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-md border-b border-[#E5E5E5] pb-xs relative z-10">Client</h3>
+<div class="flex flex-col gap-md relative z-10">
+<div>
+<span class="block font-headline-md text-headline-md text-primary">Jean-Paul Kemajou</span>
+<span class="block font-body-md text-body-md text-on-surface-variant mt-xs">Client fidèle (5 commandes)</span>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm uppercase text-outline-variant">Téléphone / WhatsApp</span>
+<span class="font-body-md text-body-md font-bold text-primary">+237 6 90 12 34 56</span>
+</div>
+<button class="btn-accent w-full justify-center mt-sm">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                            Contacter via WhatsApp
+                        </button>
+</div>
+</div>
+<!-- Shipping Address -->
+<div class="bg-surface-container-lowest brutalist-border p-md">
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-md border-b border-[#E5E5E5] pb-xs flex justify-between items-center">
+                         Livraison
+                         <span class="material-symbols-outlined text-outline" data-icon="edit" style="font-size: 16px; cursor: pointer;">edit</span>
+</h3>
+<div class="flex flex-col gap-md">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-xs" data-icon="location_on">location_on</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-bold text-primary">Douala</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Bonamoussadi, Carrefour Sable</span>
+<span class="font-body-md text-body-md text-on-surface-variant mt-xs">Face station Total, portail noir.</span>
+</div>
+</div>
+<div class="bg-surface-container p-sm border border-outline-variant rounded">
+<span class="block font-label-sm text-label-sm uppercase text-outline mb-xs">Note du client</span>
+<p class="font-body-md text-body-md text-primary italic">"Appeler 30min avant d'arriver svp. Je serai au bureau."</p>
+</div>
+</div>
+</div>
+<!-- Order Timeline -->
+<div class="bg-surface-container-lowest brutalist-border p-md">
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-md border-b border-[#E5E5E5] pb-xs">Historique</h3>
+<div class="relative pl-sm mt-md">
+<!-- Vertical line -->
+<div class="absolute left-4 top-2 bottom-2 w-px bg-outline-variant"></div>
+<!-- Event 1 (Current) -->
+<div class="relative flex gap-md mb-lg">
+<div class="w-3 h-3 rounded-full bg-primary z-10 outline outline-4 outline-surface-container-lowest mt-1"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Mise en préparation</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Aujourd'hui, 09:15</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm mt-xs">Par: Admin System</span>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="relative flex gap-md">
+<div class="w-3 h-3 rounded-full bg-outline-variant z-10 outline outline-4 outline-surface-container-lowest mt-1"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Commande placée</span>
+<span class="font-label-sm text-label-sm text-outline font-normal">14 Oct, 14:32</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,48 @@
+{
+  "name": "Doudoune Balenciaga",
+  "description": "<p><strong>Doudoune Balenciaga KAKOS</strong> — Une pièce maîtresse de notre vestiaire urbain.</p>",
+  "category": "Vestes / Doudounes",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "vestes-doudounes"
+  ],
+  "supplierPrice": 10000,
+  "salePrice": 10000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Rose"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Rose",
+      "stock": 5
+    },
+    {
+      "size": "L",
+      "color": "Rose",
+      "stock": 5
+    },
+    {
+      "size": "XL",
+      "color": "Rose",
+      "stock": 5
+    }
+  ],
+  "stock": 15,
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

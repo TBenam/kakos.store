@@ -1,0 +1,60 @@
+{
+  "name": "Jean Oversize Délavage Peinture",
+  "description": "<p><strong>Jean Oversize Délavage Peinture KAKOS</strong> — Une silhouette streetwear forte caractérisée par sa coupe loose et ses détails uniques de projections de peinture colorée.</p>",
+  "category": "Jeans",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "jeans"
+  ],
+  "supplierPrice": 7000,
+  "salePrice": 7000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "30",
+    "32",
+    "34",
+    "36",
+    "38"
+  ],
+  "colors": [
+    "Bleu"
+  ],
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "variants": [
+    {
+      "size": "30",
+      "color": "Bleu",
+      "stock": 10
+    },
+    {
+      "size": "32",
+      "color": "Bleu",
+      "stock": 15
+    },
+    {
+      "size": "34",
+      "color": "Bleu",
+      "stock": 15
+    },
+    {
+      "size": "36",
+      "color": "Bleu",
+      "stock": 10
+    },
+    {
+      "size": "38",
+      "color": "Bleu",
+      "stock": 5
+    }
+  ],
+  "stock": 55,
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

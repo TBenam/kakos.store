@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fbf9f9",
+                      "tertiary-fixed": "#e6e1df",
+                      "on-tertiary-container": "#868381",
+                      "primary-fixed": "#e5e2e1",
+                      "inverse-on-surface": "#f2f0f0",
+                      "secondary": "#5d5f5f",
+                      "surface-container-highest": "#e3e2e2",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "inverse-primary": "#c9c6c5",
+                      "inverse-surface": "#303031",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#e2e2e2",
+                      "outline-variant": "#c4c7c7",
+                      "on-tertiary-fixed": "#1d1b1a",
+                      "on-primary-fixed": "#1c1b1b",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#1d1b1a",
+                      "surface-container": "#efeded",
+                      "on-primary-container": "#858383",
+                      "on-surface-variant": "#444748",
+                      "primary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "tertiary": "#000000",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#cac6c3",
+                      "on-tertiary-fixed-variant": "#484645",
+                      "secondary-container": "#dfe0e0",
+                      "surface-variant": "#e3e2e2",
+                      "on-secondary-container": "#616363",
+                      "surface-container-low": "#f5f3f3",
+                      "on-background": "#1b1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1b1c1c",
+                      "surface-container-high": "#e9e8e7",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf9f9",
+                      "surface": "#fbf9f9",
+                      "surface-dim": "#dbdad9",
+                      "surface-tint": "#5f5e5e",
+                      "error": "#ba1a1a",
+                      "outline": "#747878",
+                      "on-secondary-fixed": "#1a1c1c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "container-margin": "16px",
+                      "base": "4px",
+                      "xl": "40px",
+                      "sm": "8px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Oswald"
+                      ],
+                      "display-lg": [
+                              "Oswald"
+                      ],
+                      "headline-lg-mobile": [
+                              "Oswald"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Oswald"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "72px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        /* Custom styles based on Style Guidance */
+        body {
+            background-color: #fbf9f9;
+            color: #1b1c1c;
+        }
+        
+        /* Cyan Accents requested in prompt */
+        .cyan-accent { color: #00F0FF; }
+        .bg-cyan-accent { background-color: #00F0FF; }
+        .border-cyan-accent { border-color: #00F0FF; }
+        
+        .block-shadow {
+            box-shadow: 4px 4px 0px 0px #0A0A0A;
+        }
+        
+        .border-solid-1px {
+            border: 1px solid #E5E5E5;
+        }
+        
+        .high-contrast-card {
+            border: 1px solid #E5E5E5;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen bg-background text-on-background font-body-md text-body-md overflow-x-hidden">
+<!-- Mobile Top Navigation (hidden on desktop) -->
+<nav class="md:hidden flex justify-between items-center px-lg w-full h-16 bg-surface border-b border-outline-variant flat no shadows fixed top-0 z-50">
+<div class="font-headline-md text-headline-md tracking-tighter font-black text-primary">KAKOS</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95" data-icon="apps">apps</span>
+</div>
+</nav>
+<!-- Desktop Side Navigation -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 py-lg bg-surface-container-lowest border-r border-outline-variant flat no shadows z-40 transition-all duration-150 ease-in-out">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">KAKOS</h1>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mt-xs">Admin Console</p>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md bg-primary text-on-primary rounded-none border-l-4 border-cyan-accent font-label-sm text-label-sm uppercase tracking-widest px-md py-sm hover:bg-surface-container-highest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm font-label-sm text-label-sm uppercase tracking-widest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                Orders
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm font-label-sm text-label-sm uppercase tracking-widest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                Products
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm font-label-sm text-label-sm uppercase tracking-widest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="warehouse">warehouse</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm font-label-sm text-label-sm uppercase tracking-widest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+                Delivery
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm font-label-sm text-label-sm uppercase tracking-widest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+                Campaigns
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm font-label-sm text-label-sm uppercase tracking-widest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto px-md">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm font-label-sm text-label-sm uppercase tracking-widest transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 mt-16 md:mt-0 p-container-margin md:p-lg">
+<!-- Header -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tighter uppercase">Overview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Douala / Yaoundé Operations</p>
+</div>
+<div class="flex gap-sm">
+<!-- Top Nav Actions moved here for desktop -->
+<div class="hidden md:flex gap-sm mr-md">
+<button class="w-10 h-10 flex items-center justify-center border-solid-1px bg-surface hover:bg-surface-container-high transition-colors text-primary"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="w-10 h-10 flex items-center justify-center border-solid-1px bg-surface hover:bg-surface-container-high transition-colors text-primary"><span class="material-symbols-outlined" data-icon="apps">apps</span></button>
+</div>
+</div>
+</header>
+<!-- Stats Grid (4 columns) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-xl">
+<!-- Stat Card 1 -->
+<div class="high-contrast-card p-md flex flex-col justify-between h-32 hover:block-shadow transition-shadow duration-200">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Commandes Aujourd'hui</p>
+<p class="font-display-lg text-display-lg text-primary mt-auto">124</p>
+</div>
+<!-- Stat Card 2 -->
+<div class="high-contrast-card p-md flex flex-col justify-between h-32 hover:block-shadow transition-shadow duration-200 border-l-4 border-cyan-accent">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">CA du jour (FCFA)</p>
+<p class="font-display-lg text-display-lg text-primary mt-auto">2.4M</p>
+</div>
+<!-- Stat Card 3 -->
+<div class="high-contrast-card p-md flex flex-col justify-between h-32 hover:block-shadow transition-shadow duration-200">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Commandes à Confirmer</p>
+<div class="flex items-baseline gap-sm mt-auto">
+<p class="font-display-lg text-display-lg text-primary">18</p>
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="high-contrast-card p-md flex flex-col justify-between h-32 hover:block-shadow transition-shadow duration-200">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Alertes Stock</p>
+<div class="flex items-baseline gap-sm mt-auto">
+<p class="font-display-lg text-display-lg text-primary">3</p>
+<span class="font-label-sm text-label-sm bg-primary text-on-primary px-sm py-xs uppercase">Critique</span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Content Column (Tables & Workflows) -->
+<div class="lg:col-span-2 flex flex-col gap-gutter">
+<!-- Order Workflow Status Bar -->
+<section class="high-contrast-card p-md">
+<h3 class="font-headline-md text-headline-md text-primary uppercase tracking-tighter mb-md">Volume En Cours</h3>
+<div class="relative w-full h-8 bg-surface-container-high flex overflow-hidden">
+<!-- Confirmed -->
+<div class="bg-primary h-full flex items-center px-sm" style="width: 20%;">
+<span class="font-label-sm text-label-sm text-on-primary">20% Conf</span>
+</div>
+<!-- Prep -->
+<div class="bg-cyan-accent h-full flex items-center px-sm" style="width: 45%;">
+<span class="font-label-sm text-label-sm text-primary font-bold">45% Prép</span>
+</div>
+<!-- Delivery -->
+<div class="bg-surface-tint h-full flex items-center px-sm" style="width: 25%;">
+<span class="font-label-sm text-label-sm text-on-primary">25% Livr</span>
+</div>
+<!-- Delivered (Remaining space visually empty or subtle) -->
+</div>
+<div class="flex justify-between mt-sm text-on-surface-variant font-label-sm text-label-sm uppercase">
+<span>Confirmé (42)</span>
+<span>En Préparation (95)</span>
+<span>En Livraison (52)</span>
+<span>Livré (18)</span>
+</div>
+</section>
+<!-- Recent Orders Table -->
+<section class="high-contrast-card overflow-hidden">
+<div class="p-md border-b border-outline-variant bg-surface flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-primary uppercase tracking-tighter">Commandes Récentes</h3>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs" href="#">Voir Tout <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-lowest">
+<th class="p-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest font-normal">Order #</th>
+<th class="p-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest font-normal">Customer</th>
+<th class="p-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest font-normal">Amount</th>
+<th class="p-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest font-normal">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors">
+<td class="p-md font-bold text-primary">#K-8921</td>
+<td class="p-md">Jean-Paul B. <span class="text-on-surface-variant text-sm block">Douala</span></td>
+<td class="p-md font-headline-md text-headline-md text-[18px]">45,000 FCFA</td>
+<td class="p-md"><span class="inline-block bg-primary text-on-primary font-label-sm text-label-sm uppercase px-sm py-xs">En attente</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors">
+<td class="p-md font-bold text-primary">#K-8920</td>
+<td class="p-md">Marie T. <span class="text-on-surface-variant text-sm block">Yaoundé</span></td>
+<td class="p-md font-headline-md text-headline-md text-[18px]">120,000 FCFA</td>
+<td class="p-md"><span class="inline-block bg-cyan-accent text-primary font-label-sm text-label-sm uppercase px-sm py-xs">Prêt</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors">
+<td class="p-md font-bold text-primary">#K-8919</td>
+<td class="p-md">Fabrice E. <span class="text-on-surface-variant text-sm block">Douala</span></td>
+<td class="p-md font-headline-md text-headline-md text-[18px]">25,500 FCFA</td>
+<td class="p-md"><span class="inline-block border border-primary text-primary font-label-sm text-label-sm uppercase px-sm py-xs">En Livraison</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-md font-bold text-primary">#K-8918</td>
+<td class="p-md">Alain M. <span class="text-on-surface-variant text-sm block">Douala</span></td>
+<td class="p-md font-headline-md text-headline-md text-[18px]">85,000 FCFA</td>
+<td class="p-md"><span class="inline-block border border-outline text-on-surface-variant font-label-sm text-label-sm uppercase px-sm py-xs">Livré</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Side Column (Quick Actions & Visuals) -->
+<div class="flex flex-col gap-gutter">
+<!-- Quick Actions -->
+<section class="high-contrast-card p-md flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md text-primary uppercase tracking-tighter mb-xs">Actions Rapides</h3>
+<button class="w-full bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest py-md px-md hover:bg-cyan-accent hover:text-primary transition-colors flex items-center justify-between group">
+                        Confirmer Commande
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="check_circle">check_circle</span>
+</button>
+<button class="w-full bg-transparent border-2 border-primary text-primary font-label-sm text-label-sm uppercase tracking-widest py-md px-md hover:bg-surface-container-high transition-colors flex items-center justify-between group">
+                        Ajouter Produit
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="add">add</span>
+</button>
+<button class="w-full bg-transparent border-2 border-primary text-primary font-label-sm text-label-sm uppercase tracking-widest py-md px-md hover:bg-surface-container-high transition-colors flex items-center justify-between group">
+                        Nouvelle Campagne
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="campaign">campaign</span>
+</button>
+</section>
+<!-- Atmospheric Visual Placeholder representing urban street culture/warehouse context -->
+<section class="high-contrast-card p-base flex-1 min-h-[300px] relative overflow-hidden group">
+<div class="bg-cover bg-center w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500 absolute inset-0" data-alt="A striking digital installation art piece featuring a brutalist warehouse interior in Douala. High contrast monochromatic lighting with vivid cyan accents on structural beams. Modern, clean, and aggressive streetwear logistics aesthetic. No humans, focus on architecture and light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtjLCsRgyoIyehj_gzRrScOnioXSKtplqrP-gm4Y8UfO2XX9wLFCriY7kDjNW_ueKUiu8VS_80wG4n8egrmxdWGnXQGWQ5tjKqjowc3RcLhhfZSqtzT7qi0g5LYrsOBGaUk6lMzpeRJpSbdHHEqIL2_726RMGJcJFiiuD-DFwMDHYMSUBE683DY-BVWPbnl2U8519MARZYao5Z3osYCg4TsOfSWMlqVa2noxLXBsZSRHIblPyH0R9I')"></div>
+<div class="absolute bottom-md left-md bg-primary p-sm border border-cyan-accent">
+<p class="font-label-sm text-label-sm text-cyan-accent uppercase tracking-widest">Hub Douala - Hôpital Souboum</p>
+<p class="font-body-md text-body-md text-on-primary text-xs mt-xs">Active • 98% Capacité</p>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

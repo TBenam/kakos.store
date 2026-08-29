@@ -1,0 +1,48 @@
+{
+  "name": "Pantalon Chino Rayé",
+  "description": "<p><strong>Pantalon Chino Rayé KAKOS</strong> — Pantalon de tailleur ajusté en tissu noir à fines rayures verticales blanches. Un style casual chic idéal pour toutes les occasions.</p>",
+  "category": "Pantalons",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "pantalons"
+  ],
+  "supplierPrice": 6000,
+  "salePrice": 6000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Noir / Blanc"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Noir / Blanc",
+      "stock": 10
+    },
+    {
+      "size": "L",
+      "color": "Noir / Blanc",
+      "stock": 15
+    },
+    {
+      "size": "XL",
+      "color": "Noir / Blanc",
+      "stock": 10
+    }
+  ],
+  "stock": 35,
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

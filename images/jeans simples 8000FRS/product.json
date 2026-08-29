@@ -1,0 +1,60 @@
+{
+  "name": "Jean Slim Classique",
+  "description": "<p><strong>Jean Slim Classique KAKOS</strong> — Coupe regular moderne ajustée, confectionnée dans un denim bleu brut confortable et résistant. Parfait pour un style casual ou urbain raffiné.</p>",
+  "category": "Jeans",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "jeans"
+  ],
+  "supplierPrice": 8000,
+  "salePrice": 8000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "30",
+    "32",
+    "34",
+    "36",
+    "38"
+  ],
+  "colors": [
+    "Bleu Foncé"
+  ],
+  "variants": [
+    {
+      "size": "30",
+      "color": "Bleu Foncé",
+      "stock": 10
+    },
+    {
+      "size": "32",
+      "color": "Bleu Foncé",
+      "stock": 15
+    },
+    {
+      "size": "34",
+      "color": "Bleu Foncé",
+      "stock": 15
+    },
+    {
+      "size": "36",
+      "color": "Bleu Foncé",
+      "stock": 10
+    },
+    {
+      "size": "38",
+      "color": "Bleu Foncé",
+      "stock": 5
+    }
+  ],
+  "stock": 55,
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

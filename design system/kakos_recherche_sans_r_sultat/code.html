@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS - Zero Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#c9c6c5",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "tertiary": "#000000",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline-variant": "#c4c7c7",
+                        "surface-tint": "#5f5e5e",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "surface-bright": "#fbf9f9",
+                        "background": "#fbf9f9",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeded",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#1d1b1a",
+                        "on-surface-variant": "#444748",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface": "#fbf9f9",
+                        "surface-container-highest": "#e3e2e2",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-container": "#616363",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-tertiary-container": "#868381",
+                        "outline": "#747878",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-primary-container": "#858383",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-variant": "#e3e2e2",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#dfe0e0",
+                        "inverse-surface": "#303031",
+                        "on-surface": "#1b1c1c",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "secondary": "#5d5f5f",
+                        "surface-dim": "#dbdad9",
+                        "primary": "#000000",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "surface-container-high": "#e9e8e7",
+                        "on-primary-fixed": "#1c1b1b",
+                        "tertiary-fixed": "#e6e1df",
+                        "on-background": "#1b1c1c",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-low": "#f5f3f3",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "12px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "base": "4px",
+                        "container-margin": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Oswald"],
+                        "headline-lg": ["Oswald"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Oswald"],
+                        "headline-lg-mobile": ["Oswald"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md selection:bg-tertiary selection:text-on-tertiary">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full z-50 bg-surface dark:bg-primary border-b border-outline-variant dark:border-on-primary-fixed-variant docked full-width top-0">
+<button class="text-primary dark:text-on-primary hover:bg-surface-container-high dark:hover:bg-primary-container transition-colors p-2 rounded-full flex items-center justify-center active:scale-95 duration-75">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display-lg text-headline-lg-mobile font-bold tracking-tighter text-primary dark:text-on-primary">KAKOS</h1>
+<button class="text-primary dark:text-on-primary hover:bg-surface-container-high dark:hover:bg-primary-container transition-colors p-2 rounded-full flex items-center justify-center active:scale-95 duration-75">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</header>
+<main class="flex-grow flex flex-col pt-lg px-container-margin pb-32">
+<!-- Search Input Header -->
+<div class="w-full max-w-2xl mx-auto mb-xl relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-4 border border-outline-variant rounded-DEFAULT leading-5 bg-surface-container-lowest placeholder-outline focus:outline-none focus:border-primary focus:ring-0 sm:text-sm font-label-sm uppercase transition-colors" placeholder="RECHERCHER..." type="text" value="XxyZ Cargo Jacket"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<span class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="close">close</span>
+</button>
+</div>
+<!-- Zero Results Content -->
+<div class="flex-grow flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+<span class="material-symbols-outlined text-display-lg text-outline-variant mb-md" data-icon="search_off" style="font-size: 96px;">search_off</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase tracking-tighter text-primary mb-sm">
+                AUCUN RÉSULTAT
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl">
+                NOUS N'AVONS PAS TROUVÉ DE MATCH POUR <span class="font-bold text-primary">"XxyZ Cargo Jacket"</span>
+</p>
+<!-- Suggestions -->
+<div class="w-full mb-xl">
+<h3 class="font-label-sm text-label-sm text-secondary uppercase mb-md tracking-widest">
+                    ESSAYEZ PLUTÔT :
+                </h3>
+<div class="flex flex-wrap justify-center gap-sm">
+<button class="px-md py-sm border-2 border-primary rounded-DEFAULT font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                        T-shirt Oversize
+                    </button>
+<button class="px-md py-sm border-2 border-primary rounded-DEFAULT font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                        Cargo
+                    </button>
+<button class="px-md py-sm border-2 border-primary rounded-DEFAULT font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                        Ensemble
+                    </button>
+<button class="px-md py-sm border-2 border-primary rounded-DEFAULT font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                        Accessoires
+                    </button>
+</div>
+</div>
+<!-- Action -->
+<button class="w-full md:w-auto bg-primary text-on-primary px-xl py-md font-label-sm text-label-sm uppercase rounded-DEFAULT hover:bg-tertiary-container transition-colors shadow-[4px_4px_0px_0px_#1d1b1a] active:translate-y-1 active:translate-x-1 active:shadow-none">
+                PARCOURIR TOUT LE SHOP
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface dark:bg-primary px-container-margin pb-safe border-t border-outline dark:border-on-primary-fixed-variant z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-sm text-[10px] uppercase font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-on-primary scale-110 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search" data-weight="fill">search</span>
+<span class="font-label-sm text-[10px] uppercase font-bold">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="flare">flare</span>
+<span class="font-label-sm text-[10px] uppercase font-bold">Drops</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-sm text-[10px] uppercase font-bold">Cart</span>
+</a>
+</nav>
+</body></html>

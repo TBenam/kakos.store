@@ -1,0 +1,48 @@
+{
+  "name": "Ensemble Jacquard Floral",
+  "description": "<p><strong>Ensemble Jacquard Floral KAKOS</strong> — Une silhouette streetwear haut de gamme composée d'une surchemise utilitaire et d'un pantalon droit coordonné dans une superbe maille jacquard aux motifs floraux d'inspiration tapisserie.</p>",
+  "category": "Ensembles",
+  "tags": [
+    "kakos",
+    "streetwear",
+    "premium",
+    "ensembles"
+  ],
+  "supplierPrice": 10000,
+  "salePrice": 10000,
+  "salePriceApprovedByHuman": true,
+  "sizes": [
+    "M",
+    "L",
+    "XL"
+  ],
+  "colors": [
+    "Vert/Beige"
+  ],
+  "variants": [
+    {
+      "size": "M",
+      "color": "Vert/Beige",
+      "stock": 5
+    },
+    {
+      "size": "L",
+      "color": "Vert/Beige",
+      "stock": 5
+    },
+    {
+      "size": "XL",
+      "color": "Vert/Beige",
+      "stock": 5
+    }
+  ],
+  "stock": 15,
+  "images": [
+    "editorial.jpg",
+    "product.jpg"
+  ],
+  "needs_review": false,
+  "uncertainties": [],
+  "status": "APPROVED",
+  "supplierReference": ""
+}

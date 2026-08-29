@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAKOS MENSWEAR | Urban Monolith</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-bright": "#fbf9f9",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e2e2e2",
+                        "secondary-container": "#dfe0e0",
+                        "tertiary": "#000000",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#e6e1df",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#303031",
+                        "surface-container-low": "#f5f3f3",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "primary": "#000000",
+                        "background": "#fbf9f9",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "inverse-primary": "#c9c6c5",
+                        "on-primary-container": "#858383",
+                        "on-tertiary-container": "#868381",
+                        "on-surface-variant": "#444748",
+                        "tertiary-container": "#1d1b1a",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "surface-dim": "#dbdad9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c4c7c7",
+                        "outline": "#747878",
+                        "secondary": "#5d5f5f",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-secondary-container": "#616363",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#454747",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e9e8e7",
+                        "surface": "#fbf9f9",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e3e2e2",
+                        "on-background": "#1b1c1c",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-container": "#efeded",
+                        "on-surface": "#1b1c1c",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-tint": "#5f5e5e",
+                        "primary-container": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "container-margin": "16px",
+                        "gutter": "12px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "xl": "40px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Oswald"],
+                        "display-lg": ["Oswald"],
+                        "headline-lg-mobile": ["Oswald"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Oswald"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .electric-cyan { color: #00F0FF; }
+        .bg-electric-cyan { background-color: #00F0FF; }
+        .border-electric-cyan { border-color: #00F0FF; }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden selection:bg-[#00F0FF] selection:text-black">
+<!-- Announcement Bar -->
+<div class="w-full bg-primary text-on-primary py-xs px-container-margin text-center">
+<p class="font-label-sm text-label-sm uppercase tracking-widest">LIVRAISON GRATUITE SUR DOUALA &amp; YAOUNDÉ | -10% SUR VOTRE PREMIÈRE COMMANDE</p>
+</div>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full z-50 bg-surface dark:bg-primary border-b border-outline-variant dark:border-on-primary-fixed-variant sticky top-0">
+<button class="text-primary dark:text-on-primary hover:bg-surface-container-high dark:hover:bg-primary-container transition-colors active:scale-95 duration-75 p-sm rounded-DEFAULT">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-display-lg text-headline-lg-mobile font-bold tracking-tighter text-primary dark:text-on-primary">
+            KAKOS
+        </div>
+<button class="text-primary dark:text-on-primary hover:bg-surface-container-high dark:hover:bg-primary-container transition-colors active:scale-95 duration-75 p-sm rounded-DEFAULT">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</header>
+<!-- Navigation Drawer Shell (Hidden initially, structural representation) -->
+<aside class="hidden fixed inset-y-0 left-0 z-50 h-full w-80 bg-surface dark:bg-primary border-r border-outline dark:border-primary-fixed-dim block-shadow shadow-[4px_0px_0px_0px_rgba(0,0,0,1)] flex-col py-lg px-md transition-all duration-200 ease-in-out">
+<!-- Content handled by JS toggle -->
+</aside>
+<main class="pb-24">
+<!-- Hero Section -->
+<section class="relative w-full h-[707px] min-h-[600px] bg-primary">
+<div class="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-luminosity" data-alt="A striking, high-contrast photograph of a stylish Cameroonian man in modern, avant-garde streetwear. He stands confidently against the geometric backdrop of contemporary architecture in Douala. The lighting is harsh and directional, creating deep shadows that emphasize the texture of his garments. The scene is rendered in stark black and white with an intense, cinematic mood, perfectly capturing premium urban menswear." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBV-O--9PNnkmQiNOzaq6CXET8jYd5ns_iGghTSVIQHISu7PmsUoTWO4QPWk5-puLAhoIz086pUexFfaua83km70jXYeFGrPugW118iR1algez88mANUEOCKeZyBhc23ZtNxXI6XkJUFXaU9L42MHnUkIKcVDWYHIUcnLyoARKsFguuzuh6hGnxxSMaA120h4q6YLelwAmQvYPyZBMn3JTKLXSfnrpNCk9L-5V4wSHdKqgO4KW0yrC7')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-container-margin flex flex-col items-start gap-md pb-xl">
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-primary uppercase tracking-tighter leading-tight w-3/4">LA NOUVELLE ÈRE URBAINE</h1>
+<button class="bg-electric-cyan text-primary font-label-sm text-label-sm uppercase px-lg py-md rounded-DEFAULT font-bold hover:bg-primary hover:text-electric-cyan border-2 border-transparent hover:border-electric-cyan transition-all duration-300">
+                    SHOPPER LA COLLECTION
+                </button>
+</div>
+</section>
+<!-- Categories Grid -->
+<section class="px-container-margin py-xl w-full">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-xs">
+<!-- Streetwear -->
+<div class="relative aspect-square group overflow-hidden bg-surface-container-high">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" data-alt="High-contrast close-up shot of a textured streetwear hoodie worn by a Black male model. Urban setting, harsh sunlight. Black and white aesthetic with sharp focus on the fabric details." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDArhiIy5kS6saipvMFj2JN8ByM6C14Vi629LZoDq8Mk7Y_KWrQ1Z32qadG7l1sqJ494e96gCOwH_-seAHONS9YakpA2AJzKJYfRUnqDvUL8llZmTLCUc5iomXEFke6dVJ1ZPC8WaCJporZ_nKR9x4HaZzEAuCNcS1TmBVOfw6ky4Muw7PkRRhAtvDHvBHBFDejFqjQHJwO83gLdihyW5zmDIfVCs1g7wyCrkVDDlYwLAZCYo6cFfZm')"></div>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors duration-300"></div>
+<h2 class="absolute bottom-md left-md font-headline-md text-headline-md text-on-primary uppercase font-bold tracking-tighter z-10">Streetwear</h2>
+</div>
+<!-- Formal -->
+<div class="relative aspect-square group overflow-hidden bg-surface-container-high">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" data-alt="Detail shot of a modern, sharply tailored suit jacket on a Black male model. Minimalist concrete background. Black and white aesthetic, emphasizing clean lines and premium fabric." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB1nOcvxIt0vkbT2h1a4xh2Fr7TWtWCxdV0HsFuOVfLBeiX94VOEvcwZ-qWwZyQ1mODjJs50Lqv6KJgo7NXBuCDO2nTA8zOAKfM3S6V5fEdVO8oSgZaZNr9bkwxwGSijDDUJvUY0jqDXadH2AGPgVUkATvVkrwZZwl2hoNBWSA0UPO4_yLXNe_VSP4rdLww36WPVG_H6aLjbfppid6xbox4fRwkbMt00C1tL7DSX_dHDVbjUdaHpaKZ')"></div>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors duration-300"></div>
+<h2 class="absolute bottom-md left-md font-headline-md text-headline-md text-on-primary uppercase font-bold tracking-tighter z-10">Formal</h2>
+</div>
+<!-- Basics -->
+<div class="relative aspect-square group overflow-hidden bg-surface-container-high">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" data-alt="A clean, minimalist shot of premium basic t-shirts neatly folded. Harsh overhead lighting creating strong shadows. Black and white aesthetic, high contrast." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkyxvdw_5xi4hcNRRyw-msfCl3Ltu9vf5bXWSg__RTUxhSYcGlnpKXapd-DyHVSsBbbDHnDn3kcZkmvRmuPG7y9avyqEnn4ZMwADtlb3KRq7eAiRfCm9YGhUj86M_ebCmHusHAnK67tgTpVMc3iC0JNbXvl-GZAuRI7bc169IWso-9nHbV9W16jeEYb-XBnb5MfjZ_lDjPPxER8GU2t2K-rH-HkAWs847_VYGCSGelYzfgTKgzf0YR')"></div>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors duration-300"></div>
+<h2 class="absolute bottom-md left-md font-headline-md text-headline-md text-on-primary uppercase font-bold tracking-tighter z-10">Basics</h2>
+</div>
+<!-- Accessoires -->
+<div class="relative aspect-square group overflow-hidden bg-surface-container-high">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" data-alt="Macro photography of chunky, modern urban jewelry and a premium leather bag. High contrast black and white, harsh lighting to highlight the metallic textures." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCltw2BFJlidHonHXFwA8HNwWgj0SClSfHde4utwh12PCvuW13FG1wm0-d7NQRaXw7M0BCxiLWuQmzOnzqzE8hzoABxegmF0UUdub8beH-6z3eR11hmcj0AIa86nZVVteBf7gN8ATpKnoXLreBX0pvNRLeSsEuVkBd9ViLCVJ2sR59Qh6mYybJKcOgZ6T7YL7nl7RiNKspStCv6m5dYO9_4yOCXVqIbVDM3-gfhAHzwWI6l4s_y4Qk8')"></div>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors duration-300"></div>
+<h2 class="absolute bottom-md left-md font-headline-md text-headline-md text-on-primary uppercase font-bold tracking-tighter z-10">Accessoires</h2>
+</div>
+</div>
+</section>
+<!-- Flash Promo Banner -->
+<section class="w-full bg-primary py-lg px-container-margin flex flex-col items-center justify-center text-center my-xl border-y border-outline-variant">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg electric-cyan uppercase tracking-tighter font-bold mb-xs">OFFRE FLASH</h2>
+<p class="font-label-sm text-label-sm text-on-primary uppercase tracking-widest mb-md">-30% SUR TOUTE LA COLLECTION BASICS</p>
+<div class="bg-surface text-primary font-label-sm text-label-sm uppercase px-md py-sm rounded-DEFAULT font-bold border border-outline">
+                CODE: KAKOS30
+            </div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface dark:bg-primary px-container-margin pb-safe border-t border-outline dark:border-on-primary-fixed-variant md:hidden z-50">
+<a class="flex flex-col items-center justify-center text-primary dark:text-on-primary scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-[10px] uppercase font-bold mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-[10px] uppercase font-bold mt-xs">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90" href="#">
+<span class="material-symbols-outlined">flare</span>
+<span class="font-label-sm text-[10px] uppercase font-bold mt-xs">Drops</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed opacity-60 hover:opacity-100 transition-opacity tap-highlight-none active:scale-90 relative" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-sm text-[10px] uppercase font-bold mt-xs">Cart</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-electric-cyan rounded-full"></span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="flex flex-col gap-lg px-container-margin py-xl bg-primary text-on-primary w-full border-t-2 border-outline pb-24 md:pb-xl">
+<div class="font-display-lg text-headline-md text-on-primary dark:text-primary mb-md">
+            KAKOS
+        </div>
+<div class="flex flex-col gap-sm">
+<a class="font-body-md text-body-md uppercase tracking-widest opacity-70 hover:opacity-100 hover:text-on-primary-fixed transition-opacity duration-300" href="#">Contact WhatsApp</a>
+<a class="font-body-md text-body-md uppercase tracking-widest opacity-70 hover:opacity-100 hover:text-on-primary-fixed transition-opacity duration-300" href="#">Expédition</a>
+<a class="font-body-md text-body-md uppercase tracking-widest opacity-70 hover:opacity-100 hover:text-on-primary-fixed transition-opacity duration-300" href="#">Retours</a>
+<a class="font-body-md text-body-md uppercase tracking-widest opacity-70 hover:opacity-100 hover:text-on-primary-fixed transition-opacity duration-300" href="#">Lookbook</a>
+<a class="font-body-md text-body-md uppercase tracking-widest opacity-70 hover:opacity-100 hover:text-on-primary-fixed transition-opacity duration-300" href="#">À Propos</a>
+</div>
+<p class="font-label-sm text-label-sm uppercase tracking-widest opacity-50 mt-xl">
+            © 2024 KAKOS MENSWEAR. DOUALA | YAOUNDÉ.
+        </p>
+</footer>
+</body></html>
