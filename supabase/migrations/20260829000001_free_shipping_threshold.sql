@@ -144,7 +144,7 @@ BEGIN
         v_delivery_price,
         v_subtotal,
         v_total,
-        'PENDING'
+        'NEW'
     )
     RETURNING id INTO v_order_id;
 
@@ -185,7 +185,7 @@ BEGIN
         notes
     ) VALUES (
         v_order_id,
-        'PENDING',
+        'NEW',
         'Commande COD initialisée automatiquement.'
     );
 
