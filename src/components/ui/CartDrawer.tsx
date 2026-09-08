@@ -16,6 +16,7 @@ import {
   PackageCheck
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import UpsellProductRow from '@/components/ui/UpsellProductRow';
 
 interface CartDrawerProps {
   isOpen?: boolean;
@@ -159,82 +160,98 @@ export default function CartDrawer({ isOpen: propsIsOpen, onClose: propsOnClose 
                   </button>
                 </div>
               ) : (
-                items.map((item) => (
-                  <div key={item.id} className="py-4 first:pt-0 last:pb-0 flex gap-3.5">
-                    {/* Thumbnail */}
-                    <div className="w-20 h-24 sm:w-24 sm:h-28 bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden flex-shrink-0 relative">
-                      <Image
-                        src={item.imageUrl || '/fallback_product.webp'}
-                        alt={item.title}
-                        fill
-                        sizes="96px"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Info */}
-                    <div className="flex-1 flex flex-col justify-between min-w-0">
-                      <div>
-                        <div className="flex items-start justify-between gap-2">
-                          <h4 className="font-sans font-bold text-sm uppercase text-primary line-clamp-1">
-                            {item.title}
-                          </h4>
-                          <button
-                            onClick={() => removeFromCart(item.id)}
-                            className="text-outline hover:text-red-600 p-1 -mr-1 transition-colors rounded"
-                            title="Supprimer"
-                            aria-label="Supprimer cet article"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                <>
+                  {/* Cart items */}
+                  <div className="divide-y divide-outline-variant">
+                    {items.map((item) => (
+                      <div key={item.id} className="py-4 first:pt-0 last:pb-0 flex gap-3.5">
+                        {/* Thumbnail */}
+                        <div className="w-20 h-24 sm:w-24 sm:h-28 bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden flex-shrink-0 relative">
+                          <Image
+                            src={item.imageUrl || '/fallback_product.webp'}
+                            alt={item.title}
+                            fill
+                            sizes="96px"
+                            className="w-full h-full object-cover"
+                          />
                         </div>
 
-                        {/* Variants info */}
-                        <div className="flex flex-wrap gap-1.5 mt-1.5">
-                          {item.size && (
-                            <span className="text-[11px] font-bold uppercase bg-surface-container px-2 py-0.5 rounded border border-outline-variant text-on-surface-variant">
-                              Taille: {item.size}
+                        {/* Info */}
+                        <div className="flex-1 flex flex-col justify-between min-w-0">
+                          <div>
+                            <div className="flex items-start justify-between gap-2">
+                              <h4 className="font-sans font-bold text-sm uppercase text-primary line-clamp-1">
+                                {item.title}
+                              </h4>
+                              <button
+                                onClick={() => removeFromCart(item.id)}
+                                className="text-outline hover:text-red-600 p-1 -mr-1 transition-colors rounded"
+                                title="Supprimer"
+                                aria-label="Supprimer cet article"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+
+                            {/* Variants info */}
+                            <div className="flex flex-wrap gap-1.5 mt-1.5">
+                              {item.size && (
+                                <span className="text-[11px] font-bold uppercase bg-surface-container px-2 py-0.5 rounded border border-outline-variant text-on-surface-variant">
+                                  Taille: {item.size}
+                                </span>
+                              )}
+                              {item.color && (
+                                <span className="text-[11px] font-bold uppercase bg-surface-container px-2 py-0.5 rounded border border-outline-variant text-on-surface-variant">
+                                  {item.color}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Price & Quantity Controls */}
+                          <div className="flex items-center justify-between mt-3 pt-2">
+                            <span className="font-display text-base font-bold text-primary">
+                              {(item.price * item.quantity).toLocaleString('fr-FR')} F CFA
                             </span>
-                          )}
-                          {item.color && (
-                            <span className="text-[11px] font-bold uppercase bg-surface-container px-2 py-0.5 rounded border border-outline-variant text-on-surface-variant">
-                              {item.color}
-                            </span>
-                          )}
+
+                            {/* Quantity Counter */}
+                            <div className="flex items-center border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden">
+                              <button
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                className="p-1.5 hover:bg-surface-container-high transition-colors active:scale-95 text-primary"
+                                aria-label="Diminuer la quantité"
+                              >
+                                <Minus className="w-3.5 h-3.5" />
+                              </button>
+                              <span className="px-3 py-1 text-xs font-bold font-sans text-primary min-w-[28px] text-center">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                disabled={item.maxStock !== undefined && item.quantity >= item.maxStock}
+                                className="p-1.5 hover:bg-surface-container-high transition-colors active:scale-95 disabled:opacity-30 text-primary"
+                                aria-label="Augmenter la quantité"
+                              >
+                                <Plus className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
-
-                      {/* Price & Quantity Controls */}
-                      <div className="flex items-center justify-between mt-3 pt-2">
-                        <span className="font-display text-base font-bold text-primary">
-                          {(item.price * item.quantity).toLocaleString('fr-FR')} F CFA
-                        </span>
-
-                        {/* Quantity Counter */}
-                        <div className="flex items-center border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden">
-                          <button
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="p-1.5 hover:bg-surface-container-high transition-colors active:scale-95 text-primary"
-                            aria-label="Diminuer la quantité"
-                          >
-                            <Minus className="w-3.5 h-3.5" />
-                          </button>
-                          <span className="px-3 py-1 text-xs font-bold font-sans text-primary min-w-[28px] text-center">
-                            {item.quantity}
-                          </span>
-                          <button
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            disabled={item.maxStock !== undefined && item.quantity >= item.maxStock}
-                            className="p-1.5 hover:bg-surface-container-high transition-colors active:scale-95 disabled:opacity-30 text-primary"
-                            aria-label="Augmenter la quantité"
-                          >
-                            <Plus className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                ))
+
+                  {/* UPSELL — Complète ton look */}
+                  <div className="pt-4 border-t border-outline-variant mt-2">
+                    <UpsellProductRow
+                      title="Complète ton look 🔥"
+                      categoryId={items[0]?.productId ? undefined : undefined}
+                      excludeIds={items.map((i) => i.id)}
+                      limit={4}
+                      compact={false}
+                    />
+                  </div>
+                </>
               )}
             </div>
 

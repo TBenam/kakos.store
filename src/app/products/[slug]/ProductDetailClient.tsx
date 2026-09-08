@@ -22,6 +22,7 @@ import SizeRecommenderModal from '@/components/ui/SizeRecommenderModal';
 import SizeGuideModal from '@/components/ui/SizeGuideModal';
 import ProductDescriptionSection from '@/components/ui/ProductDescriptionSection';
 import { getColorSwatchStyle } from '@/lib/color-swatches';
+import BundleUpsell from '@/components/ui/BundleUpsell';
 
 const SHOW_SIZING_SIMULATOR = false;
 
@@ -51,12 +52,14 @@ interface ProductDetailClientProps {
   product: Product;
   variants: Variant[];
   images: ProductImage[];
+  categoryId?: string;
 }
 
 export default function ProductDetailClient({
   product,
   variants,
   images,
+  categoryId,
 }: ProductDetailClientProps) {
   const router = useRouter();
   const { addToCart } = useCart();
@@ -490,6 +493,14 @@ export default function ProductDetailClient({
           categoryName={product.category_name}
           title={product.title}
         />
+
+        {/* UPSELL — Souvent porté avec */}
+        {categoryId && (
+          <BundleUpsell
+            categoryId={categoryId}
+            currentSlug={product.slug}
+          />
+        )}
       </div>
 
       {/* Size Guide Interactive Modal */}

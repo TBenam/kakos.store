@@ -10,6 +10,7 @@ interface DbProduct {
   description: string | null;
   sale_price: string;
   category_name: string;
+  category_id: string | null;
 }
 
 interface DbVariant {
@@ -49,6 +50,7 @@ export default async function ProductDetailPage(props: PageProps) {
         p.slug, 
         p.description, 
         p.sale_price, 
+        p.category_id,
         c.name as category_name
       FROM public.products p
       LEFT JOIN public.categories c ON p.category_id = c.id
@@ -110,6 +112,7 @@ export default async function ProductDetailPage(props: PageProps) {
       product={product}
       variants={variants}
       images={images}
+      categoryId={product.category_id ?? undefined}
     />
   );
 }
