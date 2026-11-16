@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 export interface CartItem {
   id: string; // product_variant_id
@@ -97,9 +98,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (shouldOpenCart) {
       openCart();
     }
+    trackAnalyticsEvent({
+      event: 'add_to_cart',
+      productId: newItem.productId,
+      value: Number(newItem.price) * addQty,
+      properties: { variant_id: newItem.id, quantity: addQty, slug: newItem.slug },
+    });
   };
 
   const removeFromCart = (variantId: string) => {
+    const removed = items.find((item) => item.id === variantId);
+    if (removed) {
+      trackAnalyticsEvent({
+        event: 'remove_from_cart',
+        productId: removed.productId,
+        value: Number(removed.price) * removed.quantity,
+        properties: { variant_id: removed.id, quantity: removed.quantity, slug: removed.slug },
+      });
+    }
     setItems((prevItems) => prevItems.filter((item) => item.id !== variantId));
   };
 

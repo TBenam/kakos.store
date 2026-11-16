@@ -23,6 +23,7 @@ import SizeGuideModal from '@/components/ui/SizeGuideModal';
 import ProductDescriptionSection from '@/components/ui/ProductDescriptionSection';
 import { getColorSwatchStyle } from '@/lib/color-swatches';
 import BundleUpsell from '@/components/ui/BundleUpsell';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 const SHOW_SIZING_SIMULATOR = false;
 
@@ -78,6 +79,16 @@ export default function ProductDetailClient({
   const [isAdding, setIsAdding] = useState(false);
   const [isSizerOpen, setIsSizerOpen] = useState(false);
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+
+  useEffect(() => {
+    trackAnalyticsEvent({
+      event: 'product_view',
+      productId: product.id,
+      categorySlug: product.category_name,
+      value: Number(product.promo_price) || Number(product.sale_price),
+      properties: { slug: product.slug, title: product.title },
+    });
+  }, [product.id, product.slug, product.title, product.category_name, product.promo_price, product.sale_price]);
 
   // Calculate recommended size if profile exists
   const recommendedSize = hasSavedProfile

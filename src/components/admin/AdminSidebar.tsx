@@ -7,6 +7,7 @@ import { logoutAction } from '@/app/admin/actions';
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: 'dashboard', exact: true },
+  { href: '/admin/analytics', label: 'Analytics', icon: 'monitoring' },
   { href: '/admin/orders', label: 'Commandes', icon: 'shopping_cart' },
   { href: '/admin/products', label: 'Produits', icon: 'inventory_2' },
   { href: '/admin/catalogue-import', label: 'Import catalogue', icon: 'upload_file' },

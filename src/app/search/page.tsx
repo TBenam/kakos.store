@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getSearchProvider } from '@/lib/search';
 import type { SearchResult, CategorySuggestion } from '@/lib/search';
 import ProductCard from '@/components/ui/ProductCard';
+import SearchResultsAnalytics from '@/components/analytics/SearchResultsAnalytics';
 
 // ---------------------------------------------------------------------------
 // Next.js 15: searchParams is a Promise
@@ -90,6 +91,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex-grow w-full max-w-6xl mx-auto px-container-margin py-lg flex flex-col gap-lg">
+      <SearchResultsAnalytics query={q} resultCount={results.length} category={category} />
 
       {/* ------------------------------------------------------------------ */}
       {/* Breadcrumb + Header                                                 */}

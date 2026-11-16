@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCart, CartItem } from '@/context/CartContext';
 import { createOrder } from './actions';
 import UpsellProductRow from '@/components/ui/UpsellProductRow';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 interface DeliveryZone {
   id: string;
@@ -75,6 +76,18 @@ export default function CheckoutClient({ zones }: CheckoutClientProps) {
   const deliveryFee = isFreeShipping ? 0 : rawDeliveryFee;
   const totalPrice = cartSubtotal + deliveryFee;
 
+  useEffect(() => {
+    if (!isInitialized || items.length === 0) return;
+    trackAnalyticsEvent({
+      event: 'begin_checkout',
+      value: cartSubtotal,
+      properties: {
+        mode: isDirectMode ? 'direct' : 'cart',
+        item_count: items.reduce((sum, item) => sum + item.quantity, 0),
+      },
+    });
+  }, [isInitialized, isDirectMode]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (items.length === 0 || isSubmitting) return;
@@ -105,6 +118,12 @@ export default function CheckoutClient({ zones }: CheckoutClientProps) {
       });
 
       if (res.success && res.tracking_number && res.whatsapp_url) {
+        items.forEach((item) => trackAnalyticsEvent({
+          event: 'order_created',
+          productId: item.productId,
+          value: Number(item.price) * item.quantity,
+          properties: { quantity: item.quantity, affiliate: Boolean(affiliateCode), slug: item.slug },
+        }));
         if (isDirectMode) {
           sessionStorage.removeItem('kakos_direct_item');
         } else {
