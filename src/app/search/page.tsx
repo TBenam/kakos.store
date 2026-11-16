@@ -4,6 +4,7 @@ import { getSearchProvider } from '@/lib/search';
 import type { SearchResult, CategorySuggestion } from '@/lib/search';
 import ProductCard from '@/components/ui/ProductCard';
 import SearchResultsAnalytics from '@/components/analytics/SearchResultsAnalytics';
+import AgeGate from '@/components/ui/AgeGate';
 
 // ---------------------------------------------------------------------------
 // Next.js 15: searchParams is a Promise
@@ -44,7 +45,12 @@ async function fetchResults(
       : Promise.resolve([] as SearchResult[]),
   ]);
 
-  return { results, suggestions, popular };
+  const adultAccess = category === 'intimite-18-plus';
+  return {
+    results: adultAccess ? results : results.filter((item) => item.categorySlug !== 'intimite-18-plus'),
+    suggestions: adultAccess ? suggestions : suggestions.filter((item) => item.slug !== 'intimite-18-plus'),
+    popular: popular.filter((item) => item.categorySlug !== 'intimite-18-plus'),
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -91,6 +97,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex-grow w-full max-w-6xl mx-auto px-container-margin py-lg flex flex-col gap-lg">
+      {category === 'intimite-18-plus' && <AgeGate />}
       <SearchResultsAnalytics query={q} resultCount={results.length} category={category} />
 
       {/* ------------------------------------------------------------------ */}

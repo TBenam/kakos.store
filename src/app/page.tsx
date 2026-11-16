@@ -27,7 +27,7 @@ export default async function HomePage() {
     ]);
 
     if (productError) throw productError;
-    const rows = productRows || [];
+    const rows = (productRows || []).filter((row: any) => row.categories?.slug !== 'intimite-18-plus');
     const productIds = rows.map((product) => product.id);
     const { data: imageRows, error: imageError } = productIds.length
       ? await supabase.from('product_images').select('product_id, url, position').in('product_id', productIds).order('position')

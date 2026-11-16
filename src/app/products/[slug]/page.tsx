@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { query } from '@/lib/db';
 import ProductDetailClient from './ProductDetailClient';
 import type { Metadata } from 'next';
+import AgeGate from '@/components/ui/AgeGate';
 
 interface DbProduct {
   id: string;
@@ -13,6 +14,7 @@ interface DbProduct {
   promo_price: string | null;
   badge: string | null;
   category_name: string;
+  category_slug: string | null;
   category_id: string | null;
 }
 
@@ -80,7 +82,8 @@ export default async function ProductDetailPage(props: PageProps) {
         p.promo_price,
         p.badge,
         p.category_id,
-        c.name as category_name
+        c.name as category_name,
+        c.slug as category_slug
       FROM public.products p
       LEFT JOIN public.categories c ON p.category_id = c.id
       WHERE p.is_active = true AND p.slug = $1
@@ -137,11 +140,15 @@ export default async function ProductDetailPage(props: PageProps) {
   }
 
   return (
-    <ProductDetailClient
-      product={product}
-      variants={variants}
-      images={images}
-      categoryId={product.category_id ?? undefined}
-    />
+    <div className={product.category_slug === 'intimite-18-plus' ? "min-h-screen bg-[#080505] text-white [&_.text-primary]:!text-white [&_.text-secondary]:!text-zinc-300 [&_.text-outline]:!text-zinc-400 [&_.text-accent]:!text-red-500 [&_.bg-accent]:!bg-red-600 [&_.decoration-accent]:!decoration-red-600 [&_.border-primary]:!border-red-700 [&_.border-outline-variant]:!border-red-950 [&_.bg-surface]:!bg-[#080505] [&_.bg-surface-container-low]:!bg-[#12090a] [&_.bg-surface-container-lowest]:!bg-[#170b0c] [&_.bg-surface-container-high]:!bg-[#1d1011] [&_.bg-surface-container-highest]:!bg-[#281416]" : undefined}>
+      {product.category_slug === 'intimite-18-plus' && <AgeGate />}
+      <ProductDetailClient
+        product={product}
+        variants={variants}
+        images={images}
+        categoryId={product.category_id ?? undefined}
+        adultTheme={product.category_slug === 'intimite-18-plus'}
+      />
+    </div>
   );
 }

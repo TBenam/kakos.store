@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
 import ProductCard from '@/components/ui/ProductCard';
 import type { Metadata } from 'next';
+import AgeGate from '@/components/ui/AgeGate';
 
 interface DbProduct {
   id: string;
@@ -135,43 +136,45 @@ export default async function CategoryPage(props: PageProps) {
   }
 
   const catImage = CATEGORY_IMAGES[slug] || '/fallback_product.jpg';
+  const isAdult = slug === 'intimite-18-plus';
 
   return (
-    <div className="flex-grow w-full max-w-6xl mx-auto px-container-margin py-lg flex flex-col gap-lg">
+    <div className={`${isAdult ? 'max-w-none bg-[#080505] text-white px-container-margin [&_.text-primary]:!text-white [&_.text-secondary]:!text-zinc-300 [&_.text-outline]:!text-zinc-400 [&_.border-outline-variant]:!border-red-950' : 'max-w-6xl mx-auto px-container-margin'} flex-grow w-full py-lg flex flex-col gap-lg`}>
+      {isAdult && <AgeGate />}
       {/* Category Hero Banner */}
-      <div className="relative rounded-lg overflow-hidden border-2 border-outline-variant bg-[#0A0A0A] p-6 sm:p-10 flex flex-col justify-between min-h-[200px] sm:min-h-[240px] shadow-brutalist">
+      <div className={`relative rounded-lg overflow-hidden border-2 ${isAdult ? 'border-red-900 bg-[#120607] shadow-[8px_8px_0_#450a0a]' : 'border-outline-variant bg-[#0A0A0A] shadow-brutalist'} p-6 sm:p-10 flex flex-col justify-between min-h-[200px] sm:min-h-[240px]`}>
         <Image
           src={catImage}
           alt={category.name}
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-30 grayscale filter blur-[1px]"
+          className={`object-cover grayscale filter blur-[1px] ${isAdult ? 'opacity-10' : 'opacity-30'}`}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
+        <div className={`absolute inset-0 ${isAdult ? 'bg-gradient-to-r from-black via-red-950/80 to-black/40' : 'bg-gradient-to-r from-black via-black/80 to-transparent'}`} />
 
         <div className="relative z-10 flex flex-col gap-xs">
           <div className="flex items-center gap-xs text-[10px] uppercase font-bold text-gray-400">
-            <Link href="/" className="hover:text-accent transition-colors">ACCUEIL</Link>
+            <Link href="/" className={`${isAdult ? 'hover:text-red-400' : 'hover:text-accent'} transition-colors`}>ACCUEIL</Link>
             <span>/</span>
-            <Link href="/products" className="hover:text-accent transition-colors">COLLECTIONS</Link>
+            <Link href="/products" className={`${isAdult ? 'hover:text-red-400' : 'hover:text-accent'} transition-colors`}>COLLECTIONS</Link>
             <span>/</span>
-            <span className="text-accent">{category.name}</span>
+            <span className={isAdult ? 'text-red-500' : 'text-accent'}>{category.name}</span>
           </div>
           <h1 className="font-display text-4xl sm:text-6xl font-black tracking-tighter uppercase text-white mt-1">
             {category.name}
           </h1>
           <p className="font-body-md text-xs sm:text-sm text-gray-300 max-w-md font-bold uppercase tracking-wider">
-            Découvrez notre sélection exclusive de {category.name.toLowerCase()} premium conçue pour durer.
+            {isAdult ? 'Une sélection confidentielle, livrée discrètement dans un emballage neutre.' : `Découvrez notre sélection exclusive de ${category.name.toLowerCase()} premium conçue pour durer.`}
           </p>
         </div>
 
         <div className="relative z-10 pt-4 flex items-center gap-2">
-          <span className="font-mono text-[11px] uppercase font-bold bg-accent text-primary px-2.5 py-1 rounded">
+          <span className={`font-mono text-[11px] uppercase font-bold px-2.5 py-1 rounded ${isAdult ? 'bg-red-600 text-white' : 'bg-accent text-primary'}`}>
             {products.length} {products.length > 1 ? 'ARTICLES' : 'ARTICLE'}
           </span>
           <span className="font-mono text-[11px] uppercase font-bold bg-black/60 text-gray-300 px-2.5 py-1 border border-outline rounded">
-            AUTHENTIQUE KAKOS
+            {isAdult ? 'ACCÈS 18+ · DISCRET' : 'AUTHENTIQUE KAKOS'}
           </span>
         </div>
       </div>

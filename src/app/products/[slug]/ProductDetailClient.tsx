@@ -56,6 +56,7 @@ interface ProductDetailClientProps {
   variants: Variant[];
   images: ProductImage[];
   categoryId?: string;
+  adultTheme?: boolean;
 }
 
 export default function ProductDetailClient({
@@ -63,6 +64,7 @@ export default function ProductDetailClient({
   variants,
   images,
   categoryId,
+  adultTheme = false,
 }: ProductDetailClientProps) {
   const router = useRouter();
   const { addToCart } = useCart();
@@ -233,7 +235,7 @@ export default function ProductDetailClient({
         {/* Title, Category & Price */}
         <div className="flex flex-col gap-xs border-b border-outline-variant pb-sm">
           <span className="font-label-sm text-[10px] uppercase font-bold text-outline tracking-wider">
-            {product.category_name} • KAKOS STREETWEAR
+            {product.category_name} • {adultTheme ? 'KAKOS INTIMITÉ' : 'KAKOS STORE'}
           </span>
           <h1 className="font-display text-headline-md sm:text-headline-lg font-bold tracking-tighter uppercase text-primary leading-tight">
             {product.title}
@@ -335,14 +337,16 @@ export default function ProductDetailClient({
                 </span>
 
                 {/* Size Guide Trigger */}
-                <button
-                  type="button"
-                  onClick={() => setIsSizeGuideOpen(true)}
-                  className="flex items-center gap-1 text-[11px] font-bold uppercase text-primary hover:text-outline underline transition-colors cursor-pointer"
-                >
-                  <Ruler className="w-3.5 h-3.5 text-primary" />
-                  <span>Guide des tailles</span>
-                </button>
+                {!adultTheme && (
+                  <button
+                    type="button"
+                    onClick={() => setIsSizeGuideOpen(true)}
+                    className="flex items-center gap-1 text-[11px] font-bold uppercase text-primary hover:text-outline underline transition-colors cursor-pointer"
+                  >
+                    <Ruler className="w-3.5 h-3.5 text-primary" />
+                    <span>Guide des tailles</span>
+                  </button>
+                )}
               </div>
 
               {/* Sizing Interactive Banner / Trigger (if enabled) */}

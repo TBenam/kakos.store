@@ -1,5 +1,6 @@
 import { createSupabaseServerClient } from '@/lib/supabase-server';
 import ProductsClient, { CatalogProduct, CatalogCategory } from './ProductsClient';
+import AgeGate from '@/components/ui/AgeGate';
 
 export const dynamic = 'force-dynamic';
 const PAGE_SIZE = 12;
@@ -36,6 +37,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       .eq('is_active', true);
 
     if (category) productQuery = productQuery.eq('categories.slug', category);
+    else productQuery = productQuery.neq('categories.slug', 'intimite-18-plus');
     if (search) productQuery = productQuery.ilike('title', `%${search.replaceAll('%', '')}%`);
     if (promosOnly) productQuery = productQuery.not('promo_price', 'is', null).gt('promo_price', 0);
 
@@ -86,7 +88,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   }
 
   return (
-    <ProductsClient
+    <>
+      {category === 'intimite-18-plus' && <AgeGate />}
+      <ProductsClient
       products={products}
       categories={categories}
       currentPage={effectivePage}
@@ -96,6 +100,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       initialSearch={search}
       promosOnly={promosOnly}
       initialSort={sort}
-    />
+      adultTheme={category === 'intimite-18-plus'}
+      />
+    </>
   );
 }

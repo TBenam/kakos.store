@@ -33,6 +33,7 @@ interface ProductsClientProps {
   initialSearch: string;
   promosOnly: boolean;
   initialSort: string;
+  adultTheme?: boolean;
 }
 
 export default function ProductsClient({
@@ -45,6 +46,7 @@ export default function ProductsClient({
   initialSearch,
   promosOnly,
   initialSort,
+  adultTheme = false,
 }: ProductsClientProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState(initialSearch);
@@ -88,17 +90,17 @@ export default function ProductsClient({
   );
 
   return (
-    <div className={`mx-auto flex w-full max-w-[1280px] flex-grow flex-col gap-lg px-container-margin py-lg transition-opacity ${isPending ? 'opacity-60' : ''}`}>
+    <div className={`${adultTheme ? 'max-w-none bg-[#080505] text-white [&_.border-outline-variant]:!border-red-950 [&_.bg-surface]:!bg-[#14090a] [&_.bg-surface-container-low\/95]:!bg-[#14090a]/95 [&_.text-primary]:!text-white [&_.text-secondary]:!text-zinc-300 [&_.text-outline]:!text-zinc-400' : 'max-w-[1280px]'} mx-auto flex w-full flex-grow flex-col gap-lg px-container-margin py-lg transition-opacity ${isPending ? 'opacity-60' : ''}`}>
       <div className="flex flex-col gap-xs border-b border-outline-variant pb-md">
         <div className="flex items-center gap-xs text-[10px] font-bold uppercase text-outline">
           <Link href="/" className="hover:text-primary">Accueil</Link><span>/</span><span className="text-secondary">Catalogue</span>
         </div>
         <div className="mt-2 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <h1 className="font-display text-4xl font-black uppercase leading-none tracking-tighter text-primary sm:text-6xl">Le catalogue KAKOS</h1>
-            <p className="mt-2 text-xs font-bold uppercase tracking-wider text-secondary">Explorez par rayon, prix ou nouveauté sans défilement interminable.</p>
+            <h1 className="font-display text-4xl font-black uppercase leading-none tracking-tighter text-primary sm:text-6xl">{adultTheme ? 'Intimité & bien-être 18+' : 'Le catalogue KAKOS'}</h1>
+            <p className="mt-2 text-xs font-bold uppercase tracking-wider text-secondary">{adultTheme ? 'Sélection confidentielle · Emballage neutre · Livraison discrète' : 'Explorez par rayon, prix ou nouveauté sans défilement interminable.'}</p>
           </div>
-          <span className="w-fit rounded-lg bg-primary px-3 py-1.5 font-mono text-xs font-bold text-white">{firstShown}–{lastShown} sur {totalItems}</span>
+          <span className={`w-fit rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-white ${adultTheme ? 'bg-red-700' : 'bg-primary'}`}>{firstShown}–{lastShown} sur {totalItems}</span>
         </div>
       </div>
 
