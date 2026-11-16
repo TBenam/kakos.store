@@ -136,8 +136,9 @@ for (const supplierDir of fs.readdirSync(catalogRoot)) {
     product.sizes = sizesFor(product, supplierDir);
     product.colors = ['Assorti'];
     product.stockPerVariant = 3;
-    product.publish = true;
-    product.status = 'APPROVED';
+    product.publish = false;
+    product.status = 'REVIEW_REQUIRED';
+    product.visualReviewPassed = false;
     product.description = `${product.title}. Sélection KAKOS issue de notre réseau de fournisseurs partenaires au Cameroun. Prix affiché à l’unité. Choisissez votre taille; la couleur ou le modèle exact est confirmé avec vous sur WhatsApp avant expédition. Paiement à la livraison selon la zone.`;
 
     const originalMedia = chooseMedia((product.media || []).filter((fileName) => /\.(jpe?g|png|webp)$/i.test(fileName)));

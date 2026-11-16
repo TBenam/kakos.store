@@ -7,6 +7,7 @@ export default async function HomePage() {
   let flashDeals: HomeProduct[] = [];
   let bestSellers: HomeProduct[] = [];
   let newArrivals: HomeProduct[] = [];
+  let bagFeature: HomeProduct | undefined;
   let campaign: HomeCampaign | undefined;
 
   try {
@@ -57,6 +58,7 @@ export default async function HomePage() {
     const productsById = new Map(products.map((product) => [product.id, product]));
     flashDeals = products.filter((product) => product.originalPrice).slice(0, 12);
     newArrivals = products.slice(0, 12);
+    bagFeature = products.find((product) => product.categorySlug === 'sacs');
     bestSellers = rows
       .filter((row: any) => row.is_bestseller)
       .map((row: any) => productsById.get(row.id))
@@ -68,5 +70,5 @@ export default async function HomePage() {
     console.error('Failed to fetch homepage shopping shelves:', error);
   }
 
-  return <HomeClient flashDeals={flashDeals} bestSellers={bestSellers} newArrivals={newArrivals} campaign={campaign} />;
+  return <HomeClient flashDeals={flashDeals} bestSellers={bestSellers} newArrivals={newArrivals} bagFeature={bagFeature} campaign={campaign} />;
 }

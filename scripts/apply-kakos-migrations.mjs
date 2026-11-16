@@ -31,6 +31,7 @@ const migrationFiles = [
   '20261115000002_supplier_catalog_intake.sql',
   '20261115000003_real_promotion_checkout.sql',
   '20261116000004_search_and_store_contact_fix.sql',
+  '20261116000005_catalog_visual_review.sql',
 ];
 
 const client = new pg.Client({

@@ -19,8 +19,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const search = (single(params.q) || '').trim();
   const promosOnly = single(params.promos) === '1';
   const sort = single(params.sort) || 'newest';
-  const from = (requestedPage - 1) * PAGE_SIZE;
-  const to = from + PAGE_SIZE - 1;
+  const effectivePage = category ? 1 : requestedPage;
+  const effectivePageSize = category ? 1000 : PAGE_SIZE;
+  const from = (effectivePage - 1) * effectivePageSize;
+  const to = from + effectivePageSize - 1;
 
   let products: CatalogProduct[] = [];
   let categories: CatalogCategory[] = [];
@@ -87,9 +89,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     <ProductsClient
       products={products}
       categories={categories}
-      currentPage={requestedPage}
+      currentPage={effectivePage}
       totalItems={totalItems}
-      pageSize={PAGE_SIZE}
+      pageSize={effectivePageSize}
       initialCategory={category}
       initialSearch={search}
       promosOnly={promosOnly}

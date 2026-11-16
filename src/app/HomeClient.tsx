@@ -26,6 +26,7 @@ interface HomeClientProps {
   flashDeals: HomeProduct[];
   bestSellers: HomeProduct[];
   newArrivals: HomeProduct[];
+  bagFeature?: HomeProduct;
   campaign?: HomeCampaign;
 }
 
@@ -48,12 +49,13 @@ function ProductRail({ title, eyebrow, products, accent = false }: { title: stri
   );
 }
 
-export default function HomeClient({ flashDeals, bestSellers, newArrivals, campaign }: HomeClientProps) {
+export default function HomeClient({ flashDeals, bestSellers, newArrivals, bagFeature, campaign }: HomeClientProps) {
   return (
     <div className="flex min-h-screen w-full flex-col gap-xl bg-background pb-xl text-on-background selection:bg-accent selection:text-primary">
       <section className="relative flex h-[78vh] min-h-[560px] w-full flex-col justify-end overflow-hidden border-b-4 border-accent px-container-margin py-xl">
         <motion.div className="absolute inset-0" initial={{ scale: 1.06, opacity: 0.5 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.1 }}>
-          <Image src="/kakos-home-hero-v3.webp" alt="Mannequins KAKOS Cameroun" fill priority sizes="100vw" className="object-cover object-center" />
+          <Image src="/kakos-home-hero-mobile-v4.webp" alt="Mannequins KAKOS Cameroun" fill priority sizes="100vw" className="object-cover object-center sm:hidden" />
+          <Image src="/kakos-home-hero-v3.webp" alt="Mannequins KAKOS Cameroun" fill priority sizes="100vw" className="hidden object-cover object-center sm:block" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/10" />
         <motion.div className="relative z-10 flex max-w-[820px] flex-col items-start gap-5" initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.65 }}>
@@ -68,7 +70,7 @@ export default function HomeClient({ flashDeals, bestSellers, newArrivals, campa
             Explorer le catalogue <span className="material-symbols-outlined">arrow_forward</span>
           </Link>
         </motion.div>
-        <div className="absolute bottom-8 right-5 z-20 rotate-2 bg-white px-4 py-3 text-black shadow-[6px_6px_0_#D9A441] sm:bottom-14 sm:right-[8%]">
+        <div className="absolute bottom-8 right-5 z-20 hidden rotate-2 bg-white px-4 py-3 text-black shadow-[6px_6px_0_#D9A441] sm:bottom-14 sm:right-[8%] sm:block">
           <span className="block text-[9px] font-black uppercase tracking-widest">Sacs structurés</span><strong className="font-display text-2xl font-black">6 500 F</strong>
         </div>
         <div className="absolute right-[28%] top-24 z-20 -rotate-3 bg-accent px-4 py-3 text-primary shadow-[5px_5px_0_#111] max-sm:hidden">
@@ -90,6 +92,25 @@ export default function HomeClient({ flashDeals, bestSellers, newArrivals, campa
           <div className="absolute left-5 top-6 -rotate-2 bg-accent px-4 py-3 text-primary shadow-[5px_5px_0_#111]"><span className="block text-[9px] font-black uppercase">Talons & sacs</span><strong className="font-display text-2xl">dès 6 500 F</strong></div>
         </Link>
       </section>
+
+      {bagFeature?.imageUrl && (
+        <section className="mx-auto w-full max-w-[1280px] px-container-margin">
+          <Link href="/collections/sacs" className="group relative block min-h-[360px] overflow-hidden rounded-2xl bg-primary sm:min-h-[460px]">
+            <Image src={bagFeature.imageUrl} alt={bagFeature.title} fill sizes="100vw" className="object-cover object-center transition duration-700 group-hover:scale-[1.03]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/45 to-transparent" />
+            <div className="absolute inset-y-0 left-0 flex max-w-xl flex-col justify-end p-7 text-white sm:p-12">
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-accent">L’édit accessoires</span>
+              <h2 className="mt-2 font-display text-4xl font-black uppercase leading-none sm:text-6xl">Sacs à main</h2>
+              <p className="mt-3 max-w-sm text-xs font-bold uppercase tracking-wider text-gray-200">Des modèles structurés sélectionnés pour le quotidien et les sorties.</p>
+              <span className="mt-5 w-fit rounded-lg bg-accent px-5 py-3 text-xs font-black uppercase text-primary">Découvrir la sélection →</span>
+            </div>
+            <div className="absolute right-5 top-5 rotate-2 bg-white px-4 py-3 text-primary shadow-[5px_5px_0_#D9A441]">
+              <span className="block text-[9px] font-black uppercase">À partir de</span>
+              <strong className="font-display text-2xl">{bagFeature.salePrice.toLocaleString('fr-FR')} F</strong>
+            </div>
+          </Link>
+        </section>
+      )}
 
       {campaign && (
         <section className="mx-auto w-full max-w-[1280px] px-container-margin">

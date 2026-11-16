@@ -51,6 +51,11 @@ export default async function EditCatalogCandidatePage({ params }: { params: Pro
           Plusieurs modèles à séparer
         </label>
 
+        <label className="md:col-span-2 flex items-start gap-3 border border-amber-400 bg-amber-50 p-4 text-sm font-bold">
+          <input type="checkbox" name="visualReviewPassed" defaultChecked={payload.visualReviewPassed === true} className="mt-1" />
+          <span>Images contrôlées : aucun nom ou numéro de fournisseur, aucune affiche publicitaire, aucune personne blanche et aucun décor étranger inadapté.</span>
+        </label>
+
         <div className="md:col-span-2 bg-amber-50 border border-amber-300 p-4 text-sm">
           Après correction, la fiche revient dans « À vérifier ». Elle doit ensuite être approuvée dans la file avant publication.
         </div>

@@ -17,6 +17,7 @@ export function getBlockingReasons(product) {
   if (!Number(product.supplierPrice)) reasons.push('Coût fournisseur manquant');
   if (!product.pricing?.recommendedRetailPrice) reasons.push('Prix KAKOS manquant');
   if (!Array.isArray(product.media) || product.media.length === 0) reasons.push('Photo produit manquante');
+  if (product.visualReviewPassed === false) reasons.push('Validation visuelle requise : retirer fournisseurs, numéros, affiches et modèles inadaptés');
   if (product.splitRequired) reasons.push('Séparer les modèles en fiches individuelles');
   if (product.availability !== 'AVAILABLE') reasons.push('Disponibilité fournisseur à confirmer');
   if (!Array.isArray(product.sizes) || product.sizes.length === 0) reasons.push('Tailles à renseigner');
@@ -179,6 +180,7 @@ async function main() {
   const catalogRootInput = argValue(args, '--root') || process.env.KAKOS_CATALOG_ROOT;
   const apply = args.includes('--apply');
   const approveAll = args.includes('--approve-all');
+  const visualReviewConfirmed = args.includes('--visual-review-confirmed');
   const publishApproved = args.includes('--publish-approved');
   const maxImages = Number(argValue(args, '--max-images') || 8);
 
@@ -192,6 +194,12 @@ async function main() {
   }
 
   const entries = readCatalog(catalogRoot);
+  if (visualReviewConfirmed) {
+    for (const entry of entries) entry.product.visualReviewPassed = true;
+  }
+  if (approveAll && !visualReviewConfirmed) {
+    throw new Error('--approve-all exige --visual-review-confirmed après contrôle humain de toutes les images.');
+  }
   const readinessRows = entries.map((entry) => ({
     supplier: entry.product.supplier,
     id: entry.product.id,

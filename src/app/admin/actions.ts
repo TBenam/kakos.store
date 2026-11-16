@@ -348,6 +348,7 @@ export async function updateCatalogCandidateDetailsAction(candidateId: string, f
   const sizes = String(formData.get('sizes') || '').split(',').map((value) => value.trim()).filter(Boolean);
   const colors = String(formData.get('colors') || '').split(',').map((value) => value.trim()).filter(Boolean);
   const splitRequired = formData.get('splitRequired') === 'on';
+  const visualReviewPassed = formData.get('visualReviewPassed') === 'on';
 
   const sourcePayload = {
     ...(candidate.source_payload as Record<string, any>),
@@ -358,6 +359,7 @@ export async function updateCatalogCandidateDetailsAction(candidateId: string, f
     sizes,
     colors,
     splitRequired,
+    visualReviewPassed,
     pricing: {
       ...((candidate.source_payload as any)?.pricing || {}),
       recommendedRetailPrice: retailPrice,
@@ -368,6 +370,7 @@ export async function updateCatalogCandidateDetailsAction(candidateId: string, f
   if (!supplierPrice) blockingReasons.push('Coût fournisseur manquant');
   if (!retailPrice) blockingReasons.push('Prix KAKOS manquant');
   if (!candidate.media_count) blockingReasons.push('Photo produit manquante');
+  if (!visualReviewPassed) blockingReasons.push('Validation visuelle requise : retirer fournisseurs, numéros, affiches et modèles inadaptés');
   if (splitRequired) blockingReasons.push('Séparer les modèles en fiches individuelles');
   if (availability !== 'AVAILABLE') blockingReasons.push('Disponibilité fournisseur à confirmer');
   if (sizes.length === 0) blockingReasons.push('Tailles à renseigner');
