@@ -11,6 +11,7 @@ interface ProductCardProps {
   badge?: string;
   imageUrl?: string;
   categoryName?: string;
+  adultTheme?: boolean;
 }
 
 export default function ProductCard({
@@ -21,6 +22,7 @@ export default function ProductCard({
   badge,
   imageUrl,
   categoryName,
+  adultTheme = false,
 }: ProductCardProps) {
   // Safe default image representing urban premium menswear
   const displayImage =
@@ -39,10 +41,10 @@ export default function ProductCard({
   return (
     <Link
       href={`/products/${slug}`}
-      className="group flex flex-col border border-outline-variant bg-surface-container-lowest overflow-hidden rounded-lg transition-all duration-300 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutalist active:translate-x-0 active:translate-y-0 active:shadow-none relative"
+      className={`group flex flex-col border overflow-hidden rounded-lg transition-all duration-300 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutalist active:translate-x-0 active:translate-y-0 active:shadow-none relative ${adultTheme ? 'border-red-950 bg-[#14090a] text-white' : 'border-outline-variant bg-surface-container-lowest'}`}
     >
       {/* Image container */}
-      <div className="w-full aspect-[3/4] bg-surface-container-low relative overflow-hidden rounded-t-lg">
+      <div className={`w-full aspect-[3/4] relative overflow-hidden rounded-t-lg ${adultTheme ? 'bg-[#1d1011]' : 'bg-surface-container-low'}`}>
         <Image
           src={displayImage}
           alt={title}
@@ -75,14 +77,14 @@ export default function ProductCard({
       </div>
 
       {/* Info Block (Zero Gap) */}
-      <div className="p-sm flex flex-col border-t border-outline-variant flex-grow justify-between min-h-[95px]">
+      <div className={`p-sm flex flex-col border-t flex-grow justify-between min-h-[95px] ${adultTheme ? 'border-red-950' : 'border-outline-variant'}`}>
         <div>
           {categoryName && (
-            <span className="font-label-sm text-[9px] uppercase font-bold text-outline tracking-wider">
+            <span className={`font-label-sm text-[9px] uppercase font-bold tracking-wider ${adultTheme ? 'text-red-400' : 'text-outline'}`}>
               {categoryName}
             </span>
           )}
-          <h3 className="font-label-sm text-xs sm:text-sm uppercase font-bold text-primary truncate group-hover:text-accent transition-colors leading-tight mt-0.5">
+          <h3 className={`font-label-sm text-xs sm:text-sm uppercase font-bold truncate transition-colors leading-tight mt-0.5 ${adultTheme ? 'text-white group-hover:text-red-400' : 'text-primary group-hover:text-accent'}`}>
             {title}
           </h3>
         </div>
@@ -93,11 +95,11 @@ export default function ProductCard({
               {originalPrice.toLocaleString('fr-FR')} FCFA
             </span>
           )}
-          <div className="font-display text-sm sm:text-base font-black text-primary flex items-baseline gap-xs">
+          <div className={`font-display text-sm sm:text-base font-black flex items-baseline gap-xs ${adultTheme ? 'text-white' : 'text-primary'}`}>
             <span className={originalPrice && originalPrice > salePrice ? 'text-accent font-black' : ''}>
               {salePrice.toLocaleString('fr-FR')}
             </span>
-            <span className="text-[10px] font-sans font-bold text-secondary uppercase">FCFA</span>
+            <span className={`text-[10px] font-sans font-bold uppercase ${adultTheme ? 'text-zinc-300' : 'text-secondary'}`}>FCFA</span>
           </div>
         </div>
       </div>

@@ -210,6 +210,7 @@ export default async function CategoryPage(props: PageProps) {
               originalPrice={product.promo_price && Number(product.promo_price) < Number(product.sale_price) ? Number(product.sale_price) : undefined}
               categoryName={product.category_name}
               imageUrl={product.image_url || undefined}
+              adultTheme={isAdult}
             />
           ))}
         </div>

@@ -137,7 +137,7 @@ export default function ProductsClient({
       ) : (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {products.map((product) => (
-            <ProductCard key={product.id} id={product.id} title={product.title} slug={product.slug} salePrice={product.salePrice} originalPrice={product.originalPrice} categoryName={product.categoryName} imageUrl={product.imageUrl} badge={product.promoBadge} />
+            <ProductCard key={product.id} id={product.id} title={product.title} slug={product.slug} salePrice={product.salePrice} originalPrice={product.originalPrice} categoryName={product.categoryName} imageUrl={product.imageUrl} badge={product.promoBadge} adultTheme={adultTheme} />
           ))}
         </div>
       )}
