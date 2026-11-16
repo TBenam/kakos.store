@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart, CartItem } from '@/context/CartContext';
 import { createOrder } from './actions';
-import UpsellProductRow from '@/components/ui/UpsellProductRow';
 import { trackAnalyticsEvent } from '@/lib/analytics';
 
 interface DeliveryZone {
@@ -293,21 +292,6 @@ export default function CheckoutClient({ zones }: CheckoutClientProps) {
               {totalPrice.toLocaleString('fr-FR')} FCFA
             </span>
           </div>
-        </section>
-
-        {/* UPSELL — Dernier ajout avant livraison */}
-        <section className="border-2 border-accent rounded-xl p-3 bg-surface-container-lowest shadow-brutalist">
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="text-[9px] font-black uppercase tracking-wider bg-accent text-primary px-2 py-0.5 rounded">
-              ⚡ Dernier ajout avant livraison
-            </span>
-          </div>
-          <UpsellProductRow
-            title="À ajouter avant de commander"
-            excludeIds={items.map((i) => i.id)}
-            limit={2}
-            compact={true}
-          />
         </section>
 
         {/* CTA Button */}
