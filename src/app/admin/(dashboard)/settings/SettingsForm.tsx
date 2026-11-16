@@ -58,7 +58,7 @@ export default function SettingsForm({ initialStoreInfo }: SettingsFormProps) {
             className={inputCls}
             value={storeInfo.name || ''}
             onChange={e => setStoreInfo(p => ({ ...p, name: e.target.value }))}
-            placeholder="KAKOS MENSWEAR"
+            placeholder="KAKOS"
           />
         </div>
 
@@ -69,7 +69,7 @@ export default function SettingsForm({ initialStoreInfo }: SettingsFormProps) {
               className={inputCls}
               value={storeInfo.whatsapp_contact || ''}
               onChange={e => setStoreInfo(p => ({ ...p, whatsapp_contact: e.target.value }))}
-              placeholder="237690000000"
+              placeholder="237697259094"
             />
             <p className="text-[10px] text-[#747878] mt-1">Sert pour la redirection client lors du Checkout COD.</p>
           </div>

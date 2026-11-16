@@ -10,7 +10,7 @@ import type { CategorySuggestion } from '@/lib/search/types';
 
 const RECENT_SEARCHES_KEY = 'kakos_recent_searches';
 const MAX_RECENT = 5;
-const POPULAR_TERMS = ['T-shirt', 'Hoodie', 'Oversized', 'Jeans', 'Ensemble'];
+const POPULAR_TERMS = ['Chaussures', 'Sacs', 'T-shirts', 'Jeans', 'Parfums'];
 const SUGGESTION_DEBOUNCE_MS = 300;
 
 // ---------------------------------------------------------------------------
@@ -191,7 +191,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               type="text"
               value={queryText}
               onChange={(e) => handleQueryChange(e.target.value)}
-              placeholder="jean noir, t-shirt oversize, ensemble…"
+              placeholder="chaussures, sac, parfum, t-shirt…"
               className="w-full bg-transparent border-b-2 border-primary py-md text-headline-md font-display uppercase tracking-tight placeholder:text-outline focus:border-accent transition-colors rounded-none pr-10"
               autoComplete="off"
             />

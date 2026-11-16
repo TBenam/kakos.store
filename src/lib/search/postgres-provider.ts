@@ -148,7 +148,11 @@ export class PostgresSearchProvider implements SearchProvider {
          p.id,
          p.title,
          p.slug,
-         p.sale_price,
+         CASE
+           WHEN p.promo_price IS NOT NULL AND p.promo_price > 0 AND p.promo_price < p.sale_price
+             THEN p.promo_price
+           ELSE p.sale_price
+         END AS sale_price,
          c.name  AS category_name,
          c.slug  AS category_slug,
          (SELECT url FROM public.product_images pi

@@ -1,84 +1,99 @@
-import React from 'react';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
-import ProductsClient, { CatalogProduct } from './ProductsClient';
+import ProductsClient, { CatalogProduct, CatalogCategory } from './ProductsClient';
 
 export const dynamic = 'force-dynamic';
+const PAGE_SIZE = 12;
 
-export default async function ProductsPage() {
+interface ProductsPageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
+
+function single(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const params = await searchParams;
+  const requestedPage = Math.max(1, Number(single(params.page)) || 1);
+  const category = single(params.category) || '';
+  const search = (single(params.q) || '').trim();
+  const promosOnly = single(params.promos) === '1';
+  const sort = single(params.sort) || 'newest';
+  const from = (requestedPage - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
+
   let products: CatalogProduct[] = [];
+  let categories: CatalogCategory[] = [];
+  let totalItems = 0;
 
   try {
     const supabase = await createSupabaseServerClient();
-    
-    const { data: prodData, error: prodError } = await supabase
+    let productQuery = supabase
       .from('products')
-      .select('id, title, slug, sale_price, supplier_price, created_at, categories(name, slug)')
-      .eq('is_active', true)
-      .order('created_at', { ascending: false });
+      .select('id, title, slug, sale_price, promo_price, badge, created_at, categories!inner(name, slug)', { count: 'exact' })
+      .eq('is_active', true);
 
-    if (prodError) throw prodError;
+    if (category) productQuery = productQuery.eq('categories.slug', category);
+    if (search) productQuery = productQuery.ilike('title', `%${search.replaceAll('%', '')}%`);
+    if (promosOnly) productQuery = productQuery.not('promo_price', 'is', null).gt('promo_price', 0);
 
-    if (prodData && prodData.length > 0) {
-      const productIds = prodData.map(p => p.id);
-      
-      const { data: imgData, error: imgError } = await supabase
-        .from('product_images')
-        .select('product_id, url')
-        .in('product_id', productIds)
-        .order('position', { ascending: true });
-        
-      if (imgError) throw imgError;
+    if (sort === 'price-asc') productQuery = productQuery.order('sale_price', { ascending: true });
+    else if (sort === 'price-desc') productQuery = productQuery.order('sale_price', { ascending: false });
+    else productQuery = productQuery.order('created_at', { ascending: false });
 
-      const rows = prodData.map((row: any) => {
-        const productImages = imgData?.filter(i => i.product_id === row.id) || [];
-        return {
-          id: row.id,
-          title: row.title,
-          slug: row.slug,
-          sale_price: row.sale_price,
-          category_name: row.categories?.name,
-          category_slug: row.categories?.slug,
-          image_url: productImages.length > 0 ? productImages[0].url : null
-        };
-      });
+    const [{ data: productRows, error: productError, count }, { data: categoryRows, error: categoryError }] = await Promise.all([
+      productQuery.range(from, to),
+      supabase.from('categories').select('name, slug').order('name'),
+    ]);
+    if (productError) throw productError;
+    if (categoryError) throw categoryError;
+    totalItems = count || 0;
+    categories = (categoryRows || []) as CatalogCategory[];
 
-      // Map and configure promo discounts for selected streetwear items
-      products = rows.map((row, index) => {
-        const salePrice = Number(row.sale_price) || 0;
-      
-      // We highlight around 50% of the catalog with Mega Promo badges & strikethrough original prices
-      // (Even index or items with prices <= 10000 FCFA)
-      const isPromo = index % 2 === 0 || salePrice <= 7000;
-      
-      let originalPrice: number | undefined = undefined;
-      let promoBadge: string | undefined = undefined;
+    const rows = productRows || [];
+    const productIds = rows.map((product) => product.id);
+    const { data: imageRows, error: imageError } = productIds.length
+      ? await supabase.from('product_images').select('product_id, url, position').in('product_id', productIds).order('position')
+      : { data: [], error: null };
+    if (imageError) throw imageError;
 
-      if (isPromo && salePrice > 0) {
-        // Calculate a realistic reference price higher by 30% - 40% (rounded nicely)
-        const markup = index % 3 === 0 ? 1.4 : 1.3;
-        originalPrice = Math.ceil((salePrice * markup) / 500) * 500;
-        
-        const badges = ['🔥 MÉGA PROMO', '⚡ VENTE FLASH', 'HOT DEAL', 'SOLDES -35%', 'SOLDES -30%'];
-        promoBadge = badges[index % badges.length];
-      }
+    const firstImageByProduct = new Map<string, string>();
+    for (const image of imageRows || []) {
+      if (!firstImageByProduct.has(image.product_id)) firstImageByProduct.set(image.product_id, image.url);
+    }
 
+    products = rows.map((row: any) => {
+      const regularPrice = Number(row.sale_price) || 0;
+      const promoPrice = Number(row.promo_price) || 0;
+      const hasRealPromo = promoPrice > 0 && promoPrice < regularPrice;
       return {
         id: row.id,
         title: row.title,
         slug: row.slug,
-        salePrice,
-        originalPrice,
-        categoryName: row.category_name || 'Général',
-        categorySlug: row.category_slug || 'autres',
-        imageUrl: row.image_url || undefined,
-        isPromo,
-        promoBadge,
+        salePrice: hasRealPromo ? promoPrice : regularPrice,
+        originalPrice: hasRealPromo ? regularPrice : undefined,
+        categoryName: row.categories?.name || 'Autres',
+        categorySlug: row.categories?.slug || 'autres',
+        imageUrl: firstImageByProduct.get(row.id),
+        isPromo: hasRealPromo,
+        promoBadge: hasRealPromo ? row.badge || 'PROMO' : undefined,
       };
     });
-    }
   } catch (error) {
-    console.error('Failed to fetch all products for shop catalog:', error);
+    console.error('Failed to fetch paginated shop catalog:', error);
   }
 
-  return <ProductsClient products={products} />;
+  return (
+    <ProductsClient
+      products={products}
+      categories={categories}
+      currentPage={requestedPage}
+      totalItems={totalItems}
+      pageSize={PAGE_SIZE}
+      initialCategory={category}
+      initialSearch={search}
+      promosOnly={promosOnly}
+      initialSort={sort}
+    />
+  );
 }

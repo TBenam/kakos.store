@@ -22,6 +22,7 @@ export async function createOrder(formData: {
   neighborhood: string;
   addressPrecision?: string;
   deliveryZoneId: string;
+  affiliateCode?: string;
   items: CartItemInput[];
 }): Promise<OrderResponse> {
   try {
@@ -38,7 +39,21 @@ export async function createOrder(formData: {
       return { success: false, error: 'Informations de livraison manquantes ou panier vide.' };
     }
 
-    // 2. Call the atomic PostgreSQL RPC function create_cod_order
+    // 2. Resolve the optional affiliate before creating the order.
+    let affiliate: { id: string; code: string } | null = null;
+    const normalizedAffiliateCode = formData.affiliateCode?.trim().toUpperCase();
+    if (normalizedAffiliateCode) {
+      const affiliateRes = await query<{ id: string; code: string }>(
+        `SELECT id, code FROM public.affiliates WHERE code = $1 AND status = 'ACTIVE' LIMIT 1`,
+        [normalizedAffiliateCode]
+      );
+      if (affiliateRes.rows.length === 0) {
+        return { success: false, error: 'Code vendeur invalide ou suspendu.' };
+      }
+      affiliate = affiliateRes.rows[0];
+    }
+
+    // 3. Call the atomic PostgreSQL RPC function create_cod_order
     const rpcRes = await query(
       `SELECT * FROM public.create_cod_order($1, $2, $3, $4, $5, $6, $7::jsonb)`,
       [
@@ -63,7 +78,16 @@ export async function createOrder(formData: {
     const deliveryPrice = Number(orderData.delivery_price);
     const totalPrice = Number(orderData.total_price);
 
-    // 3. Query the ordered items for formatting the WhatsApp message
+    if (affiliate) {
+      await query(
+        `UPDATE public.orders
+         SET affiliate_id = $1, affiliate_code_snapshot = $2, sales_channel = 'AFFILIATE'
+         WHERE id = $3`,
+        [affiliate.id, affiliate.code, orderId]
+      );
+    }
+
+    // 4. Query the ordered items for formatting the WhatsApp message
     const itemsRes = await query<{ quantity: number; unit_price: string; size: string; color: string; title: string }>(
       `SELECT 
         oi.quantity,
@@ -78,8 +102,8 @@ export async function createOrder(formData: {
       [orderId]
     );
 
-    // 4. Query WhatsApp contact phone number from settings
-    let whatsappContact = '237690000000'; // Default Cameroon backup
+    // 5. Query WhatsApp contact phone number from settings
+    let whatsappContact = '237697259094'; // Default Cameroon backup
     const settingsRes = await query(
       `SELECT value FROM public.settings WHERE key = 'store_info' LIMIT 1`
     );
@@ -88,8 +112,9 @@ export async function createOrder(formData: {
       whatsappContact = settingsRes.rows[0].value.whatsapp_contact;
     }
 
-    // 5. Format WhatsApp Message
-    const waMessage = `Bonjour KAKOS, je vous contacte concernant ma commande #${trackingNumber}.`;
+    // 6. Format WhatsApp Message
+    const affiliateMention = affiliate ? ` Vendeur: ${affiliate.code}.` : '';
+    const waMessage = `Bonjour KAKOS, je vous contacte concernant ma commande #${trackingNumber}.${affiliateMention}`;
 
     const waUrl = `https://wa.me/${whatsappContact}?text=${encodeURIComponent(waMessage)}`;
 

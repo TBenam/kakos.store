@@ -446,7 +446,7 @@ export async function getStoreSettings() {
       settings: { 
         name: 'KAKOS MENSWEAR', 
         currency: 'XAF', 
-        whatsapp_contact: '237690000000', 
+        whatsapp_contact: '237697259094',
         country: 'Cameroun' 
       } 
     };

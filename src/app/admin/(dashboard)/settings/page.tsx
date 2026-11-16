@@ -13,9 +13,9 @@ export default async function AdminSettingsPage() {
     .single();
 
   const initialStoreInfo = (settingsData?.value as any) || {
-    name: 'KAKOS MENSWEAR',
+    name: 'KAKOS',
     currency: 'XAF',
-    whatsapp_contact: '237690000000',
+    whatsapp_contact: '237697259094',
     country: 'Cameroun',
     physical_store_address: 'Douala, Hôpital Souboum',
     pickup_location: 'Douala, Hôpital Souboum',

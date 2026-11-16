@@ -45,6 +45,8 @@ interface Product {
   slug: string;
   description: string | null;
   sale_price: string;
+  promo_price: string | null;
+  badge: string | null;
   category_name: string;
 }
 
@@ -106,7 +108,10 @@ export default function ProductDetailClient({
     (v) => v.size === selectedSize && v.color === selectedColor
   );
 
-  const price = Number(product.sale_price);
+  const regularPrice = Number(product.sale_price);
+  const promoPrice = Number(product.promo_price) || 0;
+  const hasRealPromo = promoPrice > 0 && promoPrice < regularPrice;
+  const price = hasRealPromo ? promoPrice : regularPrice;
   const stock = selectedVariant ? selectedVariant.stock : 0;
   const isOutOfStock = stock <= 0;
 
@@ -222,13 +227,19 @@ export default function ProductDetailClient({
           <h1 className="font-display text-headline-md sm:text-headline-lg font-bold tracking-tighter uppercase text-primary leading-tight">
             {product.title}
           </h1>
-          <div className="flex items-baseline gap-2 mt-xs">
-            <span className="font-display text-2xl sm:text-3xl font-bold text-primary">
+          <div className="flex flex-wrap items-baseline gap-2 mt-xs">
+            <span className={`font-display text-2xl sm:text-3xl font-bold ${hasRealPromo ? 'text-accent' : 'text-primary'}`}>
               {price.toLocaleString('fr-FR')}
             </span>
             <span className="font-sans text-xs sm:text-sm text-secondary font-bold">
               FCFA
             </span>
+            {hasRealPromo && (
+              <>
+                <span className="text-sm font-bold text-outline line-through">{regularPrice.toLocaleString('fr-FR')} FCFA</span>
+                <span className="rounded bg-accent px-2 py-0.5 text-[10px] font-black uppercase text-primary">{product.badge || 'PROMO'}</span>
+              </>
+            )}
           </div>
         </div>
 

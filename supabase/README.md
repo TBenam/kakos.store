@@ -92,7 +92,7 @@ cp supabase/.env.example supabase/.env
 Renseignez les variables, puis déployez l'Edge Function et ses secrets :
 ```bash
 # Déployer les secrets d'environnement sur le cloud Supabase
-supabase secrets set WHATSAPP_CONTACT=237690000000
+supabase secrets set WHATSAPP_CONTACT=237697259094
 
 # Déployer la fonction create-order
 supabase functions deploy create-order
@@ -129,6 +129,6 @@ curl -X POST https://<votre-project-ref>.supabase.co/functions/v1/create-order \
   "order_id": "abc-123-uuid",
   "tracking_number": "KK-482015",
   "total_price": 31300.00,
-  "whatsapp_url": "https://wa.me/237690000000?text=..."
+  "whatsapp_url": "https://wa.me/237697259094?text=..."
 }
 ```

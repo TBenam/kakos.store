@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { query } from '@/lib/db';
 import ProductDetailClient from './ProductDetailClient';
+import type { Metadata } from 'next';
 
 interface DbProduct {
   id: string;
@@ -9,6 +10,8 @@ interface DbProduct {
   slug: string;
   description: string | null;
   sale_price: string;
+  promo_price: string | null;
+  badge: string | null;
   category_name: string;
   category_id: string | null;
 }
@@ -34,6 +37,30 @@ interface PageProps {
 
 export const revalidate = 60; // Revalidate dynamic PDP pages every 60 seconds
 
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const { slug: rawSlug } = await props.params;
+  const slug = decodeURIComponent(rawSlug);
+  try {
+    const result = await query<{ title: string; description: string | null; image_url: string | null }>(
+      `SELECT p.title, p.description,
+        (SELECT url FROM public.product_images WHERE product_id = p.id ORDER BY position LIMIT 1) AS image_url
+       FROM public.products p WHERE p.slug = $1 AND p.is_active = true LIMIT 1`,
+      [slug]
+    );
+    const product = result.rows[0];
+    if (!product) return { title: 'Produit introuvable', robots: { index: false } };
+    const description = (product.description || `Découvrez ${product.title} sur KAKOS, livré au Cameroun.`).replace(/<[^>]+>/g, ' ').slice(0, 160);
+    return {
+      title: product.title,
+      description,
+      alternates: { canonical: `/products/${slug}` },
+      openGraph: { title: product.title, description, type: 'website', images: product.image_url ? [product.image_url] : undefined },
+    };
+  } catch {
+    return { title: 'Produit KAKOS' };
+  }
+}
+
 export default async function ProductDetailPage(props: PageProps) {
   const params = await props.params;
   const slug = decodeURIComponent(params.slug);
@@ -50,6 +77,8 @@ export default async function ProductDetailPage(props: PageProps) {
         p.slug, 
         p.description, 
         p.sale_price, 
+        p.promo_price,
+        p.badge,
         p.category_id,
         c.name as category_name
       FROM public.products p

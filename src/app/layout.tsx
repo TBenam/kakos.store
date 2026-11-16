@@ -1,22 +1,29 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import StorefrontLayoutWrapper from '@/components/ui/StorefrontLayoutWrapper';
+import { createSupabasePublicClient } from '@/lib/supabase-public';
+import type { StoreCategory } from '@/components/ui/Header';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kakos.store';
+const description = 'Mode, chaussures, sacs, parfums et essentiels au meilleur prix. Commandez KAKOS en ligne avec livraison au Cameroun.';
 
 export const metadata: Metadata = {
-  title: 'KAKOS MENSWEAR | Streetwear Urbain Cameroun',
-  description: 'Streetwear premium et minimaliste pour l\'homme contemporain au Cameroun. Livraison express à Douala & Yaoundé. Paiement à la livraison.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kakos-store.vercel.app'),
+  title: { default: 'KAKOS | Shopping & mode au Cameroun', template: '%s | KAKOS' },
+  description,
+  metadataBase: new URL(siteUrl),
+  alternates: { canonical: '/' },
+  keywords: ['shopping Cameroun', 'mode Cameroun', 'chaussures femme', 'sacs', 'parfums', 'vêtements', 'KAKOS'],
   openGraph: {
-    title: 'KAKOS MENSWEAR | Streetwear Urbain Cameroun',
-    description: 'Streetwear premium et minimaliste pour l\'homme contemporain au Cameroun. Livraison express à Douala & Yaoundé. Paiement à la livraison.',
-    url: 'https://kakos-store.vercel.app',
-    siteName: 'KAKOS MENSWEAR',
+    title: 'KAKOS | Shopping & mode au Cameroun',
+    description,
+    url: siteUrl,
+    siteName: 'KAKOS',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 675,
-        alt: 'KAKOS MENSWEAR Urban Monolith Streetwear',
+        alt: 'KAKOS — shopping et mode au Cameroun',
       },
     ],
     locale: 'fr_FR',
@@ -24,39 +31,52 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KAKOS MENSWEAR | Streetwear Urbain Cameroun',
-    description: 'Streetwear premium pour l\'homme urbain contemporain au Cameroun.',
+    title: 'KAKOS | Shopping & mode au Cameroun',
+    description,
     images: ['/og-image.jpg'],
   },
 };
 
-export default function RootLayout({
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  let categories: StoreCategory[] = [];
+  try {
+    const supabase = createSupabasePublicClient();
+    const { data } = await supabase.from('categories').select('name, slug').order('name');
+    categories = data || [];
+  } catch (error) {
+    console.error('Failed to load navigation categories:', error);
+  }
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'OnlineStore',
+    name: 'KAKOS',
+    url: siteUrl,
+    description,
+    telephone: '+237697259094',
+    areaServed: 'CM',
+  };
+
   return (
     <html lang="fr" className="light">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
-        
-        {/* Explicit Open Graph & WhatsApp tags */}
-        <meta property="og:title" content="KAKOS MENSWEAR | Streetwear Urbain Cameroun" />
-        <meta property="og:description" content="Streetwear premium et minimaliste pour l'homme contemporain au Cameroun. Livraison express à Douala & Yaoundé. Paiement à la livraison." />
-        <meta property="og:image" content="https://kakos-store.vercel.app/og-image.jpg" />
-        <meta property="og:image:secure_url" content="https://kakos-store.vercel.app/og-image.jpg" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://kakos-store.vercel.app/og-image.jpg" />
       </head>
       <body className="bg-surface text-on-surface font-sans antialiased min-h-screen flex flex-col selection:bg-[#00F0FF] selection:text-primary">
-        <StorefrontLayoutWrapper>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+        <StorefrontLayoutWrapper categories={categories}>
           {children}
         </StorefrontLayoutWrapper>
       </body>

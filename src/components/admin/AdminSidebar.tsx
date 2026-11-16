@@ -9,6 +9,8 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: 'dashboard', exact: true },
   { href: '/admin/orders', label: 'Commandes', icon: 'shopping_cart' },
   { href: '/admin/products', label: 'Produits', icon: 'inventory_2' },
+  { href: '/admin/catalogue-import', label: 'Import catalogue', icon: 'upload_file' },
+  { href: '/admin/affiliates', label: 'Affiliés', icon: 'groups' },
   { href: '/admin/delivery', label: 'Livraison', icon: 'local_shipping' },
   { href: '/admin/campaigns', label: 'Campagnes', icon: 'campaign' },
   { href: '/admin/settings', label: 'Paramètres', icon: 'settings' },

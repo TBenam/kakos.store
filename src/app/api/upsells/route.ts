@@ -6,8 +6,10 @@ export interface UpsellProduct {
   title: string;
   slug: string;
   sale_price: number;
+  promo_price: number | null;
   image_url: string | null;
   first_variant_id: string | null;
+  category_name: string | null;
 }
 
 export async function GET(request: NextRequest) {
@@ -58,12 +60,6 @@ export async function GET(request: NextRequest) {
       params.push(...excludedProductIds);
     }
 
-    // Filter by category if provided
-    if (categoryId) {
-      conditions.push(`p.category_id = $${paramIndex++}`);
-      params.push(categoryId);
-    }
-
     // Ensure there's at least one variant with stock
     conditions.push(`EXISTS (
       SELECT 1 FROM public.product_variants pv2
@@ -79,6 +75,8 @@ export async function GET(request: NextRequest) {
         p.title,
         p.slug,
         p.sale_price,
+        p.promo_price,
+        c.name AS category_name,
         (
           SELECT pi.url
           FROM public.product_images pi
@@ -94,10 +92,16 @@ export async function GET(request: NextRequest) {
           LIMIT 1
         ) AS first_variant_id
       FROM public.products p
+      LEFT JOIN public.categories c ON c.id = p.category_id
       WHERE ${conditions.join(' AND ')}
-      ORDER BY p.created_at DESC
+      ORDER BY
+        ${categoryId ? `CASE WHEN p.category_id = $${paramIndex++} THEN 0 ELSE 1 END,` : ''}
+        p.is_bestseller DESC,
+        p.created_at DESC
       LIMIT ${limitParam}
     `;
+
+    if (categoryId) params.push(categoryId);
 
     const result = await query<UpsellProduct>(sql, params);
 

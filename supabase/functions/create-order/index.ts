@@ -28,7 +28,7 @@ serve(async (req) => {
     // 1. Initialize Supabase client with Service Role Key (bypasses RLS to secure transactions)
     const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
-    const whatsappContact = Deno.env.get('WHATSAPP_CONTACT') ?? '237690000000'; // Default backup whatsapp
+    const whatsappContact = Deno.env.get('WHATSAPP_CONTACT') ?? '237697259094'; // Default backup whatsapp
 
     if (!supabaseUrl || !supabaseServiceKey) {
       return new Response(JSON.stringify({ error: "Server configuration error" }), {
@@ -105,7 +105,7 @@ serve(async (req) => {
       .single()
 
     // 5. Fetch WhatsApp contact phone number from settings
-    let whatsappContact = Deno.env.get('WHATSAPP_CONTACT') || '237690000000'
+    let whatsappContact = Deno.env.get('WHATSAPP_CONTACT') || '237697259094'
     const { data: settingsData } = await supabase
       .from('settings')
       .select('value')
@@ -117,7 +117,7 @@ serve(async (req) => {
     }
 
     // 6. Format WhatsApp Message and Generate URL
-    let waMessage = `🔥 *NOUVELLE COMMANDE KAKOS MENSWEAR* 🔥\n\n`
+    let waMessage = `🔥 *NOUVELLE COMMANDE KAKOS* 🔥\n\n`
     waMessage += `📦 *Référence :* ${trackingNumber}\n`
     waMessage += `👤 *Client :* ${first_name}\n`
     waMessage += `📞 *Téléphone :* ${phone}\n`

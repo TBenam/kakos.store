@@ -7,7 +7,7 @@ import Link from 'next/link';
 function SuccessContent() {
   const searchParams = useSearchParams();
   const trackingNumber = searchParams.get('tracking_number') || 'KK-XXXXXX';
-  const whatsappUrl = searchParams.get('whatsapp_url') || 'https://wa.me/237690000000';
+  const whatsappUrl = searchParams.get('whatsapp_url') || 'https://wa.me/237697259094';
   const total = searchParams.get('total') ? Number(searchParams.get('total')) : null;
 
   return (
@@ -23,7 +23,7 @@ function SuccessContent() {
           COMMANDE ENREGISTRÉE !
         </h1>
         <p className="font-body-md text-sm text-secondary">
-          Merci pour votre achat chez KAKOS MENSWEAR. Votre commande est actuellement en attente de confirmation.
+          Merci pour votre achat chez KAKOS. Votre commande est actuellement en attente de confirmation.
         </p>
       </div>
 

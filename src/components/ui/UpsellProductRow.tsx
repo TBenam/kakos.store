@@ -3,9 +3,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Plus, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useCart } from '@/context/CartContext';
 import type { UpsellProduct } from '@/app/api/upsells/route';
 
 interface UpsellProductRowProps {
@@ -23,10 +22,6 @@ interface UpsellProductRowProps {
   compact?: boolean;
   /** Optional class overrides for the wrapper */
   className?: string;
-}
-
-interface AddingState {
-  [variantId: string]: 'idle' | 'adding' | 'added';
 }
 
 // Skeleton card for loading state
@@ -56,10 +51,8 @@ export default function UpsellProductRow({
   compact = false,
   className = '',
 }: UpsellProductRowProps) {
-  const { addToCart } = useCart();
   const [products, setProducts] = useState<UpsellProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [addingState, setAddingState] = useState<AddingState>({});
 
   const fetchUpsells = useCallback(async () => {
     setIsLoading(true);
@@ -85,35 +78,6 @@ export default function UpsellProductRow({
     fetchUpsells();
   }, [fetchUpsells]);
 
-  const handleAddToCart = (product: UpsellProduct) => {
-    if (!product.first_variant_id || addingState[product.first_variant_id] !== 'idle' && addingState[product.first_variant_id] !== undefined) return;
-
-    setAddingState((prev) => ({ ...prev, [product.first_variant_id!]: 'adding' }));
-
-    addToCart(
-      {
-        id: product.first_variant_id!,
-        productId: product.id,
-        title: product.title,
-        slug: product.slug,
-        size: '', // Will be shown as a generic add — user can refine
-        color: '',
-        price: Number(product.sale_price),
-        imageUrl: product.image_url || '/fallback_product.webp',
-        maxStock: 99,
-      },
-      1,
-      false // Don't open cart drawer on upsell add — stay in context
-    );
-
-    setTimeout(() => {
-      setAddingState((prev) => ({ ...prev, [product.first_variant_id!]: 'added' }));
-      setTimeout(() => {
-        setAddingState((prev) => ({ ...prev, [product.first_variant_id!]: 'idle' }));
-      }, 1200);
-    }, 400);
-  };
-
   // Don't render if no products and not loading
   if (!isLoading && products.length === 0) return null;
 
@@ -135,9 +99,9 @@ export default function UpsellProductRow({
                 <UpsellCardSkeleton key={`skel-${i}`} compact={compact} />
               ))
             : products.map((product, index) => {
-                const state = addingState[product.first_variant_id ?? ''] ?? 'idle';
-                const isAdded = state === 'added';
-                const isAdding = state === 'adding';
+                const regularPrice = Number(product.sale_price);
+                const promoPrice = Number(product.promo_price || 0);
+                const displayedPrice = promoPrice > 0 && promoPrice < regularPrice ? promoPrice : regularPrice;
 
                 return (
                   <motion.div
@@ -172,39 +136,19 @@ export default function UpsellProductRow({
                           {product.title}
                         </p>
                       </Link>
+                      {product.category_name && <p className="truncate text-[8px] font-bold uppercase tracking-wide text-outline">{product.category_name}</p>}
                       <p className="font-display text-[11px] font-black text-primary">
-                        {Number(product.sale_price).toLocaleString('fr-FR')}{' '}
+                        {displayedPrice.toLocaleString('fr-FR')}{' '}
                         <span className="font-sans font-bold text-[9px] text-secondary">FCFA</span>
                       </p>
 
-                      {/* Add Button */}
-                      <button
-                        onClick={() => handleAddToCart(product)}
-                        disabled={!product.first_variant_id || isAdding}
-                        className={`w-full flex items-center justify-center gap-1 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wide transition-all duration-200 active:scale-95 ${
-                          isAdded
-                            ? 'bg-emerald-500 text-white'
-                            : isAdding
-                            ? 'bg-surface-container-high text-outline cursor-not-allowed'
-                            : !product.first_variant_id
-                            ? 'bg-surface-container-high text-outline cursor-not-allowed opacity-60'
-                            : 'bg-primary text-accent hover:bg-accent hover:text-primary border border-primary'
-                        }`}
+                      <Link
+                        href={`/products/${product.slug}`}
+                        className="w-full flex items-center justify-center gap-1 rounded-lg border border-primary bg-primary py-1.5 text-[10px] font-black uppercase tracking-wide text-accent transition-all hover:bg-accent hover:text-primary"
                       >
-                        {isAdded ? (
-                          <>
-                            <Check className="w-3 h-3" />
-                            <span>Ajouté</span>
-                          </>
-                        ) : isAdding ? (
-                          <span>...</span>
-                        ) : (
-                          <>
-                            <Plus className="w-3 h-3" />
-                            <span>Ajouter</span>
-                          </>
-                        )}
-                      </button>
+                        <span>Voir</span>
+                        <ArrowRight className="h-3 w-3" />
+                      </Link>
                     </div>
                   </motion.div>
                 );

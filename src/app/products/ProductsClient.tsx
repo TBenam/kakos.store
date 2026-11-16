@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import { FormEvent, useState, useTransition } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import ProductCard from '@/components/ui/ProductCard';
 
 export interface CatalogProduct {
@@ -18,198 +18,142 @@ export interface CatalogProduct {
   promoBadge?: string;
 }
 
-export default function ProductsClient({ products }: { products: CatalogProduct[] }) {
-  const [selectedFilter, setSelectedFilter] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+export interface CatalogCategory {
+  name: string;
+  slug: string;
+}
 
-  // Extract unique categories
-  const categories = useMemo(() => {
-    const map = new Map<string, string>();
-    products.forEach((p) => {
-      if (p.categoryName && p.categorySlug) {
-        map.set(p.categorySlug, p.categoryName);
-      }
-    });
-    return Array.from(map.entries()).map(([slug, name]) => ({ slug, name }));
-  }, [products]);
+interface ProductsClientProps {
+  products: CatalogProduct[];
+  categories: CatalogCategory[];
+  currentPage: number;
+  totalItems: number;
+  pageSize: number;
+  initialCategory: string;
+  initialSearch: string;
+  promosOnly: boolean;
+  initialSort: string;
+}
 
-  // Filter products
-  const filteredProducts = useMemo(() => {
-    return products.filter((p) => {
-      // Category / Promo filter
-      let matchesFilter = true;
-      if (selectedFilter === 'promos') {
-        matchesFilter = !!p.isPromo;
-      } else if (selectedFilter !== 'all') {
-        matchesFilter = p.categorySlug === selectedFilter;
-      }
+export default function ProductsClient({
+  products,
+  categories,
+  currentPage,
+  totalItems,
+  pageSize,
+  initialCategory,
+  initialSearch,
+  promosOnly,
+  initialSort,
+}: ProductsClientProps) {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
+  const [isPending, startTransition] = useTransition();
+  const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+  const firstShown = totalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1;
+  const lastShown = Math.min(currentPage * pageSize, totalItems);
 
-      // Search query filter
-      let matchesSearch = true;
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        matchesSearch =
-          p.title.toLowerCase().includes(q) ||
-          p.categoryName.toLowerCase().includes(q);
-      }
+  function navigate(changes: Record<string, string | null>, resetPage = true) {
+    const params = new URLSearchParams();
+    if (initialCategory) params.set('category', initialCategory);
+    if (initialSearch) params.set('q', initialSearch);
+    if (promosOnly) params.set('promos', '1');
+    if (initialSort !== 'newest') params.set('sort', initialSort);
+    if (!resetPage && currentPage > 1) params.set('page', String(currentPage));
+    for (const [key, value] of Object.entries(changes)) {
+      if (value) params.set(key, value);
+      else params.delete(key);
+    }
+    if (resetPage) params.delete('page');
+    startTransition(() => router.push(`/products${params.size ? `?${params.toString()}` : ''}`));
+  }
 
-      return matchesFilter && matchesSearch;
-    });
-  }, [products, selectedFilter, searchQuery]);
+  function submitSearch(event: FormEvent) {
+    event.preventDefault();
+    navigate({ q: searchQuery.trim() || null });
+  }
 
-  const promoCount = useMemo(() => products.filter((p) => p.isPromo).length, [products]);
+  function pageHref(page: number) {
+    const params = new URLSearchParams();
+    if (initialCategory) params.set('category', initialCategory);
+    if (initialSearch) params.set('q', initialSearch);
+    if (promosOnly) params.set('promos', '1');
+    if (initialSort !== 'newest') params.set('sort', initialSort);
+    if (page > 1) params.set('page', String(page));
+    return `/products${params.size ? `?${params.toString()}` : ''}`;
+  }
+
+  const visiblePages = Array.from({ length: totalPages }, (_, index) => index + 1).filter(
+    (page) => page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1
+  );
 
   return (
-    <div className="flex-grow w-full max-w-[1280px] mx-auto px-container-margin py-lg flex flex-col gap-lg selection:bg-accent selection:text-primary">
-      {/* 1. Breadcrumb & Page Title */}
+    <div className={`mx-auto flex w-full max-w-[1280px] flex-grow flex-col gap-lg px-container-margin py-lg transition-opacity ${isPending ? 'opacity-60' : ''}`}>
       <div className="flex flex-col gap-xs border-b border-outline-variant pb-md">
-        <div className="flex items-center gap-xs text-[10px] uppercase font-bold text-outline">
-          <Link href="/" className="hover:text-primary transition-colors">
-            ACCUEIL
-          </Link>
-          <span>/</span>
-          <span className="text-secondary">CATALOGUE COMPLET & MÉGA PROMOS</span>
+        <div className="flex items-center gap-xs text-[10px] font-bold uppercase text-outline">
+          <Link href="/" className="hover:text-primary">Accueil</Link><span>/</span><span className="text-secondary">Catalogue</span>
         </div>
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mt-2">
+        <div className="mt-2 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <h1 className="font-display text-4xl sm:text-6xl font-black tracking-tighter uppercase text-primary leading-none">
-              SHOP ALL // <span className="text-accent italic">COLLECTION</span>
-            </h1>
-            <p className="font-body-md text-xs sm:text-sm text-secondary uppercase tracking-wider mt-2">
-              L'intégralité du vestiaire urbain KAKOS au meilleur prix garanti.
-            </p>
+            <h1 className="font-display text-4xl font-black uppercase leading-none tracking-tighter text-primary sm:text-6xl">Le catalogue KAKOS</h1>
+            <p className="mt-2 text-xs font-bold uppercase tracking-wider text-secondary">Explorez par rayon, prix ou nouveauté sans défilement interminable.</p>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="bg-primary text-white font-mono text-xs font-bold px-3 py-1.5 rounded-lg border border-outline-variant">
-              {filteredProducts.length} ARTICLE{filteredProducts.length > 1 ? 'S' : ''}
-            </span>
-          </div>
+          <span className="w-fit rounded-lg bg-primary px-3 py-1.5 font-mono text-xs font-bold text-white">{firstShown}–{lastShown} sur {totalItems}</span>
         </div>
       </div>
 
-      {/* 2. Filters & Search Bar */}
-      <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-surface-container-low p-4 rounded-lg border border-outline-variant">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-2 overflow-x-auto pb-1 md:pb-0">
-          <button
-            type="button"
-            onClick={() => setSelectedFilter('all')}
-            className={`font-label-sm text-xs uppercase font-bold px-4 py-2 rounded-lg transition-all cursor-pointer ${
-              selectedFilter === 'all'
-                ? 'bg-primary text-white shadow-brutalist'
-                : 'bg-surface border border-outline-variant text-primary hover:border-primary'
-            }`}
-          >
-            Tous ({products.length})
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setSelectedFilter('promos')}
-            className={`font-label-sm text-xs uppercase font-black px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
-              selectedFilter === 'promos'
-                ? 'bg-accent text-primary shadow-brutalist border border-accent'
-                : 'bg-surface border border-accent/60 text-accent hover:bg-accent hover:text-primary'
-            }`}
-          >
-            <span>🔥</span>
-            <span>Mégas Promos ({promoCount})</span>
-          </button>
-
-          {categories.map((cat) => (
-            <button
-              key={cat.slug}
-              type="button"
-              onClick={() => setSelectedFilter(cat.slug)}
-              className={`font-label-sm text-xs uppercase font-bold px-4 py-2 rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                selectedFilter === cat.slug
-                  ? 'bg-primary text-white shadow-brutalist'
-                  : 'bg-surface border border-outline-variant text-primary hover:border-primary'
-              }`}
-            >
-              {cat.name}
+      <div className="sticky top-2 z-20 flex flex-col gap-4 rounded-xl border border-outline-variant bg-surface-container-low/95 p-4 shadow-sm backdrop-blur">
+        <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]">
+          <button onClick={() => navigate({ category: null, promos: null })} className={`shrink-0 rounded-lg px-4 py-2 text-xs font-bold uppercase ${!initialCategory && !promosOnly ? 'bg-primary text-white' : 'border border-outline-variant bg-surface text-primary'}`}>Tous</button>
+          <button onClick={() => navigate({ promos: promosOnly ? null : '1', category: null })} className={`shrink-0 rounded-lg px-4 py-2 text-xs font-black uppercase ${promosOnly ? 'bg-accent text-primary' : 'border border-accent/60 bg-surface text-accent'}`}>Promotions réelles</button>
+          {categories.map((category) => (
+            <button key={category.slug} onClick={() => navigate({ category: category.slug, promos: null })} className={`shrink-0 whitespace-nowrap rounded-lg px-4 py-2 text-xs font-bold uppercase ${initialCategory === category.slug ? 'bg-primary text-white' : 'border border-outline-variant bg-surface text-primary'}`}>
+              {category.name}
             </button>
           ))}
         </div>
-
-        {/* Search input */}
-        <div className="relative min-w-[240px]">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Filtrer par nom..."
-            className="w-full bg-surface border border-outline-variant text-primary text-xs font-bold uppercase placeholder:text-outline px-3 py-2.5 pl-8 rounded-lg focus:outline-none focus:border-accent"
-          />
-          <span className="material-symbols-outlined absolute left-2.5 top-2.5 text-outline text-base">
-            search
-          </span>
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery('')}
-              className="absolute right-2.5 top-2.5 text-outline hover:text-primary"
-            >
-              <span className="material-symbols-outlined text-base">close</span>
-            </button>
-          )}
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <form onSubmit={submitSearch} className="relative flex-1">
+            <span className="material-symbols-outlined absolute left-3 top-2.5 text-lg text-outline">search</span>
+            <input value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="Rechercher un article…" className="w-full rounded-lg border border-outline-variant bg-surface py-2.5 pl-10 pr-24 text-sm font-bold text-primary focus:border-accent focus:outline-none" />
+            <button type="submit" className="absolute right-1.5 top-1.5 rounded-md bg-primary px-3 py-1.5 text-[10px] font-black uppercase text-white">Chercher</button>
+          </form>
+          <select value={initialSort} onChange={(event) => navigate({ sort: event.target.value === 'newest' ? null : event.target.value })} className="rounded-lg border border-outline-variant bg-surface px-3 py-2.5 text-xs font-bold uppercase text-primary">
+            <option value="newest">Plus récents</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+          </select>
         </div>
       </div>
 
-      {/* 4. Products Grid */}
-      {filteredProducts.length === 0 ? (
-        <div className="w-full text-center py-20 border border-dashed border-outline-variant flex flex-col items-center justify-center gap-4 rounded-lg bg-surface-container-lowest">
-          <span className="material-symbols-outlined text-5xl text-outline">
-            sentiment_dissatisfied
-          </span>
-          <div>
-            <h3 className="font-display text-2xl uppercase font-black text-primary">
-              Aucun produit trouvé
-            </h3>
-            <p className="font-body-md text-xs sm:text-sm text-secondary mt-1">
-              Aucun article ne correspond à votre filtre actuel.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={() => {
-              setSelectedFilter('all');
-              setSearchQuery('');
-            }}
-            className="bg-primary text-white font-label-sm text-xs uppercase font-bold py-2.5 px-6 rounded-lg hover:bg-accent hover:text-primary transition-all cursor-pointer shadow-brutalist"
-          >
-            Réinitialiser les filtres
-          </button>
+      {products.length === 0 ? (
+        <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-outline-variant py-20 text-center">
+          <span className="material-symbols-outlined text-5xl text-outline">search_off</span>
+          <div><h2 className="font-display text-2xl font-black uppercase text-primary">Aucun article trouvé</h2><p className="mt-1 text-sm text-secondary">Essayez un autre rayon ou une recherche plus courte.</p></div>
+          <Link href="/products" className="rounded-lg bg-primary px-6 py-3 text-xs font-black uppercase text-white">Voir tout le catalogue</Link>
         </div>
       ) : (
-        <motion.div
-          layout
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          <AnimatePresence>
-            {filteredProducts.map((product) => (
-              <motion.div
-                layout
-                key={product.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ProductCard
-                  id={product.id}
-                  title={product.title}
-                  slug={product.slug}
-                  salePrice={product.salePrice}
-                  originalPrice={product.originalPrice}
-                  categoryName={product.categoryName}
-                  imageUrl={product.imageUrl}
-                  badge={product.promoBadge || (product.isPromo ? 'MÉGA PROMO' : undefined)}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {products.map((product) => (
+            <ProductCard key={product.id} id={product.id} title={product.title} slug={product.slug} salePrice={product.salePrice} originalPrice={product.originalPrice} categoryName={product.categoryName} imageUrl={product.imageUrl} badge={product.promoBadge} />
+          ))}
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <nav aria-label="Pagination du catalogue" className="flex flex-wrap items-center justify-center gap-2 border-t border-outline-variant pt-6">
+          {currentPage > 1 && <Link href={pageHref(currentPage - 1)} className="rounded-lg border border-outline-variant px-4 py-2 text-xs font-black uppercase text-primary hover:border-accent">← Précédent</Link>}
+          {visiblePages.map((page, index) => {
+            const previous = visiblePages[index - 1];
+            return (
+              <span key={page} className="contents">
+                {previous && page - previous > 1 && <span className="px-1 text-outline">…</span>}
+                <Link href={pageHref(page)} aria-current={page === currentPage ? 'page' : undefined} className={`flex h-10 min-w-10 items-center justify-center rounded-lg px-3 text-sm font-black ${page === currentPage ? 'bg-primary text-white' : 'border border-outline-variant text-primary hover:border-accent'}`}>{page}</Link>
+              </span>
+            );
+          })}
+          {currentPage < totalPages && <Link href={pageHref(currentPage + 1)} className="rounded-lg border border-outline-variant px-4 py-2 text-xs font-black uppercase text-primary hover:border-accent">Suivant →</Link>}
+        </nav>
       )}
     </div>
   );

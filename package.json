@@ -7,11 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "compress:images": "node scripts/compress-images.mjs"
+    "compress:images": "node scripts/compress-images.mjs",
+    "catalog:whatsapp": "node scripts/whatsapp-catalog/cli.mjs",
+    "catalog:readiness": "node scripts/whatsapp-catalog/publish-to-supabase.mjs",
+    "catalog:publish": "node scripts/whatsapp-catalog/publish-to-supabase.mjs --apply --publish-approved",
+    "test:catalog": "node --test --test-isolation=none scripts/whatsapp-catalog/*.test.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.5",
     "@supabase/supabase-js": "^2.39.8",
+    "adm-zip": "^0.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^13.1.1",

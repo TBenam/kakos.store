@@ -53,9 +53,20 @@ export default function CheckoutClient({ zones }: CheckoutClientProps) {
   const [neighborhood, setNeighborhood] = useState('');
   const [addressPrecision, setAddressPrecision] = useState('');
   const [selectedZoneId, setSelectedZoneId] = useState('');
+  const [affiliateCode, setAffiliateCode] = useState('');
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const referralCode = params.get('vendeur') || params.get('ref') || localStorage.getItem('kakos_affiliate_code');
+    if (referralCode) {
+      const normalized = referralCode.trim().toUpperCase();
+      setAffiliateCode(normalized);
+      localStorage.setItem('kakos_affiliate_code', normalized);
+    }
+  }, []);
 
   // Find selected zone fee & free shipping threshold calculation
   const isFreeShipping = cartSubtotal >= 20000;
@@ -89,6 +100,7 @@ export default function CheckoutClient({ zones }: CheckoutClientProps) {
         neighborhood,
         addressPrecision,
         deliveryZoneId: selectedZoneId,
+        affiliateCode,
         items: orderItems,
       });
 
@@ -215,6 +227,22 @@ export default function CheckoutClient({ zones }: CheckoutClientProps) {
                 className="w-full bg-surface border border-outline-variant p-3 text-sm focus:border-primary transition-colors rounded-lg font-medium"
               />
             </div>
+          </div>
+
+          <div className="flex flex-col gap-1 pt-2 border-t border-outline-variant">
+            <label className="font-label-sm text-[11px] uppercase font-bold text-primary" htmlFor="affiliateCode">
+              Code vendeur <span className="text-secondary normal-case font-normal">(optionnel)</span>
+            </label>
+            <input
+              type="text"
+              id="affiliateCode"
+              value={affiliateCode}
+              onChange={(e) => setAffiliateCode(e.target.value.toUpperCase())}
+              placeholder="Ex: MARIE01"
+              maxLength={24}
+              className="w-full bg-surface border border-outline-variant p-3 text-sm uppercase focus:border-primary rounded-lg font-mono font-bold"
+            />
+            <p className="text-[10px] text-secondary">Permet d’attribuer la vente au vendeur qui vous a conseillé.</p>
           </div>
         </section>
 

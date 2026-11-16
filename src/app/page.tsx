@@ -1,60 +1,72 @@
-import React from 'react';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
-import HomeClient from './HomeClient';
-
-interface HomeProduct {
-  id: string;
-  title: string;
-  slug: string;
-  salePrice: number;
-  categoryName: string;
-  imageUrl?: string;
-}
+import HomeClient, { HomeCampaign, HomeProduct } from './HomeClient';
 
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  let products: HomeProduct[] = [];
-  
+  let flashDeals: HomeProduct[] = [];
+  let bestSellers: HomeProduct[] = [];
+  let newArrivals: HomeProduct[] = [];
+  let campaign: HomeCampaign | undefined;
+
   try {
     const supabase = await createSupabaseServerClient();
-    
-    // Fetch products
-    const { data: prodData, error: prodError } = await supabase
-      .from('products')
-      .select('id, title, slug, sale_price, category_id, created_at, categories(name)')
-      .order('created_at', { ascending: false })
-      .limit(8);
+    const [{ data: productRows, error: productError }, { data: campaignRows }] = await Promise.all([
+      supabase
+        .from('products')
+        .select('id, title, slug, sale_price, promo_price, badge, is_bestseller, created_at, categories(name, slug)')
+        .eq('is_active', true)
+        .order('created_at', { ascending: false }),
+      supabase
+        .from('campaigns')
+        .select('title, banner_url')
+        .eq('is_active', true)
+        .order('created_at', { ascending: false })
+        .limit(1),
+    ]);
 
-    if (prodError) throw prodError;
+    if (productError) throw productError;
+    const rows = productRows || [];
+    const productIds = rows.map((product) => product.id);
+    const { data: imageRows, error: imageError } = productIds.length
+      ? await supabase.from('product_images').select('product_id, url, position').in('product_id', productIds).order('position')
+      : { data: [], error: null };
+    if (imageError) throw imageError;
 
-    if (prodData && prodData.length > 0) {
-      const productIds = prodData.map(p => p.id);
-      
-      // Fetch images for these products
-      const { data: imgData, error: imgError } = await supabase
-        .from('product_images')
-        .select('product_id, url')
-        .in('product_id', productIds)
-        .order('position', { ascending: true });
-        
-      if (imgError) throw imgError;
-
-      products = prodData.map((row: any) => {
-        const productImages = imgData?.filter(i => i.product_id === row.id) || [];
-        return {
-          id: row.id,
-          title: row.title,
-          slug: row.slug,
-          salePrice: Number(row.sale_price),
-          categoryName: row.categories?.name || 'Unknown',
-          imageUrl: productImages.length > 0 ? productImages[0].url : undefined
-        };
-      });
+    const firstImageByProduct = new Map<string, string>();
+    for (const image of imageRows || []) {
+      if (!firstImageByProduct.has(image.product_id)) firstImageByProduct.set(image.product_id, image.url);
     }
+
+    const products: HomeProduct[] = rows.map((row: any) => {
+      const regularPrice = Number(row.sale_price) || 0;
+      const promoPrice = Number(row.promo_price) || 0;
+      const hasRealPromo = promoPrice > 0 && promoPrice < regularPrice;
+      return {
+        id: row.id,
+        title: row.title,
+        slug: row.slug,
+        salePrice: hasRealPromo ? promoPrice : regularPrice,
+        originalPrice: hasRealPromo ? regularPrice : undefined,
+        categoryName: row.categories?.name || 'Autres',
+        categorySlug: row.categories?.slug || 'autres',
+        imageUrl: firstImageByProduct.get(row.id),
+        badge: hasRealPromo ? row.badge || 'PROMO' : undefined,
+      };
+    });
+    const productsById = new Map(products.map((product) => [product.id, product]));
+    flashDeals = products.filter((product) => product.originalPrice).slice(0, 12);
+    newArrivals = products.slice(0, 12);
+    bestSellers = rows
+      .filter((row: any) => row.is_bestseller)
+      .map((row: any) => productsById.get(row.id))
+      .filter((product): product is HomeProduct => Boolean(product));
+
+    const activeCampaign = campaignRows?.[0];
+    if (activeCampaign?.banner_url) campaign = { title: activeCampaign.title, bannerUrl: activeCampaign.banner_url };
   } catch (error) {
-    console.error('Failed to fetch products for homepage:', error);
+    console.error('Failed to fetch homepage shopping shelves:', error);
   }
 
-  return <HomeClient products={products} />;
+  return <HomeClient flashDeals={flashDeals} bestSellers={bestSellers} newArrivals={newArrivals} campaign={campaign} />;
 }

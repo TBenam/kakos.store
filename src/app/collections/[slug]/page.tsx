@@ -3,12 +3,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
 import ProductCard from '@/components/ui/ProductCard';
+import type { Metadata } from 'next';
 
 interface DbProduct {
   id: string;
   title: string;
   slug: string;
   sale_price: string;
+  promo_price: string | null;
   category_name: string;
   image_url: string | null;
 }
@@ -27,8 +29,21 @@ interface PageProps {
 
 export const revalidate = 60; // Revalidate dynamic routes every 60 seconds
 
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const { slug } = await props.params;
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data } = await supabase.from('categories').select('name').eq('slug', slug).maybeSingle();
+    if (!data) return { title: 'Rayon introuvable', robots: { index: false } };
+    const description = `Découvrez le rayon ${data.name} KAKOS : une sélection actuelle au meilleur prix, livrée au Cameroun.`;
+    return { title: data.name, description, alternates: { canonical: `/collections/${slug}` } };
+  } catch {
+    return { title: 'Rayon KAKOS' };
+  }
+}
+
 const CATEGORY_IMAGES: Record<string, string> = {
-  't-shirts': '/cat_tshirts_real.webp',
+  't-shirts': '/cat_tshirts_kakos-v2.png',
   'sweats-hoodies': '/cat_hoodies.webp',
   'jeans': '/cat_jeans.webp',
   'ensembles': '/cat_ensembles.webp',
@@ -62,8 +77,9 @@ export default async function CategoryPage(props: PageProps) {
       // 2. Fetch products under this category
       const { data: prodData, error: prodError } = await supabase
         .from('products')
-        .select('id, title, slug, sale_price, created_at, categories(name)')
+        .select('id, title, slug, sale_price, promo_price, created_at, categories(name)')
         .eq('category_id', category.id)
+        .eq('is_active', true)
         .order('created_at', { ascending: false });
 
       if (prodError) throw prodError;
@@ -86,6 +102,7 @@ export default async function CategoryPage(props: PageProps) {
             title: row.title,
             slug: row.slug,
             sale_price: row.sale_price,
+            promo_price: row.promo_price,
             category_name: row.categories?.name || category!.name,
             image_url: productImages.length > 0 ? productImages[0].url : null
           };
@@ -186,10 +203,10 @@ export default async function CategoryPage(props: PageProps) {
               id={product.id}
               title={product.title}
               slug={product.slug}
-              salePrice={Number(product.sale_price)}
+              salePrice={product.promo_price && Number(product.promo_price) < Number(product.sale_price) ? Number(product.promo_price) : Number(product.sale_price)}
+              originalPrice={product.promo_price && Number(product.promo_price) < Number(product.sale_price) ? Number(product.sale_price) : undefined}
               categoryName={product.category_name}
               imageUrl={product.image_url || undefined}
-              badge={Number(product.sale_price) < 15000 ? 'NEW DROP' : undefined}
             />
           ))}
         </div>

@@ -121,7 +121,7 @@ export async function submitCheckout(
     const totalPrice = Number(oData.total_price);
 
     // 2. Fetch the store contact details to format the WhatsApp link
-    let whatsappContact = '237690000000'; // Fallback
+    let whatsappContact = '237697259094'; // Fallback
     try {
       const { data: settingsData } = await supabaseClient
         .from('settings')
@@ -137,7 +137,7 @@ export async function submitCheckout(
     }
 
     // 3. Construct the WhatsApp message on the client using verified database calculations
-    let waMessage = `🔥 *NOUVELLE COMMANDE KAKOS MENSWEAR* 🔥\n\n`;
+    let waMessage = `🔥 *NOUVELLE COMMANDE KAKOS* 🔥\n\n`;
     waMessage += `📦 *Référence :* ${trackingNumber}\n`;
     waMessage += `👤 *Client :* ${input.first_name.trim()}\n`;
     waMessage += `📞 *Téléphone :* ${input.phone.trim()}\n`;

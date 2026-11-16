@@ -39,7 +39,7 @@ async function fetchResults(
 
     // Popular products as fallback (empty query → show them)
     !trimmed
-      ? provider.search({ query: 'kakos streetwear', limit: 4 })
+      ? provider.search({ query: 'chaussures', limit: 4 })
       : Promise.resolve([] as SearchResult[]),
   ]);
 
@@ -223,7 +223,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
             <div>
               <h3 className="font-display text-body-lg text-primary font-bold">Aucun résultat trouvé</h3>
               <p className="text-xs text-secondary mt-xs max-w-xs mx-auto">
-                Aucun article ne correspond à &quot;{q}&quot;. Essayez &quot;T-shirt&quot;, &quot;Hoodie&quot; ou &quot;Jean&quot;.
+                Aucun article ne correspond à &quot;{q}&quot;. Essayez &quot;Chaussures&quot;, &quot;Sac&quot; ou &quot;T-shirt&quot;.
               </p>
             </div>
           </div>

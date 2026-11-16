@@ -1,6 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
 
 export async function loginAction(formData: FormData) {
@@ -245,5 +246,149 @@ export async function updateSettingsAction(key: string, value: object) {
     .upsert({ key, value })
     .eq('key', key);
   if (error) return { error: error.message };
+  return { success: true };
+}
+
+export async function createAffiliateAction(formData: FormData) {
+  const supabase = await createSupabaseServerClient();
+  const code = String(formData.get('code') || '').trim().toUpperCase();
+  const name = String(formData.get('name') || '').trim();
+  const phone = String(formData.get('phone') || '').trim();
+  const commissionRate = Number(formData.get('commissionRate') || 10) / 100;
+
+  if (!/^[A-Z0-9_-]{3,24}$/.test(code) || !name || !phone) {
+    return { error: 'Code, nom ou téléphone invalide.' };
+  }
+
+  const { error } = await supabase.from('affiliates').insert({
+    code,
+    name,
+    phone,
+    whatsapp_phone: phone,
+    commission_rate: commissionRate,
+    status: 'ACTIVE',
+  });
+
+  if (error) return { error: error.message };
+  revalidatePath('/admin/affiliates');
+  return { success: true };
+}
+
+export async function updateAffiliateStatusAction(affiliateId: string, status: 'ACTIVE' | 'SUSPENDED' | 'INACTIVE') {
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase.from('affiliates').update({ status }).eq('id', affiliateId);
+  if (error) return { error: error.message };
+  revalidatePath('/admin/affiliates');
+  return { success: true };
+}
+
+export async function markAffiliateCommissionPaidAction(commissionId: string, paymentReference?: string) {
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase
+    .from('affiliate_commissions')
+    .update({
+      status: 'PAID',
+      paid_at: new Date().toISOString(),
+      payment_reference: paymentReference?.trim() || null,
+    })
+    .eq('id', commissionId)
+    .eq('status', 'APPROVED');
+
+  if (error) return { error: error.message };
+  revalidatePath('/admin/affiliates');
+  return { success: true };
+}
+
+export async function reviewCatalogCandidateAction(
+  candidateId: string,
+  status: 'APPROVED' | 'REJECTED' | 'REVIEW_REQUIRED'
+) {
+  const supabase = await createSupabaseServerClient();
+  if (status === 'APPROVED') {
+    const { data: candidate, error: candidateError } = await supabase
+      .from('catalog_candidates')
+      .select('blocking_reasons')
+      .eq('id', candidateId)
+      .single();
+
+    if (candidateError || !candidate) return { error: candidateError?.message || 'Fiche introuvable.' };
+    if (candidate.blocking_reasons?.length) {
+      return { error: 'Cette fiche contient encore des informations obligatoires à compléter.' };
+    }
+  }
+
+  const { error } = await supabase
+    .from('catalog_candidates')
+    .update({
+      review_status: status,
+      publish_requested: status === 'APPROVED',
+      reviewed_at: status === 'REVIEW_REQUIRED' ? null : new Date().toISOString(),
+    })
+    .eq('id', candidateId);
+
+  if (error) return { error: error.message };
+  revalidatePath('/admin/catalogue-import');
+  return { success: true };
+}
+
+export async function updateCatalogCandidateDetailsAction(candidateId: string, formData: FormData) {
+  const supabase = await createSupabaseServerClient();
+  const { data: candidate, error: fetchError } = await supabase
+    .from('catalog_candidates')
+    .select('source_payload, media_count')
+    .eq('id', candidateId)
+    .single();
+  if (fetchError || !candidate) return { error: fetchError?.message || 'Fiche introuvable.' };
+
+  const title = String(formData.get('title') || '').trim();
+  const category = String(formData.get('category') || '').trim();
+  const supplierPrice = Number(formData.get('supplierPrice') || 0);
+  const retailPrice = Number(formData.get('retailPrice') || 0);
+  const availability = String(formData.get('availability') || 'TO_CONFIRM');
+  const sizes = String(formData.get('sizes') || '').split(',').map((value) => value.trim()).filter(Boolean);
+  const colors = String(formData.get('colors') || '').split(',').map((value) => value.trim()).filter(Boolean);
+  const splitRequired = formData.get('splitRequired') === 'on';
+
+  const sourcePayload = {
+    ...(candidate.source_payload as Record<string, any>),
+    title,
+    category,
+    supplierPrice,
+    availability,
+    sizes,
+    colors,
+    splitRequired,
+    pricing: {
+      ...((candidate.source_payload as any)?.pricing || {}),
+      recommendedRetailPrice: retailPrice,
+    },
+  };
+
+  const blockingReasons: string[] = [];
+  if (!supplierPrice) blockingReasons.push('Coût fournisseur manquant');
+  if (!retailPrice) blockingReasons.push('Prix KAKOS manquant');
+  if (!candidate.media_count) blockingReasons.push('Photo produit manquante');
+  if (splitRequired) blockingReasons.push('Séparer les modèles en fiches individuelles');
+  if (availability !== 'AVAILABLE') blockingReasons.push('Disponibilité fournisseur à confirmer');
+  if (sizes.length === 0) blockingReasons.push('Tailles à renseigner');
+  if (colors.length === 0) blockingReasons.push('Couleurs à renseigner');
+
+  const { error } = await supabase.from('catalog_candidates').update({
+    title,
+    category,
+    supplier_price: supplierPrice || null,
+    recommended_retail_price: retailPrice || null,
+    availability,
+    split_required: splitRequired,
+    blocking_reasons: blockingReasons,
+    source_payload: sourcePayload,
+    review_status: 'REVIEW_REQUIRED',
+    publish_requested: false,
+    reviewed_at: null,
+  }).eq('id', candidateId);
+
+  if (error) return { error: error.message };
+  revalidatePath('/admin/catalogue-import');
+  revalidatePath(`/admin/catalogue-import/${candidateId}`);
   return { success: true };
 }

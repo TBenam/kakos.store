@@ -39,8 +39,8 @@ export default async function AdminOrdersPage(props: PageProps) {
   // Fetch official WhatsApp settings
   const settingsResult = await getStoreSettings();
   const whatsappContact = settingsResult.success 
-    ? settingsResult.settings?.whatsapp_contact || '237690000000'
-    : '237690000000';
+    ? settingsResult.settings?.whatsapp_contact || '237697259094'
+    : '237697259094';
 
   return (
     <OrdersDashboardClient

@@ -6,21 +6,15 @@ import { Menu, Search, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import SearchOverlay from './SearchOverlay';
 
-export default function Header() {
+export interface StoreCategory {
+  name: string;
+  slug: string;
+}
+
+export default function Header({ categories }: { categories: StoreCategory[] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cartCount, openCart } = useCart();
-
-  const categories = [
-    { name: 'T-shirts', slug: 't-shirts' },
-    { name: 'Sweats / Hoodies', slug: 'sweats-hoodies' },
-    { name: 'Jeans', slug: 'jeans' },
-    { name: 'Ensembles', slug: 'ensembles' },
-    { name: 'Culottes / Shorts', slug: 'culottes-shorts' },
-    { name: 'Vestes / Doudounes', slug: 'vestes-doudounes' },
-    { name: 'Pantalons', slug: 'pantalons' },
-    { name: 'Salopettes', slug: 'salopettes' },
-  ];
 
   return (
     <>
@@ -131,7 +125,7 @@ export default function Header() {
                   Besoin d'aide ?
                 </div>
                 <a
-                  href="https://wa.me/237690000000"
+                  href="https://wa.me/237697259094"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] text-white text-center font-label-sm text-label-sm uppercase font-bold py-sm px-md flex items-center justify-center gap-xs hover:brightness-95 active:scale-95 transition-transform"

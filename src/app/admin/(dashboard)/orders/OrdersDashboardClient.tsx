@@ -206,7 +206,7 @@ export default function OrdersDashboardClient({
                 type="text"
                 value={whatsappNumber}
                 onChange={(e) => setWhatsappNumber(e.target.value)}
-                placeholder="Ex: 237690000000"
+                placeholder="Ex: 237697259094"
                 className="border border-[#c4c7c7] px-sm py-xs text-xs font-mono grow bg-transparent"
                 disabled={isSavingWhatsApp}
               />

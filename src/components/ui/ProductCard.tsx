@@ -47,6 +47,7 @@ export default function ProductCard({
           src={displayImage}
           alt={title}
           fill
+          unoptimized={displayImage.startsWith('http')}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 300px"
           loading="lazy"
           className="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105 grayscale-[20%] group-hover:grayscale-0 duration-300"
@@ -68,17 +69,6 @@ export default function ProductCard({
           {discount > 0 && !badge?.includes('%') && (
             <span className="bg-red-600 text-white font-label-sm text-[10px] uppercase font-black px-1.5 py-0.5 tracking-wider border border-red-500 rounded shadow-sm">
               -{discount}%
-            </span>
-          )}
-          {/* Gamification / Urgency Badges */}
-          {!badge && (slug.length % 3 === 0) && (
-            <span className="bg-[#FFBF00] text-primary font-label-sm text-[10px] uppercase font-black px-1.5 py-0.5 tracking-wider border border-[#B38600] rounded shadow-sm animate-pulse">
-              Forte demande 🔥
-            </span>
-          )}
-          {!badge && (slug.length % 5 === 0) && (
-            <span className="bg-primary text-accent font-label-sm text-[10px] uppercase font-black px-1.5 py-0.5 tracking-wider border border-accent rounded shadow-sm">
-              Plus que 2 en stock
             </span>
           )}
         </div>

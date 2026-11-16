@@ -18,12 +18,12 @@ export default function BundleUpsell({ categoryId, currentSlug, excludeIds = [] 
       <div className="absolute top-0 right-0 bg-accent text-primary text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-bl-xl rounded-tr-xl z-10">
         <span className="flex items-center gap-1">
           <Zap className="w-2.5 h-2.5" />
-          Look Complet
+          À découvrir
         </span>
       </div>
 
       <UpsellProductRow
-        title="Souvent porté avec"
+        title="Produits similaires"
         categoryId={categoryId}
         excludeSlug={currentSlug}
         excludeIds={excludeIds}

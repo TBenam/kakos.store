@@ -10,11 +10,14 @@ import { CartProvider } from '@/context/CartContext';
 import { SizingProvider } from '@/context/SizingContext';
 
 import CartDrawer from '@/components/ui/CartDrawer';
+import type { StoreCategory } from '@/components/ui/Header';
 
 export default function StorefrontLayoutWrapper({
   children,
+  categories,
 }: {
   children: React.ReactNode;
+  categories: StoreCategory[];
 }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith('/admin');
@@ -27,7 +30,7 @@ export default function StorefrontLayoutWrapper({
     <CartProvider>
       <SizingProvider>
         <AnnouncementBar />
-        <Header />
+        <Header categories={categories} />
         <div className="flex-grow w-full flex flex-col">{children}</div>
         <Footer />
         <NewsletterPopup />

@@ -64,5 +64,5 @@ ON CONFLICT (id) DO NOTHING;
 
 -- 4. INSERT SETTINGS
 INSERT INTO public.settings (key, value) VALUES
-    ('store_info', '{"name": "KAKOS MENSWEAR", "currency": "XAF", "whatsapp_contact": "237690000000", "country": "Cameroun"}'::jsonb)
+    ('store_info', '{"name": "KAKOS", "currency": "XAF", "whatsapp_contact": "237697259094", "country": "Cameroun"}'::jsonb)
 ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;

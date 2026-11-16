@@ -11,7 +11,7 @@ export default function Footer() {
             KAKOS
           </div>
           <p className="font-body-md text-xs text-outline-variant mt-xs max-w-[320px]">
-            Streetwear premium pour l'homme urbain contemporain. Conçu pour le Cameroun.
+            Mode, chaussures, sacs, parfums et essentiels sélectionnés pour le Cameroun.
           </p>
         </div>
 
@@ -24,7 +24,7 @@ export default function Footer() {
             Soldes
           </Link>
           <a
-            href="https://wa.me/237690000000"
+            href="https://wa.me/237697259094"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#00F0FF] transition-colors"
@@ -45,7 +45,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="text-[10px] text-[#474646] uppercase font-label-sm">
-          © {new Date().getFullYear()} KAKOS MENSWEAR. TOUS DROITS RÉSERVÉS.
+          © {new Date().getFullYear()} KAKOS. TOUS DROITS RÉSERVÉS.
         </div>
       </div>
     </footer>
