@@ -83,6 +83,8 @@ export async function upsertProductAction(productData: {
   is_new?: boolean;
   is_bestseller?: boolean;
   is_featured?: boolean;
+  affiliate_eligible?: boolean;
+  affiliate_commission_amount?: number | null;
 }) {
   const supabase = await createSupabaseServerClient();
 
@@ -94,6 +96,16 @@ export async function upsertProductAction(productData: {
     supplier_price: productData.supplier_price,
     sale_price: productData.sale_price,
     is_active: productData.is_active,
+    promo_price: productData.promo_price ?? null,
+    badge: productData.badge ?? null,
+    sku: productData.sku ?? null,
+    is_new: productData.is_new ?? false,
+    is_bestseller: productData.is_bestseller ?? false,
+    is_featured: productData.is_featured ?? false,
+    affiliate_eligible: productData.affiliate_eligible ?? false,
+    affiliate_commission_amount: productData.affiliate_eligible
+      ? Math.max(0, Number(productData.affiliate_commission_amount) || 0)
+      : 0,
   };
 
   if (productData.id) {

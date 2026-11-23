@@ -14,7 +14,7 @@ export default async function AdminProductsPage({ searchParams }: ProductsPagePr
   let query = supabase
     .from('products')
     .select(`
-      id, title, slug, sale_price, supplier_price, is_active, created_at,
+      id, title, slug, sale_price, supplier_price, is_active, created_at, affiliate_eligible, affiliate_commission_amount,
       categories(name),
       product_images(url, position),
       product_variants(stock)
@@ -140,6 +140,11 @@ export default async function AdminProductsPage({ searchParams }: ProductsPagePr
                 <div className="p-3">
                   <p className="text-xs font-bold text-black leading-tight line-clamp-2">{product.title}</p>
                   <p className="text-[10px] text-[#444748] mt-0.5">{(product.categories as any)?.name}</p>
+                  <p className={`mt-1 text-[9px] font-black uppercase tracking-wider ${product.affiliate_eligible ? 'text-blue-700' : 'text-amber-700'}`}>
+                    {product.affiliate_eligible
+                      ? `Revendeurs · ${formatPrice(Number(product.affiliate_commission_amount || 0))}`
+                      : 'Vente directe uniquement'}
+                  </p>
                   <div className="flex items-center justify-between mt-2">
                     <div>
                       {product.promo_price ? (

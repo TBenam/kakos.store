@@ -26,6 +26,7 @@ interface HomeClientProps {
   flashDeals: HomeProduct[];
   bestSellers: HomeProduct[];
   newArrivals: HomeProduct[];
+  perfumes: HomeProduct[];
   bagFeature?: HomeProduct;
   campaign?: HomeCampaign;
 }
@@ -49,7 +50,7 @@ function ProductRail({ title, eyebrow, products, accent = false }: { title: stri
   );
 }
 
-export default function HomeClient({ flashDeals, bestSellers, newArrivals, bagFeature, campaign }: HomeClientProps) {
+export default function HomeClient({ flashDeals, bestSellers, newArrivals, perfumes, bagFeature, campaign }: HomeClientProps) {
   return (
     <div className="flex min-h-screen w-full flex-col gap-xl bg-background pb-xl text-on-background selection:bg-accent selection:text-primary">
       <section className="relative flex h-[78vh] min-h-[560px] w-full flex-col justify-end overflow-hidden border-b-4 border-accent px-container-margin py-xl">
@@ -126,6 +127,7 @@ export default function HomeClient({ flashDeals, bestSellers, newArrivals, bagFe
         </section>
       )}
 
+      <ProductRail title="Parfums de la semaine" eyebrow="La sélection Yaoundé" products={perfumes} />
       <ProductRail title="Ventes flash" eyebrow="Prix réellement réduits" products={flashDeals} accent />
       <ProductRail title="Best sellers" eyebrow="Les favoris KAKOS" products={bestSellers} />
       <ProductRail title="Nouveaux arrivages" eyebrow="Fraîchement ajoutés" products={newArrivals} />

@@ -11,6 +11,11 @@
     "catalog:whatsapp": "node scripts/whatsapp-catalog/cli.mjs",
     "catalog:readiness": "node scripts/whatsapp-catalog/publish-to-supabase.mjs",
     "catalog:publish": "node scripts/whatsapp-catalog/publish-to-supabase.mjs --apply --publish-approved",
+    "fresh-week:tiktok": "node scripts/fresh-week-tiktok-radar.mjs",
+    "fresh-week:assets": "node scripts/build-fresh-week-assets.mjs",
+    "fresh-week:publish": "node scripts/publish-fresh-week.mjs",
+    "yaounde:perfumes:assets": "node scripts/build-yaounde-perfume-assets.mjs",
+    "yaounde:perfumes:publish": "node scripts/publish-yaounde-perfumes.mjs",
     "test:catalog": "node --test --test-isolation=none scripts/whatsapp-catalog/*.test.mjs"
   },
   "dependencies": {

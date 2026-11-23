@@ -38,3 +38,7 @@ delete_mock.js
 scratch-db.js
 scratch_update.js
 scratch/
+
+# generated catalog, social and review assets
+/outputs/
+/tmp/

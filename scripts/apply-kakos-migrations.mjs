@@ -26,13 +26,16 @@ if (!process.env.DATABASE_URL) {
   throw new Error('DATABASE_URL manque dans .env.local.');
 }
 
-const migrationFiles = [
+const defaultMigrationFiles = [
   '20261115000001_affiliate_sales_system.sql',
   '20261115000002_supplier_catalog_intake.sql',
   '20261115000003_real_promotion_checkout.sql',
   '20261116000004_search_and_store_contact_fix.sql',
   '20261116000005_catalog_visual_review.sql',
+  '20261123000001_product_affiliate_eligibility.sql',
 ];
+const requestedMigrationFiles = process.argv.slice(2);
+const migrationFiles = requestedMigrationFiles.length ? requestedMigrationFiles : defaultMigrationFiles;
 
 const client = new pg.Client({
   connectionString: process.env.DATABASE_URL,

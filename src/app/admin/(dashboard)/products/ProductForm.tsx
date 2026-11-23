@@ -39,6 +39,8 @@ export default function ProductForm({ product, categories, variants, images: ini
   const [isNew, setIsNew] = useState(product?.is_new ?? true);
   const [isBestseller, setIsBestseller] = useState(product?.is_bestseller ?? false);
   const [isFeatured, setIsFeatured] = useState(product?.is_featured ?? false);
+  const [affiliateEligible, setAffiliateEligible] = useState(product?.affiliate_eligible ?? false);
+  const [affiliateCommission, setAffiliateCommission] = useState(String(product?.affiliate_commission_amount ?? '2000'));
 
   // Variants
   const [localVariants, setLocalVariants] = useState<any[]>(variants ?? []);
@@ -71,6 +73,8 @@ export default function ProductForm({ product, categories, variants, images: ini
         is_new: isNew,
         is_bestseller: isBestseller,
         is_featured: isFeatured,
+        affiliate_eligible: affiliateEligible,
+        affiliate_commission_amount: affiliateEligible ? parseFloat(affiliateCommission) || 0 : 0,
       };
 
       const result = await upsertProductAction(data);
@@ -378,6 +382,7 @@ export default function ProductForm({ product, categories, variants, images: ini
               <Toggle label="Nouveau Produit" value={isNew} onChange={setIsNew} />
               <Toggle label="Bestseller" value={isBestseller} onChange={setIsBestseller} />
               <Toggle label="Featured" value={isFeatured} onChange={setIsFeatured} />
+              <Toggle label="Accessible aux revendeurs" value={affiliateEligible} onChange={setAffiliateEligible} />
             </div>
           </section>
 
@@ -397,6 +402,12 @@ export default function ProductForm({ product, categories, variants, images: ini
                 <label className={labelCls}>Prix Fournisseur (FCFA)</label>
                 <input className={inputCls} type="number" min={0} value={supplierPrice} onChange={e => setSupplierPrice(e.target.value)} placeholder="4000" />
               </div>
+              {affiliateEligible && (
+                <div>
+                  <label className={labelCls}>Commission revendeur par article (FCFA)</label>
+                  <input className={inputCls} type="number" min={0} step={500} value={affiliateCommission} onChange={e => setAffiliateCommission(e.target.value)} placeholder="2000" />
+                </div>
+              )}
               {salePrice && supplierPrice && (
                 <div className="bg-[#f5f3f3] p-3 border border-[#e3e2e2]">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-[#444748]">Marge estimée</p>

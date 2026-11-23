@@ -7,6 +7,7 @@ export default async function HomePage() {
   let flashDeals: HomeProduct[] = [];
   let bestSellers: HomeProduct[] = [];
   let newArrivals: HomeProduct[] = [];
+  let perfumes: HomeProduct[] = [];
   let bagFeature: HomeProduct | undefined;
   let campaign: HomeCampaign | undefined;
 
@@ -15,7 +16,7 @@ export default async function HomePage() {
     const [{ data: productRows, error: productError }, { data: campaignRows }] = await Promise.all([
       supabase
         .from('products')
-        .select('id, title, slug, sale_price, promo_price, badge, is_bestseller, created_at, categories(name, slug)')
+        .select('id, title, slug, sale_price, promo_price, badge, is_new, is_bestseller, created_at, categories(name, slug)')
         .eq('is_active', true)
         .order('created_at', { ascending: false }),
       supabase
@@ -56,13 +57,21 @@ export default async function HomePage() {
       };
     });
     const productsById = new Map(products.map((product) => [product.id, product]));
-    flashDeals = products.filter((product) => product.originalPrice).slice(0, 12);
-    newArrivals = products.slice(0, 12);
+    flashDeals = products.filter((product) => product.originalPrice).reverse();
+    newArrivals = rows
+      .filter((row: any) => row.is_new)
+      .map((row: any) => productsById.get(row.id))
+      .filter((product): product is HomeProduct => Boolean(product));
+    perfumes = rows
+      .filter((row: any) => row.categories?.slug === 'parfums-brumes')
+      .map((row: any) => productsById.get(row.id))
+      .filter((product): product is HomeProduct => Boolean(product));
     bagFeature = products.find((product) => product.categorySlug === 'sacs');
     bestSellers = rows
       .filter((row: any) => row.is_bestseller)
       .map((row: any) => productsById.get(row.id))
-      .filter((product): product is HomeProduct => Boolean(product));
+      .filter((product): product is HomeProduct => Boolean(product))
+      .reverse();
 
     const activeCampaign = campaignRows?.[0];
     if (activeCampaign?.banner_url) campaign = { title: activeCampaign.title, bannerUrl: activeCampaign.banner_url };
@@ -70,5 +79,5 @@ export default async function HomePage() {
     console.error('Failed to fetch homepage shopping shelves:', error);
   }
 
-  return <HomeClient flashDeals={flashDeals} bestSellers={bestSellers} newArrivals={newArrivals} bagFeature={bagFeature} campaign={campaign} />;
+  return <HomeClient flashDeals={flashDeals} bestSellers={bestSellers} newArrivals={newArrivals} perfumes={perfumes} bagFeature={bagFeature} campaign={campaign} />;
 }
