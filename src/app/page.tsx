@@ -8,6 +8,7 @@ export default async function HomePage() {
   let bestSellers: HomeProduct[] = [];
   let newArrivals: HomeProduct[] = [];
   let perfumes: HomeProduct[] = [];
+  let careProducts: HomeProduct[] = [];
   let bagFeature: HomeProduct | undefined;
   let campaign: HomeCampaign | undefined;
 
@@ -66,6 +67,10 @@ export default async function HomePage() {
       .filter((row: any) => row.categories?.slug === 'parfums-brumes')
       .map((row: any) => productsById.get(row.id))
       .filter((product): product is HomeProduct => Boolean(product));
+    careProducts = rows
+      .filter((row: any) => ['Soins du corps', 'Soins capillaires', 'Soins du visage'].includes(row.categories?.name))
+      .map((row: any) => productsById.get(row.id))
+      .filter((product): product is HomeProduct => Boolean(product));
     bagFeature = products.find((product) => product.categorySlug === 'sacs');
     bestSellers = rows
       .filter((row: any) => row.is_bestseller)
@@ -79,5 +84,5 @@ export default async function HomePage() {
     console.error('Failed to fetch homepage shopping shelves:', error);
   }
 
-  return <HomeClient flashDeals={flashDeals} bestSellers={bestSellers} newArrivals={newArrivals} perfumes={perfumes} bagFeature={bagFeature} campaign={campaign} />;
+  return <HomeClient flashDeals={flashDeals} bestSellers={bestSellers} newArrivals={newArrivals} perfumes={perfumes} careProducts={careProducts} bagFeature={bagFeature} campaign={campaign} />;
 }

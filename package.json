@@ -16,6 +16,8 @@
     "fresh-week:publish": "node scripts/publish-fresh-week.mjs",
     "yaounde:perfumes:assets": "node scripts/build-yaounde-perfume-assets.mjs",
     "yaounde:perfumes:publish": "node scripts/publish-yaounde-perfumes.mjs",
+    "yaounde:care:assets": "node scripts/build-yaounde-care-assets.mjs",
+    "yaounde:care:publish": "node scripts/publish-yaounde-care.mjs",
     "test:catalog": "node --test --test-isolation=none scripts/whatsapp-catalog/*.test.mjs"
   },
   "dependencies": {
